@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CryptoMarket.Common\CryptoMarket.Common.csproj" />
+    <ProjectReference Include="..\CryptoMarket.Database\CryptoMarket.Database.csproj" />
+  </ItemGroup>
+
+</Project>
