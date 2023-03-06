@@ -9,6 +9,7 @@ namespace CryptoMarket.EntityFramework
     public class ApplicationDbContext : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<WalletEntity> Wallets { get; set; }
 
         public ApplicationDbContext()
         {
@@ -23,6 +24,7 @@ namespace CryptoMarket.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new WalletConfiguration());
         }
     }
 }
