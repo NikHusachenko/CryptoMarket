@@ -1,3 +1,6 @@
+using CryptoMarket.Desktop.Forms;
+using CryptoMarket.EntityFramework;
+
 namespace CryptoMarket.Desktop
 {
     public static class Program
@@ -5,8 +8,9 @@ namespace CryptoMarket.Desktop
         [STAThread]
         static void Main()
         {
+            ApplicationDbContext context = new ApplicationDbContext();
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
     }
 }
