@@ -18,7 +18,7 @@ namespace CryptoMarket.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Constants.DEFAULT_CONNECTION);
+            optionsBuilder.UseSqlServer(DbConfiguration.DEFAULT_CONNECTION);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
