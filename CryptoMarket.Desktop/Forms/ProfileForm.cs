@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CryptoMarket.Desktop.Forms
 {
-	public partial class LoginForm : Form
+	public partial class ProfileForm : Form
 	{
-		public LoginForm()
+		public ProfileForm()
 		{
 			InitializeComponent();
 		}
