@@ -28,18 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.WalletInfoPanel = new System.Windows.Forms.Panel();
 			this.WalletsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.button3 = new System.Windows.Forms.Button();
 			this.WalletsFlowLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// panel1
+			// WalletInfoPanel
 			// 
-			this.panel1.Location = new System.Drawing.Point(0, 352);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1585, 512);
-			this.panel1.TabIndex = 0;
+			this.WalletInfoPanel.Location = new System.Drawing.Point(0, 352);
+			this.WalletInfoPanel.Name = "WalletInfoPanel";
+			this.WalletInfoPanel.Size = new System.Drawing.Size(1585, 512);
+			this.WalletInfoPanel.TabIndex = 0;
+			this.WalletInfoPanel.Visible = false;
 			// 
 			// WalletsFlowLayoutPanel
 			// 
@@ -66,7 +67,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1584, 860);
 			this.Controls.Add(this.WalletsFlowLayoutPanel);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.WalletInfoPanel);
 			this.Name = "WalletsForm";
 			this.Text = "WalletsForm";
 			this.WalletsFlowLayoutPanel.ResumeLayout(false);
@@ -76,7 +77,7 @@
 
 		#endregion
 
-		private Panel panel1;
+		private Panel WalletInfoPanel;
 		private FlowLayoutPanel WalletsFlowLayoutPanel;
 		private Button button3;
 	}
