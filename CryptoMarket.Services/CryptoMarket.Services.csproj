@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CryptoMarket.Common\CryptoMarket.Common.csproj" />
     <ProjectReference Include="..\CryptoMarket.Database\CryptoMarket.Database.csproj" />
     <ProjectReference Include="..\CryptoMarket.EntityFramework\CryptoMarket.EntityFramework.csproj" />
