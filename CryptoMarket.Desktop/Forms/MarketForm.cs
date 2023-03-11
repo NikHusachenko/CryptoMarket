@@ -3,6 +3,7 @@
 	public partial class MarketForm : Form
 	{
 		static FlowLayoutPanel _currenciesFlowLayoutPanel;
+
 		public class Student
 		{
 			public string Name { get; set; }
@@ -19,8 +20,6 @@
 			InitializeComponent();
 			_currenciesFlowLayoutPanel = currenciesFlowLayoutPanel;
 			AddStudentsToForm();
-
-			//currenciesFlowLayoutPanel;
 		}
 		public static void AddStudentsToForm()
 		{
@@ -29,8 +28,6 @@
 			{
 				Label NameText = new Label()
 				{
-					// label1
-					// 
 					AutoSize = true,
 					Location = new System.Drawing.Point(7, 32),
 					Name = "label1",
@@ -71,7 +68,6 @@
 				   
 					Location = new Point(3, 3),
 					Size = new System.Drawing.Size(320, 200),
-					//Padding = new Padding(64,64,64,64),
 					Margin = new Padding(5, 5, 5, 5),
 					Name = "groupBox",
 					Text = students[i].Name, //"groupBox",
@@ -88,8 +84,6 @@
 			{
 				Label NameText = new Label()
 				{
-					// label1
-					// 
 					AutoSize = true,
 					Location = new System.Drawing.Point(7, 32),
 					Name = "label1",
@@ -130,10 +124,9 @@
 
 					Location = new Point(3, 3),
 					Size = new System.Drawing.Size(320, 200),
-					//Padding = new Padding(64,64,64,64),
 					Margin = new Padding(5, 5, 5, 5),
 					Name = "groupBox",
-					Text = bookL[i].Name, //"groupBox",
+					Text = bookL[i].Name, 
 					Controls = { namelabel, authorLabel, NameText, AgeText }
 				};
 			
