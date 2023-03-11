@@ -30,7 +30,7 @@
 		{
 			this.WalletInfoPanel = new System.Windows.Forms.Panel();
 			this.WalletsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.button3 = new System.Windows.Forms.Button();
+			this.AddWalletBtn = new System.Windows.Forms.Button();
 			this.WalletsFlowLayoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -44,22 +44,22 @@
 			// 
 			// WalletsFlowLayoutPanel
 			// 
-			this.WalletsFlowLayoutPanel.Controls.Add(this.button3);
+			this.WalletsFlowLayoutPanel.Controls.Add(this.AddWalletBtn);
 			this.WalletsFlowLayoutPanel.Location = new System.Drawing.Point(1, 3);
 			this.WalletsFlowLayoutPanel.Name = "WalletsFlowLayoutPanel";
 			this.WalletsFlowLayoutPanel.Size = new System.Drawing.Size(1581, 349);
 			this.WalletsFlowLayoutPanel.TabIndex = 1;
 			// 
-			// button3
+			// AddWalletBtn
 			// 
-			this.button3.Font = new System.Drawing.Font("Segoe UI", 47.76237F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.button3.Location = new System.Drawing.Point(3, 3);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(388, 329);
-			this.button3.TabIndex = 9;
-			this.button3.Text = "+";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.AddWalletBtn.Font = new System.Drawing.Font("Segoe UI", 47.76237F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.AddWalletBtn.Location = new System.Drawing.Point(3, 3);
+			this.AddWalletBtn.Name = "AddWalletBtn";
+			this.AddWalletBtn.Size = new System.Drawing.Size(388, 329);
+			this.AddWalletBtn.TabIndex = 9;
+			this.AddWalletBtn.Text = "+";
+			this.AddWalletBtn.UseVisualStyleBackColor = true;
+			this.AddWalletBtn.Click += new System.EventHandler(this.AddWalletBtn_Click);
 			// 
 			// WalletsForm
 			// 
@@ -79,6 +79,6 @@
 
 		private Panel WalletInfoPanel;
 		private FlowLayoutPanel WalletsFlowLayoutPanel;
-		private Button button3;
+		private Button AddWalletBtn;
 	}
 }

@@ -38,6 +38,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.CancelBtn = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -45,9 +46,9 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(292, 114);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(43, 17);
+			this.label1.Size = new System.Drawing.Size(40, 17);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "label1";
+			this.label1.Text = "Login";
 			// 
 			// textBox1
 			// 
@@ -68,13 +69,13 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(292, 175);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(43, 17);
+			this.label2.Size = new System.Drawing.Size(39, 17);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "label2";
+			this.label2.Text = "Email";
 			// 
 			// textBox3
 			// 
-			this.textBox3.Location = new System.Drawing.Point(292, 533);
+			this.textBox3.Location = new System.Drawing.Point(292, 253);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(200, 25);
 			this.textBox3.TabIndex = 7;
@@ -82,11 +83,11 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(292, 513);
+			this.label3.Location = new System.Drawing.Point(292, 233);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(43, 17);
+			this.label3.Size = new System.Drawing.Size(94, 17);
 			this.label3.TabIndex = 6;
-			this.label3.Text = "label3";
+			this.label3.Text = "New Password";
 			// 
 			// textBox4
 			// 
@@ -100,14 +101,14 @@
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(292, 452);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(43, 17);
+			this.label4.Size = new System.Drawing.Size(89, 17);
 			this.label4.TabIndex = 4;
-			this.label4.Text = "label4";
+			this.label4.Text = "Old Password";
 			// 
 			// label5
 			// 
 			this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label5.Location = new System.Drawing.Point(-8, 299);
+			this.label5.Location = new System.Drawing.Point(-14, 342);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(800, 2);
 			this.label5.TabIndex = 0;
@@ -117,15 +118,27 @@
 			this.label6.AutoSize = true;
 			this.label6.Location = new System.Drawing.Point(681, 676);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(43, 17);
+			this.label6.Size = new System.Drawing.Size(35, 17);
 			this.label6.TabIndex = 8;
-			this.label6.Text = "label6";
+			this.label6.Text = "Save";
+			this.label6.Click += new System.EventHandler(this.label6_Click);
+			// 
+			// CancelBtn
+			// 
+			this.CancelBtn.AutoSize = true;
+			this.CancelBtn.Location = new System.Drawing.Point(39, 676);
+			this.CancelBtn.Name = "CancelBtn";
+			this.CancelBtn.Size = new System.Drawing.Size(46, 17);
+			this.CancelBtn.TabIndex = 9;
+			this.CancelBtn.Text = "Cancel";
+			this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
 			// 
 			// ProfileForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(784, 721);
+			this.Controls.Add(this.CancelBtn);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.textBox3);
@@ -155,5 +168,6 @@
 		private Label label4;
 		private Label label5;
 		private Label label6;
+		private Label CancelBtn;
 	}
 }

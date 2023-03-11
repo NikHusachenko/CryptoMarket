@@ -5,17 +5,14 @@
 		static FlowLayoutPanel _walletsFlowLayotPanel;
 		static Panel _walletsInfoPanel;
 		static List<Wallet> _wallets;
-		// 1 це значить що немає wallets
-	    static int _walletsCount = 1; // Тут _walletsCount буде дорівнювати кількості Гаманців користувача
+		// 1 it`s means that wallets is empty
+	    static int _walletsCount = 1; // here _walletsCount equal to the number of user wallets
 		const int MaxNumWallets = 4;
 
 		public class Wallet
 		{
 			public string Name { get; set; }
 			public decimal Balance { get; set; }
-			public string Currency { get; set; }
-			public string Address { get; set; }
-			// add other properties as needed
 		}
 
 		public WalletsForm()
@@ -66,11 +63,11 @@
 			}
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void AddWalletBtn_Click(object sender, EventArgs e)
 		{
 			if(_walletsCount >= MaxNumWallets ) 
 			{
-				button3.Hide();
+				AddWalletBtn.Hide();
    			}
 			string walletName = "Wallet " + _walletsCount.ToString();
 

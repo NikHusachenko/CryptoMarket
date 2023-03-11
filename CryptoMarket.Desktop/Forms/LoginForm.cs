@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CryptoMarket.Desktop.Forms
+﻿namespace CryptoMarket.Desktop.Forms
 {
 	public partial class LoginForm : Form
 	{
-		
+
 		public LoginForm()
 		{
 			InitializeComponent();
@@ -32,8 +22,8 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				if (!string.IsNullOrEmpty(PasswordTextBox.Text))
 				{
-					List<string> logins = new List<string>();// Сюди ми отримаємо всі логіни
-					List<string> passwords = new List<string>();// Сюди ми отримаємо всі паролі
+					List<string> logins = new List<string>();// Here we get all Logins
+					List<string> passwords = new List<string>();// Here we get all Passwords
 					logins.Add("1");
 					passwords.Add("1");
 

@@ -16,5 +16,17 @@ namespace CryptoMarket.Desktop.Forms
 		{
 			InitializeComponent();
 		}
+
+		private void label6_Click(object sender, EventArgs e)
+		{
+
+			
+			this.Close();
+		}
+
+		private void CancelBtn_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
