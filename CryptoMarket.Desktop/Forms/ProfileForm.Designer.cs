@@ -36,7 +36,6 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBox4 = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
@@ -105,11 +104,6 @@
 			this.label4.TabIndex = 4;
 			this.label4.Text = "label4";
 			// 
-			// sqlCommand1
-			// 
-			this.sqlCommand1.CommandTimeout = 30;
-			this.sqlCommand1.EnableOptimizedParameterBinding = false;
-			// 
 			// label5
 			// 
 			this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -159,7 +153,6 @@
 		private Label label3;
 		private TextBox textBox4;
 		private Label label4;
-		private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
 		private Label label5;
 		private Label label6;
 	}

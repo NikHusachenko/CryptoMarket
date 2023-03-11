@@ -69,16 +69,18 @@
 			// coinsToolStripMenuItem
 			// 
 			this.coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
-			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.coinsToolStripMenuItem.Text = "Coins";
 			this.coinsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.coinsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+			this.coinsToolStripMenuItem.Click += new System.EventHandler(this.coinsToolStripMenuItem_Click);
 			// 
 			// exchangesToolStripMenuItem
 			// 
 			this.exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
-			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.exchangesToolStripMenuItem.Text = "Exchanges";
+			this.exchangesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.exchangesToolStripMenuItem.Click += new System.EventHandler(this.exchangesToolStripMenuItem_Click);
 			// 
 			// profileToolStripMenuItem
 			// 
