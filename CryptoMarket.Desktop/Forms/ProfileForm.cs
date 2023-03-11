@@ -12,6 +12,7 @@ namespace CryptoMarket.Desktop.Forms
 {
 	public partial class ProfileForm : Form
 	{
+	
 		public ProfileForm()
 		{
 			InitializeComponent();
