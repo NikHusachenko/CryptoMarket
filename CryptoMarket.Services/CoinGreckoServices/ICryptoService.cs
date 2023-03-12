@@ -1,6 +1,6 @@
 ﻿namespace CryptoMarket.Services.CoinGreckoServices
 {
-    public interface ICoinGreckoService
+    public interface ICryptoService
     {
 
     }

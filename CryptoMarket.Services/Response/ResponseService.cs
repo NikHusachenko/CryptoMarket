@@ -23,7 +23,7 @@
         }
     }
 
-    public class ResponseService<T> where T : class
+    public class ResponseService<T>
     {
         public bool IsError { get; set; }
         public string ErrorMessage { get; set; }
