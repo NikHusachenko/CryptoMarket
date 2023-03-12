@@ -104,6 +104,8 @@
 			// LoginErrorLabel
 			// 
 			this.LoginErrorLabel.AutoSize = true;
+			this.LoginErrorLabel.BackColor = System.Drawing.Color.White;
+			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.LoginErrorLabel.Location = new System.Drawing.Point(506, 124);
 			this.LoginErrorLabel.Name = "LoginErrorLabel";
 			this.LoginErrorLabel.Size = new System.Drawing.Size(43, 17);
@@ -114,6 +116,8 @@
 			// EmailErrorLabel
 			// 
 			this.EmailErrorLabel.AutoSize = true;
+			this.EmailErrorLabel.BackColor = System.Drawing.Color.White;
+			this.EmailErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.EmailErrorLabel.Location = new System.Drawing.Point(506, 181);
 			this.EmailErrorLabel.Name = "EmailErrorLabel";
 			this.EmailErrorLabel.Size = new System.Drawing.Size(43, 17);
@@ -124,6 +128,8 @@
 			// PasswordErrorLabel
 			// 
 			this.PasswordErrorLabel.AutoSize = true;
+			this.PasswordErrorLabel.BackColor = System.Drawing.Color.White;
+			this.PasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.PasswordErrorLabel.Location = new System.Drawing.Point(506, 238);
 			this.PasswordErrorLabel.Name = "PasswordErrorLabel";
 			this.PasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
