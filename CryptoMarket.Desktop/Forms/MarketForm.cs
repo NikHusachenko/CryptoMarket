@@ -163,5 +163,29 @@
 			_currenciesFlowLayoutPanel.Controls.Clear();
 			AddStudentsToForm();
 		}
+
+		private void myProfileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ProfileForm profileForm = new ProfileForm();
+			profileForm.Show();
+			profileForm.FormClosed += ShowThisForm;
+			this.Hide();
+		}
+		private void ShowThisForm(object sender, FormClosedEventArgs e)
+		{
+			this.Show();
+		}
+		private void CloseThisForm(object sender, FormClosedEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void walletsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			WalletsForm walletsForm = new WalletsForm();
+			walletsForm.Show();
+			walletsForm.FormClosed += ShowThisForm;
+			this.Hide();
+		}
 	}
 }

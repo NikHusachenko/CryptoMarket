@@ -10,9 +10,9 @@ namespace CryptoMarket.Desktop
         {
             ApplicationDbContext context = new ApplicationDbContext();
             ApplicationConfiguration.Initialize();
-           Application.Run(new LoginForm());
+          // Application.Run(new LoginForm());
             //Application.Run(new ProfileForm());
-          //  Application.Run(new MarketForm());
+            Application.Run(new MarketForm());
          //   Application.Run(new WalletsForm());
         }
     }

@@ -69,7 +69,7 @@
 			// coinsToolStripMenuItem
 			// 
 			this.coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
-			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
 			this.coinsToolStripMenuItem.Text = "Coins";
 			this.coinsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.coinsToolStripMenuItem.Click += new System.EventHandler(this.coinsToolStripMenuItem_Click);
@@ -77,7 +77,7 @@
 			// exchangesToolStripMenuItem
 			// 
 			this.exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
-			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
 			this.exchangesToolStripMenuItem.Text = "Exchanges";
 			this.exchangesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.exchangesToolStripMenuItem.Click += new System.EventHandler(this.exchangesToolStripMenuItem_Click);
@@ -94,14 +94,16 @@
 			// myProfileToolStripMenuItem
 			// 
 			this.myProfileToolStripMenuItem.Name = "myProfileToolStripMenuItem";
-			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.myProfileToolStripMenuItem.Text = "My Profile";
+			this.myProfileToolStripMenuItem.Click += new System.EventHandler(this.myProfileToolStripMenuItem_Click);
 			// 
 			// walletsToolStripMenuItem
 			// 
 			this.walletsToolStripMenuItem.Name = "walletsToolStripMenuItem";
-			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.walletsToolStripMenuItem.Text = "Wallets";
+			this.walletsToolStripMenuItem.Click += new System.EventHandler(this.walletsToolStripMenuItem_Click);
 			// 
 			// marketToolStripMenuItem
 			// 

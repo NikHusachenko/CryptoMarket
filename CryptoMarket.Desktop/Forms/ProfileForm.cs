@@ -3,6 +3,14 @@
 	public partial class ProfileForm : Form
 	{
 		static bool ChangePasswordWasPressed = false;
+
+		public class User
+		{
+			public string Name { get; set; }
+			public string Password { get; set; }
+			public string Email { get; set; }
+		}
+
 		public ProfileForm()
 		{
 			InitializeComponent();
@@ -42,10 +50,28 @@
 			LoginList.Add("1");
 			EmailList.Add("1");
 			PasswordList.Add("1");
-			CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
-			CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
+			if(CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel))
+			{
+				isLoginCorrect = true;
+			}
+			if(CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel))
+			{
+				isEmailCorrect = true;
+			}
 			if(ChangePasswordBox.Visible == true)
-			CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel);
+			{
+			if(CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel))
+				{
+					isOldPasswordCorrect = true;
+				}
+			}
+
+			if(isLoginCorrect && isEmailCorrect && isOldPasswordCorrect)
+			{
+
+				MessageBox.Show("Succes");
+			}
+            
 		}
 
 		private void CancelLabel_Click(object sender, EventArgs e)
