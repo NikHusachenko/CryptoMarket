@@ -75,7 +75,6 @@ namespace CryptoMarket.Desktop.Forms
 
 			if (ChangePasswordBox.Visible == true)
 			{
-				//isOldPasswordCorrect = CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel);
 				if (OldPasswordTextBox.Text == currentPassword)
 				{
 					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);

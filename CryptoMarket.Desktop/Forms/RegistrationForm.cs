@@ -6,8 +6,6 @@
 		public RegistrationForm()
 		{
 			InitializeComponent();
-
-
 		}
 
 		private void SaveRegistration_Click(object sender, EventArgs e)

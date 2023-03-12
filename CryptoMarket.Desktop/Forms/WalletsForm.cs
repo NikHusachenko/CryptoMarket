@@ -8,7 +8,7 @@ namespace CryptoMarket.Desktop.Forms
 		static Panel _walletsInfoPanel;
 		static List<Wallet> _wallets;
 		// 1 it`s means that wallets is empty
-	    static int _walletsCount = 5; // here _walletsCount equal to the number of user wallets
+	    static int _walletsCount = 1; // here _walletsCount equal to the number of user wallets
 		const int MaxNumWallets = 4;
 
 		public class Wallet

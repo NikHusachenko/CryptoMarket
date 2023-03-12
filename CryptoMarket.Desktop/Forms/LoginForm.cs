@@ -13,9 +13,6 @@
 			RegistrationForm registrationForm = new RegistrationForm();
 			registrationForm.Show();
 			registrationForm.FormClosed += ShowThisForm;
-			//ProfileForm profileForm = new ProfileForm();
-			//profileForm.Show();
-			//profileForm.FormClosed += ShowThisForm;
 			this.Hide();
 		}
 
