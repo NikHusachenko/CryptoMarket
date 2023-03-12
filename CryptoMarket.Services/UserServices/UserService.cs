@@ -55,5 +55,28 @@ namespace CryptoMarket.Services.UserServices
 
             return ResponseService<long>.Ok(dbRecord.Id);
         }
+
+        public async Task<ResponseService> LogIn(LoginPostViewModel vm)
+        {
+            UserEntity dbRecord = await _userRepository
+                .GetBy(user => user.Login == vm.Login &&
+                    user.Password == vm.Password);
+
+            if(dbRecord == null)
+            {
+                return ResponseService.Error(Errors.USER_NOT_FOUND_ERROR);
+            }
+
+            dbRecord.IsOnline = true;
+            var result = await _userRepository.Update(dbRecord);
+            if (result)
+            {
+                return ResponseService.Ok();
+            }
+            else
+            {
+                return ResponseService.Error(Errors.UPDATE_ERROR);
+            }
+        }
     }
 }
