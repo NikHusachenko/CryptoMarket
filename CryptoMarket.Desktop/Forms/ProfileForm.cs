@@ -76,9 +76,9 @@ namespace CryptoMarket.Desktop.Forms
 			if (ChangePasswordBox.Visible == true)
 			{
 				//isOldPasswordCorrect = CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel);
-				if(OldPasswordTextBox.Text == currentPassword)
+				if (OldPasswordTextBox.Text == currentPassword)
 				{
-					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password",PasswordList, NewPasswordErrorLabel);
+					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);
 					int passwordIndex = PasswordList.IndexOf(OldPasswordTextBox.Text);
 					if (passwordIndex >= 0)
 					{
@@ -88,11 +88,6 @@ namespace CryptoMarket.Desktop.Forms
 					}
 				}
 			}
-			//if(isLoginCorrect && isEmailCorrect && isOldPasswordCorrect)
-			//{
-			//	MessageBox.Show("Succes");
-			//}
-            
 		}
 
 		private void CancelLabel_Click(object sender, EventArgs e)
