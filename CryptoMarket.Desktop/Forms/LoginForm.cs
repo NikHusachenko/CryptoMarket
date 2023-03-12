@@ -10,9 +10,12 @@
 
 		private void SignUpLabel_Click(object sender, EventArgs e)
 		{
-			ProfileForm profileForm = new ProfileForm();
-			profileForm.Show();
-			profileForm.FormClosed += ShowThisForm;
+			RegistrationForm registrationForm = new RegistrationForm();
+			registrationForm.Show();
+			registrationForm.FormClosed += ShowThisForm;
+			//ProfileForm profileForm = new ProfileForm();
+			//profileForm.Show();
+			//profileForm.FormClosed += ShowThisForm;
 			this.Hide();
 		}
 
@@ -22,6 +25,7 @@
 			{
 				if (!string.IsNullOrEmpty(PasswordTextBox.Text))
 				{
+					//List<Users> users = GetAllUsers - Here we get all users where by login and password we will get email
 					List<string> logins = new List<string>();// Here we get all Logins
 					List<string> passwords = new List<string>();// Here we get all Passwords
 					logins.Add("1");
@@ -35,7 +39,7 @@
 							{
 								if (PasswordTextBox.Text == pas)
 								{
-									MarketForm market = new MarketForm();
+									MarketForm market = new MarketForm(LoginTextBox.Text," ",PasswordTextBox.Text);
 									market.Show();
 									market.FormClosed += CloseThisForm;
 									this.Hide();

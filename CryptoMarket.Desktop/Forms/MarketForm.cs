@@ -3,6 +3,9 @@
 	public partial class MarketForm : Form
 	{
 		static FlowLayoutPanel _currenciesFlowLayoutPanel;
+		static string currentLogin;
+		static string currentPassword;
+		static string currentEmail;
 
 		public class Student
 		{
@@ -15,10 +18,16 @@
 			public string Name { get; set; }
 			public string Author { get; set; }
 		}
-		public MarketForm()
+		public MarketForm(string Login,string Email, string Password)
 		{
+
 			InitializeComponent();
+
 			_currenciesFlowLayoutPanel = currenciesFlowLayoutPanel;
+			currentLogin= Login;
+			currentPassword= Password;
+			currentEmail= Email;
+
 			AddStudentsToForm();
 		}
 		public static void AddStudentsToForm()
@@ -166,7 +175,7 @@
 
 		private void myProfileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ProfileForm profileForm = new ProfileForm();
+			ProfileForm profileForm = new ProfileForm(currentLogin,currentEmail,currentPassword);
 			profileForm.Show();
 			profileForm.FormClosed += ShowThisForm;
 			this.Hide();

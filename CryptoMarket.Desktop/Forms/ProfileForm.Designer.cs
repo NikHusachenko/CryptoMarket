@@ -139,9 +139,9 @@
 			this.CancelBtn.Font = new System.Drawing.Font("Segoe UI", 15.68317F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.CancelBtn.Location = new System.Drawing.Point(24, 598);
 			this.CancelBtn.Name = "CancelBtn";
-			this.CancelBtn.Size = new System.Drawing.Size(82, 31);
+			this.CancelBtn.Size = new System.Drawing.Size(61, 31);
 			this.CancelBtn.TabIndex = 9;
-			this.CancelBtn.Text = "Cancel";
+			this.CancelBtn.Text = "Back";
 			this.CancelBtn.Click += new System.EventHandler(this.CancelLabel_Click);
 			// 
 			// ChangePasswordBox

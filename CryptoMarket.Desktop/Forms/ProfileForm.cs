@@ -1,19 +1,21 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using Microsoft.Identity.Client;
+
+namespace CryptoMarket.Desktop.Forms
 {
 	public partial class ProfileForm : Form
 	{
-		static bool ChangePasswordWasPressed = false;
+		static bool ChangePasswordWasPressed;
+		static string currentPassword; // Password of this User
 
-		public class User
-		{
-			public string Name { get; set; }
-			public string Password { get; set; }
-			public string Email { get; set; }
-		}
-
-		public ProfileForm()
+		public ProfileForm(string Login, string Email, string Password)
 		{
 			InitializeComponent();
+
+			LoginTextBox.Text = Login;
+			EmailTextBox.Text = Email;
+			currentPassword = Password;
+
+			ChangePasswordWasPressed = false;
 			ChangePasswordBox.Visible = false;
 			EmailErrorLabel.Visible = false;
 			OldPasswordErrorLabel.Visible = false;
@@ -39,38 +41,57 @@
 
 		private void SaveLabel_Click(object sender, EventArgs e)
 		{
-			bool isLoginCorrect = false;
-			bool isEmailCorrect = false;
-			bool isOldPasswordCorrect = false;
-			bool isNewPasswordCorrect = false;
 
 			List<string> LoginList = new List<string>();// Here we get all Logins
 			List<string> EmailList = new List<string>();// Here we get all Emails
 			List<string> PasswordList = new List<string>();// Here we get all Passwords
+
+			// Add existing data
 			LoginList.Add("1");
 			EmailList.Add("1");
 			PasswordList.Add("1");
-			if(CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel))
+
+			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
+			if (isLoginCorrect)
 			{
-				isLoginCorrect = true;
-			}
-			if(CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel))
-			{
-				isEmailCorrect = true;
-			}
-			if(ChangePasswordBox.Visible == true)
-			{
-			if(CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel))
+				int loginIndex = LoginList.IndexOf(LoginTextBox.Text);
+				if (loginIndex >= 0)
 				{
-					isOldPasswordCorrect = true;
+					LoginList[loginIndex] = LoginTextBox.Text;
+				}
+			}
+			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
+			if (isEmailCorrect)
+			{
+				int emailIndex = EmailList.IndexOf(EmailTextBox.Text);
+				if (emailIndex >= 0)
+				{
+					EmailList[emailIndex] = EmailTextBox.Text;
 				}
 			}
 
-			if(isLoginCorrect && isEmailCorrect && isOldPasswordCorrect)
-			{
+			bool isOldPasswordCorrect = false;
+			bool isNewPasswordCorrect = false;
 
-				MessageBox.Show("Succes");
+			if (ChangePasswordBox.Visible == true)
+			{
+				//isOldPasswordCorrect = CheckEnteredInfo(OldPasswordTextBox, "Old Password", PasswordList, OldPasswordErrorLabel);
+				if(OldPasswordTextBox.Text == currentPassword)
+				{
+					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password",PasswordList, NewPasswordErrorLabel);
+					int passwordIndex = PasswordList.IndexOf(OldPasswordTextBox.Text);
+					if (passwordIndex >= 0)
+					{
+						PasswordList[passwordIndex] = NewPasswordTextBox.Text;
+						MessageBox.Show("Succes");
+						this.Close();
+					}
+				}
 			}
+			//if(isLoginCorrect && isEmailCorrect && isOldPasswordCorrect)
+			//{
+			//	MessageBox.Show("Succes");
+			//}
             
 		}
 
