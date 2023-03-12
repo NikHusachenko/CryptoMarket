@@ -108,9 +108,9 @@
 			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.LoginErrorLabel.Location = new System.Drawing.Point(506, 124);
 			this.LoginErrorLabel.Name = "LoginErrorLabel";
-			this.LoginErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.LoginErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.LoginErrorLabel.TabIndex = 7;
-			this.LoginErrorLabel.Text = "label4";
+			this.LoginErrorLabel.Text = "ErrorLabel";
 			this.LoginErrorLabel.Visible = false;
 			// 
 			// EmailErrorLabel
@@ -120,9 +120,9 @@
 			this.EmailErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.EmailErrorLabel.Location = new System.Drawing.Point(506, 181);
 			this.EmailErrorLabel.Name = "EmailErrorLabel";
-			this.EmailErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.EmailErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.EmailErrorLabel.TabIndex = 8;
-			this.EmailErrorLabel.Text = "label5";
+			this.EmailErrorLabel.Text = "ErrorLabel";
 			this.EmailErrorLabel.Visible = false;
 			// 
 			// PasswordErrorLabel
@@ -132,9 +132,9 @@
 			this.PasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.PasswordErrorLabel.Location = new System.Drawing.Point(506, 238);
 			this.PasswordErrorLabel.Name = "PasswordErrorLabel";
-			this.PasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.PasswordErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.PasswordErrorLabel.TabIndex = 9;
-			this.PasswordErrorLabel.Text = "label6";
+			this.PasswordErrorLabel.Text = "ErrorLabel";
 			this.PasswordErrorLabel.Visible = false;
 			// 
 			// RegistrationForm

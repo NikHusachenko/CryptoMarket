@@ -7,8 +7,7 @@ namespace CryptoMarket.Desktop.Forms
 		static FlowLayoutPanel _walletsFlowLayotPanel;
 		static Panel _walletsInfoPanel;
 		static List<Wallet> _wallets;
-		// 1 it`s means that wallets is empty
-	    static int _walletsCount = 1; // here _walletsCount equal to the number of user wallets
+	    static int _walletsCount = 1; // here _walletsCount equal to the number of user wallets. 1 it`s means that wallets is empty
 		const int MaxNumWallets = 4;
 
 		public class Wallet
@@ -25,7 +24,7 @@ namespace CryptoMarket.Desktop.Forms
 			_wallets = new List<Wallet>();
 			
 			AddExistingWallets();
-			if (_walletsCount == 5)AddWalletBtn.Visible = false;
+			if (_walletsCount == 5) AddWalletBtn.Visible = false;
 		}
 
 		private static void AddExistingWallets()
@@ -85,7 +84,6 @@ namespace CryptoMarket.Desktop.Forms
 				ShowWalletInfo(_wallets[index]);
 			};
 			_walletsCount++;
-			
 		}
 
 		private static void ShowWalletInfo(Wallet wallet)

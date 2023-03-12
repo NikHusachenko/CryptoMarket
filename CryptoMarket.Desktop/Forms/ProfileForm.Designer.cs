@@ -165,9 +165,9 @@
 			this.NewPasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.NewPasswordErrorLabel.Location = new System.Drawing.Point(352, 127);
 			this.NewPasswordErrorLabel.Name = "NewPasswordErrorLabel";
-			this.NewPasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.NewPasswordErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.NewPasswordErrorLabel.TabIndex = 15;
-			this.NewPasswordErrorLabel.Text = "label8";
+			this.NewPasswordErrorLabel.Text = "ErrorLabel";
 			// 
 			// OldPasswordErrorLabel
 			// 
@@ -176,9 +176,9 @@
 			this.OldPasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.OldPasswordErrorLabel.Location = new System.Drawing.Point(352, 59);
 			this.OldPasswordErrorLabel.Name = "OldPasswordErrorLabel";
-			this.OldPasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.OldPasswordErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.OldPasswordErrorLabel.TabIndex = 14;
-			this.OldPasswordErrorLabel.Text = "label8";
+			this.OldPasswordErrorLabel.Text = "ErrorLabel";
 			// 
 			// ChangePasswordLabel
 			// 
@@ -198,8 +198,9 @@
 			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.LoginErrorLabel.Location = new System.Drawing.Point(495, 166);
 			this.LoginErrorLabel.Name = "LoginErrorLabel";
-			this.LoginErrorLabel.Size = new System.Drawing.Size(0, 17);
+			this.LoginErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.LoginErrorLabel.TabIndex = 12;
+			this.LoginErrorLabel.Text = "ErrorLabel";
 			this.LoginErrorLabel.Visible = false;
 			// 
 			// EmailErrorLabel
@@ -209,9 +210,9 @@
 			this.EmailErrorLabel.ForeColor = System.Drawing.Color.Red;
 			this.EmailErrorLabel.Location = new System.Drawing.Point(495, 225);
 			this.EmailErrorLabel.Name = "EmailErrorLabel";
-			this.EmailErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.EmailErrorLabel.Size = new System.Drawing.Size(69, 17);
 			this.EmailErrorLabel.TabIndex = 13;
-			this.EmailErrorLabel.Text = "label8";
+			this.EmailErrorLabel.Text = "ErrorLabel";
 			// 
 			// ProfileForm
 			// 
