@@ -39,11 +39,12 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.CancelBtn = new System.Windows.Forms.Label();
-			this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
 			this.ChangePasswordBox = new System.Windows.Forms.GroupBox();
-			this.label7 = new System.Windows.Forms.Label();
+			this.NewPasswordErrorLabel = new System.Windows.Forms.Label();
+			this.OldPasswordErrorLabel = new System.Windows.Forms.Label();
 			this.ChangePasswordLabel = new System.Windows.Forms.Label();
 			this.LoginErrorLabel = new System.Windows.Forms.Label();
+			this.EmailErrorLabel = new System.Windows.Forms.Label();
 			this.ChangePasswordBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -70,6 +71,7 @@
 			this.EmailTextBox.Name = "EmailTextBox";
 			this.EmailTextBox.Size = new System.Drawing.Size(200, 25);
 			this.EmailTextBox.TabIndex = 3;
+			this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
 			// 
 			// label2
 			// 
@@ -82,7 +84,7 @@
 			// 
 			// NewPasswordTextBox
 			// 
-			this.NewPasswordTextBox.Location = new System.Drawing.Point(72, 124);
+			this.NewPasswordTextBox.Location = new System.Drawing.Point(152, 124);
 			this.NewPasswordTextBox.Name = "NewPasswordTextBox";
 			this.NewPasswordTextBox.Size = new System.Drawing.Size(200, 25);
 			this.NewPasswordTextBox.TabIndex = 7;
@@ -90,7 +92,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(117, 104);
+			this.label3.Location = new System.Drawing.Point(197, 104);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(94, 17);
 			this.label3.TabIndex = 6;
@@ -98,7 +100,7 @@
 			// 
 			// OldPasswordTextBox
 			// 
-			this.OldPasswordTextBox.Location = new System.Drawing.Point(72, 56);
+			this.OldPasswordTextBox.Location = new System.Drawing.Point(152, 56);
 			this.OldPasswordTextBox.Name = "OldPasswordTextBox";
 			this.OldPasswordTextBox.Size = new System.Drawing.Size(200, 25);
 			this.OldPasswordTextBox.TabIndex = 5;
@@ -106,7 +108,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(117, 36);
+			this.label4.Location = new System.Drawing.Point(197, 36);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(89, 17);
 			this.label4.TabIndex = 4;
@@ -142,31 +144,41 @@
 			this.CancelBtn.Text = "Cancel";
 			this.CancelBtn.Click += new System.EventHandler(this.CancelLabel_Click);
 			// 
-			// sqlCommand1
-			// 
-			this.sqlCommand1.CommandTimeout = 30;
-			this.sqlCommand1.EnableOptimizedParameterBinding = false;
-			// 
 			// ChangePasswordBox
 			// 
+			this.ChangePasswordBox.Controls.Add(this.NewPasswordErrorLabel);
+			this.ChangePasswordBox.Controls.Add(this.OldPasswordErrorLabel);
 			this.ChangePasswordBox.Controls.Add(this.OldPasswordTextBox);
 			this.ChangePasswordBox.Controls.Add(this.label4);
 			this.ChangePasswordBox.Controls.Add(this.label3);
 			this.ChangePasswordBox.Controls.Add(this.NewPasswordTextBox);
-			this.ChangePasswordBox.Location = new System.Drawing.Point(223, 330);
+			this.ChangePasswordBox.Location = new System.Drawing.Point(136, 330);
 			this.ChangePasswordBox.Name = "ChangePasswordBox";
-			this.ChangePasswordBox.Size = new System.Drawing.Size(344, 226);
+			this.ChangePasswordBox.Size = new System.Drawing.Size(547, 226);
 			this.ChangePasswordBox.TabIndex = 10;
 			this.ChangePasswordBox.TabStop = false;
 			// 
-			// label7
+			// NewPasswordErrorLabel
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 9);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(52, 17);
-			this.label7.TabIndex = 8;
-			this.label7.Text = "<- Back";
+			this.NewPasswordErrorLabel.AutoSize = true;
+			this.NewPasswordErrorLabel.BackColor = System.Drawing.Color.White;
+			this.NewPasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.NewPasswordErrorLabel.Location = new System.Drawing.Point(352, 127);
+			this.NewPasswordErrorLabel.Name = "NewPasswordErrorLabel";
+			this.NewPasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.NewPasswordErrorLabel.TabIndex = 15;
+			this.NewPasswordErrorLabel.Text = "label8";
+			// 
+			// OldPasswordErrorLabel
+			// 
+			this.OldPasswordErrorLabel.AutoSize = true;
+			this.OldPasswordErrorLabel.BackColor = System.Drawing.Color.White;
+			this.OldPasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.OldPasswordErrorLabel.Location = new System.Drawing.Point(352, 59);
+			this.OldPasswordErrorLabel.Name = "OldPasswordErrorLabel";
+			this.OldPasswordErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.OldPasswordErrorLabel.TabIndex = 14;
+			this.OldPasswordErrorLabel.Text = "label8";
 			// 
 			// ChangePasswordLabel
 			// 
@@ -190,14 +202,25 @@
 			this.LoginErrorLabel.TabIndex = 12;
 			this.LoginErrorLabel.Visible = false;
 			// 
+			// EmailErrorLabel
+			// 
+			this.EmailErrorLabel.AutoSize = true;
+			this.EmailErrorLabel.BackColor = System.Drawing.Color.White;
+			this.EmailErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.EmailErrorLabel.Location = new System.Drawing.Point(495, 225);
+			this.EmailErrorLabel.Name = "EmailErrorLabel";
+			this.EmailErrorLabel.Size = new System.Drawing.Size(43, 17);
+			this.EmailErrorLabel.TabIndex = 13;
+			this.EmailErrorLabel.Text = "label8";
+			// 
 			// ProfileForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(784, 647);
+			this.Controls.Add(this.EmailErrorLabel);
 			this.Controls.Add(this.LoginErrorLabel);
 			this.Controls.Add(this.ChangePasswordLabel);
-			this.Controls.Add(this.label7);
 			this.Controls.Add(this.ChangePasswordBox);
 			this.Controls.Add(this.CancelBtn);
 			this.Controls.Add(this.label6);
@@ -228,10 +251,11 @@
 		private Label label5;
 		private Label label6;
 		private Label CancelBtn;
-		private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
 		private GroupBox ChangePasswordBox;
-		private Label label7;
 		private Label ChangePasswordLabel;
 		private Label LoginErrorLabel;
+		private Label EmailErrorLabel;
+		private Label NewPasswordErrorLabel;
+		private Label OldPasswordErrorLabel;
 	}
 }
