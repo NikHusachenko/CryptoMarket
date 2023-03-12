@@ -55,6 +55,7 @@
 			this.LoginTextBox.Name = "LoginTextBox";
 			this.LoginTextBox.Size = new System.Drawing.Size(200, 25);
 			this.LoginTextBox.TabIndex = 1;
+			this.LoginTextBox.TextChanged += new System.EventHandler(this.LoginTextBox_TextChanged);
 			// 
 			// EmailTextBox
 			// 
@@ -62,6 +63,7 @@
 			this.EmailTextBox.Name = "EmailTextBox";
 			this.EmailTextBox.Size = new System.Drawing.Size(200, 25);
 			this.EmailTextBox.TabIndex = 3;
+			this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
 			// 
 			// PasswordLabel
 			// 
@@ -78,6 +80,7 @@
 			this.PasswordTextBox.Name = "PasswordTextBox";
 			this.PasswordTextBox.Size = new System.Drawing.Size(200, 25);
 			this.PasswordTextBox.TabIndex = 5;
+			this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
 			// 
 			// EmailLabel
 			// 

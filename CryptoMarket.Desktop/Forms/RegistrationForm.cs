@@ -26,13 +26,29 @@
 				LoginList.Add(LoginTextBox.Text);
 			}
 
-			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, PasswordErrorLabel);
+			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
 			if(isEmailCorrect)
 			{
 				EmailList.Add(EmailTextBox.Text);
 			}
-            
-			if(string.IsNullOrEmpty())
+
+			bool isPasswordCorrect;
+			if (string.IsNullOrEmpty(PasswordTextBox.Text))
+			{
+				PasswordErrorLabel.Visible = true;
+				PasswordErrorLabel.Text = $"<- Password cannot be empty";
+				isPasswordCorrect= false;
+			}
+			else 
+			{
+				PasswordList.Add(PasswordTextBox.Text);
+				isPasswordCorrect= true;
+			}
+			if (isLoginCorrect && isEmailCorrect && isPasswordCorrect)
+			{
+				MessageBox.Show("Succesfully added");
+				this.Close();
+			}
 		}
 
 		private static bool CheckEnteredInfo(System.Windows.Forms.TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
@@ -50,6 +66,21 @@
 				return false;
 			}
 			return true;
+		}
+
+		private void LoginTextBox_TextChanged(object sender, EventArgs e)
+		{
+			LoginErrorLabel.Visible = false;
+		}
+
+		private void EmailTextBox_TextChanged(object sender, EventArgs e)
+		{
+			EmailErrorLabel.Visible = false;
+		}
+
+		private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+		{
+			PasswordErrorLabel.Visible=false;
 		}
 	}
 }
