@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CryptoMarket.EntityFramework.Repository
 {
@@ -10,6 +11,7 @@ namespace CryptoMarket.EntityFramework.Repository
         Task<bool> Update(T entity);
         Task<bool> Delete(T entity);
         Task<T> GetById(long id);
+        Task<T> GetBy(Expression<Func<T, bool>> expression);
         Task<ICollection<T>> GetAll();
     }
 }

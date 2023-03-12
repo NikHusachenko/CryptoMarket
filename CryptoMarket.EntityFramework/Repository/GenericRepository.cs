@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CryptoMarket.EntityFramework.Repository
 {
@@ -63,6 +64,11 @@ namespace CryptoMarket.EntityFramework.Repository
             {
                 return false;
             }
+        }
+
+        public async Task<T> GetBy(Expression<Func<T, bool>> expression)
+        {
+            return await Table.FirstOrDefaultAsync(expression);
         }
     }
 }
