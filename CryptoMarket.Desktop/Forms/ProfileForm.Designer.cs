@@ -29,12 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.LoginTextBox = new System.Windows.Forms.TextBox();
+			this.EmailTextBox = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.NewPasswordTextBox = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox4 = new System.Windows.Forms.TextBox();
+			this.OldPasswordTextBox = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
@@ -42,8 +42,8 @@
 			this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
 			this.ChangePasswordBox = new System.Windows.Forms.GroupBox();
 			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.SaveProfileBtn = new System.Windows.Forms.Button();
+			this.ChangePasswordLabel = new System.Windows.Forms.Label();
+			this.LoginErrorLabel = new System.Windows.Forms.Label();
 			this.ChangePasswordBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -56,19 +56,20 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Login";
 			// 
-			// textBox1
+			// LoginTextBox
 			// 
-			this.textBox1.Location = new System.Drawing.Point(292, 163);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(200, 25);
-			this.textBox1.TabIndex = 1;
+			this.LoginTextBox.Location = new System.Drawing.Point(292, 163);
+			this.LoginTextBox.Name = "LoginTextBox";
+			this.LoginTextBox.Size = new System.Drawing.Size(200, 25);
+			this.LoginTextBox.TabIndex = 1;
+			this.LoginTextBox.TextChanged += new System.EventHandler(this.LoginTextBox_TextChanged);
 			// 
-			// textBox2
+			// EmailTextBox
 			// 
-			this.textBox2.Location = new System.Drawing.Point(292, 222);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(200, 25);
-			this.textBox2.TabIndex = 3;
+			this.EmailTextBox.Location = new System.Drawing.Point(292, 222);
+			this.EmailTextBox.Name = "EmailTextBox";
+			this.EmailTextBox.Size = new System.Drawing.Size(200, 25);
+			this.EmailTextBox.TabIndex = 3;
 			// 
 			// label2
 			// 
@@ -79,33 +80,33 @@
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Email";
 			// 
-			// textBox3
+			// NewPasswordTextBox
 			// 
-			this.textBox3.Location = new System.Drawing.Point(59, 124);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(200, 25);
-			this.textBox3.TabIndex = 7;
+			this.NewPasswordTextBox.Location = new System.Drawing.Point(72, 124);
+			this.NewPasswordTextBox.Name = "NewPasswordTextBox";
+			this.NewPasswordTextBox.Size = new System.Drawing.Size(200, 25);
+			this.NewPasswordTextBox.TabIndex = 7;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(104, 104);
+			this.label3.Location = new System.Drawing.Point(117, 104);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(94, 17);
 			this.label3.TabIndex = 6;
 			this.label3.Text = "New Password";
 			// 
-			// textBox4
+			// OldPasswordTextBox
 			// 
-			this.textBox4.Location = new System.Drawing.Point(59, 56);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(200, 25);
-			this.textBox4.TabIndex = 5;
+			this.OldPasswordTextBox.Location = new System.Drawing.Point(72, 56);
+			this.OldPasswordTextBox.Name = "OldPasswordTextBox";
+			this.OldPasswordTextBox.Size = new System.Drawing.Size(200, 25);
+			this.OldPasswordTextBox.TabIndex = 5;
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(104, 36);
+			this.label4.Location = new System.Drawing.Point(117, 36);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(89, 17);
 			this.label4.TabIndex = 4;
@@ -122,22 +123,24 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(681, 676);
+			this.label6.Font = new System.Drawing.Font("Segoe UI", 15.68317F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.label6.Location = new System.Drawing.Point(686, 598);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(35, 17);
+			this.label6.Size = new System.Drawing.Size(61, 31);
 			this.label6.TabIndex = 8;
 			this.label6.Text = "Save";
-			this.label6.Click += new System.EventHandler(this.label6_Click);
+			this.label6.Click += new System.EventHandler(this.SaveLabel_Click);
 			// 
 			// CancelBtn
 			// 
 			this.CancelBtn.AutoSize = true;
-			this.CancelBtn.Location = new System.Drawing.Point(39, 676);
+			this.CancelBtn.Font = new System.Drawing.Font("Segoe UI", 15.68317F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.CancelBtn.Location = new System.Drawing.Point(24, 598);
 			this.CancelBtn.Name = "CancelBtn";
-			this.CancelBtn.Size = new System.Drawing.Size(46, 17);
+			this.CancelBtn.Size = new System.Drawing.Size(82, 31);
 			this.CancelBtn.TabIndex = 9;
 			this.CancelBtn.Text = "Cancel";
-			this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+			this.CancelBtn.Click += new System.EventHandler(this.CancelLabel_Click);
 			// 
 			// sqlCommand1
 			// 
@@ -146,16 +149,15 @@
 			// 
 			// ChangePasswordBox
 			// 
-			this.ChangePasswordBox.Controls.Add(this.textBox4);
+			this.ChangePasswordBox.Controls.Add(this.OldPasswordTextBox);
 			this.ChangePasswordBox.Controls.Add(this.label4);
 			this.ChangePasswordBox.Controls.Add(this.label3);
-			this.ChangePasswordBox.Controls.Add(this.textBox3);
-			this.ChangePasswordBox.Location = new System.Drawing.Point(227, 349);
+			this.ChangePasswordBox.Controls.Add(this.NewPasswordTextBox);
+			this.ChangePasswordBox.Location = new System.Drawing.Point(223, 330);
 			this.ChangePasswordBox.Name = "ChangePasswordBox";
-			this.ChangePasswordBox.Size = new System.Drawing.Size(344, 206);
+			this.ChangePasswordBox.Size = new System.Drawing.Size(344, 226);
 			this.ChangePasswordBox.TabIndex = 10;
 			this.ChangePasswordBox.TabStop = false;
-			this.ChangePasswordBox.Text = "ChangePassword";
 			// 
 			// label7
 			// 
@@ -166,39 +168,43 @@
 			this.label7.TabIndex = 8;
 			this.label7.Text = "<- Back";
 			// 
-			// label8
+			// ChangePasswordLabel
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(331, 266);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(112, 17);
-			this.label8.TabIndex = 11;
-			this.label8.Text = "Change Password";
+			this.ChangePasswordLabel.AutoSize = true;
+			this.ChangePasswordLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+			this.ChangePasswordLabel.Location = new System.Drawing.Point(340, 259);
+			this.ChangePasswordLabel.Name = "ChangePasswordLabel";
+			this.ChangePasswordLabel.Size = new System.Drawing.Size(112, 17);
+			this.ChangePasswordLabel.TabIndex = 11;
+			this.ChangePasswordLabel.Text = "Change Password";
+			this.ChangePasswordLabel.Click += new System.EventHandler(this.ChangePasswordLabel_Click);
 			// 
-			// SaveProfileBtn
+			// LoginErrorLabel
 			// 
-			this.SaveProfileBtn.Location = new System.Drawing.Point(618, 516);
-			this.SaveProfileBtn.Name = "SaveProfileBtn";
-			this.SaveProfileBtn.Size = new System.Drawing.Size(135, 39);
-			this.SaveProfileBtn.TabIndex = 12;
-			this.SaveProfileBtn.Text = "Save Changes";
-			this.SaveProfileBtn.UseVisualStyleBackColor = true;
+			this.LoginErrorLabel.AutoSize = true;
+			this.LoginErrorLabel.BackColor = System.Drawing.Color.White;
+			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.LoginErrorLabel.Location = new System.Drawing.Point(495, 166);
+			this.LoginErrorLabel.Name = "LoginErrorLabel";
+			this.LoginErrorLabel.Size = new System.Drawing.Size(0, 17);
+			this.LoginErrorLabel.TabIndex = 12;
+			this.LoginErrorLabel.Visible = false;
 			// 
 			// ProfileForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 721);
-			this.Controls.Add(this.SaveProfileBtn);
-			this.Controls.Add(this.label8);
+			this.ClientSize = new System.Drawing.Size(784, 647);
+			this.Controls.Add(this.LoginErrorLabel);
+			this.Controls.Add(this.ChangePasswordLabel);
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.ChangePasswordBox);
 			this.Controls.Add(this.CancelBtn);
 			this.Controls.Add(this.label6);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.EmailTextBox);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.LoginTextBox);
 			this.Controls.Add(this.label1);
 			this.Name = "ProfileForm";
 			this.Text = "ProfileForm";
@@ -212,12 +218,12 @@
 		#endregion
 
 		private Label label1;
-		private TextBox textBox1;
-		private TextBox textBox2;
+		private TextBox LoginTextBox;
+		private TextBox EmailTextBox;
 		private Label label2;
-		private TextBox textBox3;
+		private TextBox NewPasswordTextBox;
 		private Label label3;
-		private TextBox textBox4;
+		private TextBox OldPasswordTextBox;
 		private Label label4;
 		private Label label5;
 		private Label label6;
@@ -225,7 +231,7 @@
 		private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
 		private GroupBox ChangePasswordBox;
 		private Label label7;
-		private Label label8;
-		private Button SaveProfileBtn;
+		private Label ChangePasswordLabel;
+		private Label LoginErrorLabel;
 	}
 }
