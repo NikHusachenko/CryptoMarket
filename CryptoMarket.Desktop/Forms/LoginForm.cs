@@ -1,5 +1,4 @@
 ﻿using CryptoMarket.Database.Entities;
-
 namespace CryptoMarket.Desktop.Forms
 {
     public partial class LoginForm : Form
@@ -24,7 +23,13 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				if (!string.IsNullOrEmpty(PasswordTextBox.Text))
 				{
-					UserEntity userEntity = new UserEntity() { Login = "Oleg", Email = "olegredko@gmail.com", CreatedOn = DateTime.Now, Password = "1", IsBlocked = true };
+					UserEntity userEntity = new UserEntity() // add random User for checking functionality
+					{ 
+						Login = "Oleg",
+					    Email = "olegredko@gmail.com", 
+						CreatedOn = DateTime.Now,
+						Password = "1", IsBlocked = true 
+					};
 					userEntities.Add(userEntity);
 					foreach (UserEntity user in userEntities)
 					{
@@ -49,8 +54,7 @@ namespace CryptoMarket.Desktop.Forms
 							else
 							{
 								LoginErrorLabel.Visible = true;
-								LoginErrorLabel.Text = $"<- This User were blocked";
-								
+								LoginErrorLabel.Text = $"<- This User were blocked";	
 							}	
 						}
 						else
