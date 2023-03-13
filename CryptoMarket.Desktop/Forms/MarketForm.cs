@@ -1,4 +1,6 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using CryptoMarket.Database.Entities;
+
+namespace CryptoMarket.Desktop.Forms
 {
 	public partial class MarketForm : Form
 	{
@@ -18,15 +20,15 @@
 			public string Name { get; set; }
 			public string Author { get; set; }
 		}
-		public MarketForm(string Login,string Email, string Password)
+		public MarketForm(UserEntity user)
 		{
 
 			InitializeComponent();
 
 			_currenciesFlowLayoutPanel = currenciesFlowLayoutPanel;
-			currentLogin= Login;
-			currentPassword= Password;
-			currentEmail= Email;
+			//currentLogin= Login;
+			//currentPassword= Password;
+			//currentEmail= Email;
 
 			AddStudentsToForm();
 		}

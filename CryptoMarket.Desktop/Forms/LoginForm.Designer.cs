@@ -34,6 +34,8 @@
 			this.SignUpLabel = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.LoginErrorLabel = new System.Windows.Forms.Label();
+			this.PasswordErrorLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// LoginTextBox
@@ -42,6 +44,7 @@
 			this.LoginTextBox.Name = "LoginTextBox";
 			this.LoginTextBox.Size = new System.Drawing.Size(200, 25);
 			this.LoginTextBox.TabIndex = 0;
+			this.LoginTextBox.TextChanged += new System.EventHandler(this.LoginTextBox_TextChanged);
 			// 
 			// PasswordTextBox
 			// 
@@ -49,6 +52,7 @@
 			this.PasswordTextBox.Name = "PasswordTextBox";
 			this.PasswordTextBox.Size = new System.Drawing.Size(200, 25);
 			this.PasswordTextBox.TabIndex = 1;
+			this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
 			// 
 			// SignInLabel
 			// 
@@ -66,7 +70,7 @@
 			this.SignUpLabel.Font = new System.Drawing.Font("Segoe UI", 25.66337F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.SignUpLabel.Location = new System.Drawing.Point(52, 777);
 			this.SignUpLabel.Name = "SignUpLabel";
-			this.SignUpLabel.Size = new System.Drawing.Size(145, 48);
+			this.SignUpLabel.Size = new System.Drawing.Size(151, 50);
 			this.SignUpLabel.TabIndex = 3;
 			this.SignUpLabel.Text = "Sign Up";
 			this.SignUpLabel.Click += new System.EventHandler(this.SignUpLabel_Click);
@@ -89,11 +93,37 @@
 			this.label2.TabIndex = 5;
 			this.label2.Text = "Enter Password";
 			// 
+			// LoginErrorLabel
+			// 
+			this.LoginErrorLabel.AutoSize = true;
+			this.LoginErrorLabel.BackColor = System.Drawing.Color.White;
+			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.LoginErrorLabel.Location = new System.Drawing.Point(898, 350);
+			this.LoginErrorLabel.Name = "LoginErrorLabel";
+			this.LoginErrorLabel.Size = new System.Drawing.Size(69, 17);
+			this.LoginErrorLabel.TabIndex = 13;
+			this.LoginErrorLabel.Text = "ErrorLabel";
+			this.LoginErrorLabel.Visible = false;
+			// 
+			// PasswordErrorLabel
+			// 
+			this.PasswordErrorLabel.AutoSize = true;
+			this.PasswordErrorLabel.BackColor = System.Drawing.Color.White;
+			this.PasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
+			this.PasswordErrorLabel.Location = new System.Drawing.Point(898, 398);
+			this.PasswordErrorLabel.Name = "PasswordErrorLabel";
+			this.PasswordErrorLabel.Size = new System.Drawing.Size(69, 17);
+			this.PasswordErrorLabel.TabIndex = 14;
+			this.PasswordErrorLabel.Text = "ErrorLabel";
+			this.PasswordErrorLabel.Visible = false;
+			// 
 			// LoginForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1584, 860);
+			this.Controls.Add(this.PasswordErrorLabel);
+			this.Controls.Add(this.LoginErrorLabel);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.SignUpLabel);
@@ -115,5 +145,7 @@
 		private Label SignUpLabel;
 		private Label label1;
 		private Label label2;
+		private Label LoginErrorLabel;
+		private Label PasswordErrorLabel;
 	}
 }
