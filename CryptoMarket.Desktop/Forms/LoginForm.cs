@@ -24,13 +24,15 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				if (!string.IsNullOrEmpty(PasswordTextBox.Text))
 				{
-					UserEntity userEntity = new UserEntity() { Login = "Oleg" , Email = "olegredko@gmail.com",CreatedOn = DateTime.Now,Password = "1"};
+					UserEntity userEntity = new UserEntity() { Login = "Oleg", Email = "olegredko@gmail.com", CreatedOn = DateTime.Now, Password = "1", IsBlocked = true };
 					userEntities.Add(userEntity);
 					foreach (UserEntity user in userEntities)
 					{
 						if (LoginTextBox.Text == user.Login)
 						{
-								if (PasswordTextBox.Text == user.Password)
+							if(user.IsBlocked == false)
+							{
+                                if (PasswordTextBox.Text == user.Password)
 								{
 									MarketForm market = new MarketForm(user);
 									market.Show();
@@ -42,14 +44,19 @@ namespace CryptoMarket.Desktop.Forms
 								{
 								PasswordErrorLabel.Visible = true;
 								PasswordErrorLabel.Text = "Password is not correct";
-									//MessageBox.Show("Password is not correct");
 								}
+							}
+							else
+							{
+								LoginErrorLabel.Visible = true;
+								LoginErrorLabel.Text = $"<- This User were blocked";
+								
+							}	
 						}
 						else
 						{
 							LoginErrorLabel.Visible = true;
 							LoginErrorLabel.Text = $"<- Login is not correct";
-							//	MessageBox.Show("Login is not correct");
 						}
 					}
 				}
@@ -57,14 +64,12 @@ namespace CryptoMarket.Desktop.Forms
 				{
 					PasswordErrorLabel.Visible = true;
 					PasswordErrorLabel.Text = $"<- Password cannot be empty";
-					//	MessageBox.Show("Password cannot be empty!");
 				}
 			}
 			else
 			{
 				LoginErrorLabel.Visible = true;
 				LoginErrorLabel.Text = $"<- Login cannot be empty";
-				//	MessageBox.Show("Login cannot be empty!");
 			}
 		}
 		private void ShowThisForm(object sender, FormClosedEventArgs e)
