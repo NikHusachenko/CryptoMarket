@@ -28,7 +28,7 @@ namespace CryptoMarket.Desktop.Forms
 						Login = "Oleg",
 					    Email = "olegredko@gmail.com", 
 						CreatedOn = DateTime.Now,
-						Password = "1", IsBlocked = true 
+						Password = "1", IsBlocked = false
 					};
 					userEntities.Add(userEntity);
 					foreach (UserEntity user in userEntities)
