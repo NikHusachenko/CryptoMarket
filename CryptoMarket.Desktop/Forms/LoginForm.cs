@@ -24,13 +24,19 @@ namespace CryptoMarket.Desktop.Forms
 				if (!string.IsNullOrEmpty(PasswordTextBox.Text))
 				{
 					UserEntity userEntity = new UserEntity() // add random User for checking functionality
-					{ 
+					{
+						Id = 1,
 						Login = "Oleg",
 					    Email = "olegredko@gmail.com", 
 						CreatedOn = DateTime.Now,
 						Password = "1", IsBlocked = false
 					};
+					WalletEntity wallet = new WalletEntity() { Id = 1};
+					WalletEntity wallet1 = new WalletEntity() { Id = 21 };
+					userEntity.Wallets.Add(wallet);
+					userEntity.Wallets.Add(wallet1);
 					userEntities.Add(userEntity);
+
 					foreach (UserEntity user in userEntities)
 					{
 						if (LoginTextBox.Text == user.Login)

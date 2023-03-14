@@ -197,7 +197,7 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void walletsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			WalletsForm walletsForm = new WalletsForm();
+			WalletsForm walletsForm = new WalletsForm(_currentUser);
 			walletsForm.Show();
 			walletsForm.FormClosed += ShowThisForm;
 			this.Hide();

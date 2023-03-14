@@ -4,6 +4,10 @@ namespace CryptoMarket.Database.Entities
 {
     public class UserEntity
     {
+        public UserEntity() 
+        {
+            Wallets = new List<WalletEntity>();
+        }
         public long Id { get; set; }
         public string Login { get; set; }
         public string Email { get; set; }
