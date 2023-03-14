@@ -11,9 +11,9 @@ namespace CryptoMarket.EntityFramework.Configurations
         {
             builder.ToTable("Coins").HasKey(coin => coin.Unit);
 
-            builder.Property(user => user.Name).IsRequired(true);
-            builder.Property(user => user.Value).IsRequired(true);
-            builder.Property(user => user.Type).IsRequired(true);
+            builder.Property(coin => coin.Name).IsRequired(true);
+            builder.Property(coin => coin.Value).IsRequired(true);
+            builder.Property(coin => coin.Type).IsRequired(true);
         }
     }
 }

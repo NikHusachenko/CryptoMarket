@@ -1,24 +1,14 @@
 ﻿using CryptoMarket;
+using CryptoMarket.Services.CoinGreckoServices;
 
 namespace CryptoMarket.Database.Entities
 {
     public class CoinInfoEntity
     {
-        CoinInfoConfiguration coin = Co
-        public string Name
-        {
-            get
-            {
-                return ;
-            }
-            set
-            {
-                return 0;
-            }
-        }
+        public string Name { get;  set; }
 
         public string Unit { get; set; }
-        public float Value { get; set; }
+        public double Value { get; set; }
         public string Type { get; set; }
     }
 }
