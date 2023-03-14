@@ -1,137 +1,144 @@
 ﻿using CryptoMarket.Database.Entities;
-using Microsoft.Identity.Client;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class ProfileForm : Form
 	{
-		static List<UserEntity> userEntities; 
+		static List<UserEntity> userEntities;
 		static UserEntity _currentUser;
-		static bool ChangePasswordWasPressed;
-		//static string currentPassword; // Password of this User
+		static bool ChangePasswordButtonWasPressed;
+		static bool ChangePasswordAttemptWasMade;
+		static bool ChangeLoginAttempWasMade;
+		static bool ChangeEmailAttempWasMade;
 
 		public ProfileForm(UserEntity currentUser)
 		{
 			InitializeComponent();
+			_currentUser = currentUser;// Here we get current User
+			userEntities = new List<UserEntity>();// Here we get all Users
 
-			_currentUser = currentUser;
-			userEntities= new List<UserEntity>();// Here we get all Users
+			ChangePasswordButtonWasPressed = false;
+			ChangePasswordAttemptWasMade = false;
+			ChangeLoginAttempWasMade = false;
+			ChangeEmailAttempWasMade = false;
 
-			//LoginTextBox.Text = Login;
-			//EmailTextBox.Text = Email;
-			//currentPassword = Password;
-
-			ChangePasswordWasPressed = false;
 			ChangePasswordBox.Visible = false;
-			EmailErrorLabel.Visible = false;
-			OldPasswordErrorLabel.Visible = false;
-			NewPasswordErrorLabel.Visible = false;
+		
+			CancelBtn.Select();
+			LoadTextBoxData();
+		}
 
+		private void LoadTextBoxData()
+		{
 			LoginTextBox.Text = _currentUser.Login;
 			EmailTextBox.Text = _currentUser.Email;
 		}
+
 		private static bool CheckEnteredInfo(System.Windows.Forms.TextBox EnteredData, string NameOfProperty, Label errorLabel)
 		{
-
 			if (string.IsNullOrEmpty(EnteredData.Text))
 			{
 				errorLabel.Visible = true;
 				errorLabel.Text = $"<- {NameOfProperty} cannot be empty";
 				return false;
 			}
-			//else if (userEntities.Contains(EnteredData.Text))
-			//{
-			//	errorLabel.Visible = true;
-			//	errorLabel.Text = $"<- Such {NameOfProperty} is already used";
-			//	return false;
-			//}
 			return true;
 		}
 
 		private void SaveLabel_Click(object sender, EventArgs e)
 		{
-
-			//List<string> LoginList = new List<string>();// Here we get all Logins
-			//List<string> EmailList = new List<string>();// Here we get all Emails
-			//List<string> PasswordList = new List<string>();// Here we get all Passwords
-		
-
-			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginErrorLabel);
-			bool loginExists = userEntities.Any(user => user.Login == LoginTextBox.Text);
-			if (isLoginCorrect)
+			bool isLoginDone = false;
+			bool isEmailDone = false;
+			bool isPasswordDone = false;
+			if (ChangeLoginAttempWasMade)
 			{
-				if(_currentUser.Login != LoginTextBox.Text)
+				bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginErrorLabel);
+				bool loginExists = userEntities.Any(user => user.Login == LoginTextBox.Text);
+				if (isLoginCorrect)
 				{
-					if (!loginExists)
+					if (_currentUser.Login != LoginTextBox.Text)
 					{
-				        _currentUser.Login = LoginTextBox.Text;
+						if (!loginExists)
+						{
+							_currentUser.Login = LoginTextBox.Text;
+							isLoginDone = true;
+						}
+						else
+						{
+							LoginErrorLabel.Visible = true;
+							LoginErrorLabel.Text = $"<- Such Login is already used";
+						}
 					}
 					else
 					{
-						LoginErrorLabel.Visible = true;
-					    LoginErrorLabel.Text = $"<- Such Login is already used";
+						isLoginDone = true;
 					}
 				}
-				//int loginIndex = LoginList.IndexOf(LoginTextBox.Text);
-				//if (loginIndex >= 0)
-				//{
-				//	LoginList[loginIndex] = LoginTextBox.Text;
-				//}
 			}
-			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailErrorLabel);
-			bool emailExists = userEntities.Any(user=> user.Email == EmailTextBox.Text);
-			if (isEmailCorrect)
+			if (ChangeEmailAttempWasMade)
 			{
-				if(_currentUser.Email != EmailTextBox.Text)
+				bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailErrorLabel);
+				bool emailExists = userEntities.Any(user => user.Email == EmailTextBox.Text);
+				if (isEmailCorrect)
 				{
-					if (!emailExists)
+					if (_currentUser.Email != EmailTextBox.Text)
 					{
-					_currentUser.Email = EmailTextBox.Text;
+						if (!emailExists)
+						{
+							_currentUser.Email = EmailTextBox.Text;
+							isEmailDone = true;
+						}
+						else
+						{
+							EmailErrorLabel.Visible = true;
+							EmailErrorLabel.Text = $"<- Such Email is already used";
+						}
 					}
 					else
 					{
-						EmailErrorLabel.Visible = true;
-						EmailErrorLabel.Text = $"<- Such Email is already used";
+						isEmailDone = true;
 					}
 				}
-				//int emailIndex = EmailList.IndexOf(EmailTextBox.Text);
-				//if (emailIndex >= 0)
-				//{
-				//	EmailList[emailIndex] = EmailTextBox.Text;
-				//}
 			}
 			bool isNewPasswordCorrect = false;
 			if (ChangePasswordBox.Visible == true)
 			{
-				if (_currentUser.Password == OldPasswordTextBox.Text)
+				if (ChangePasswordAttemptWasMade)
 				{
-					if (OldPasswordTextBox.Text != NewPasswordTextBox.Text)
+					if (_currentUser.Password == OldPasswordTextBox.Text)
 					{
-						isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", NewPasswordErrorLabel);
-						if(isNewPasswordCorrect)
+						if (OldPasswordTextBox.Text != NewPasswordTextBox.Text)
 						{
-							_currentUser.Password = NewPasswordTextBox.Text;
+							isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", NewPasswordErrorLabel);
+							if (isNewPasswordCorrect)
+							{
+								_currentUser.Password = NewPasswordTextBox.Text;
+								isEmailDone = true;
+							}
 						}
-						//int passwordIndex = PasswordList.IndexOf(OldPasswordTextBox.Text);
-						//if (passwordIndex >= 0)
-						//{
-						//	PasswordList[passwordIndex] = NewPasswordTextBox.Text;
-						//	MessageBox.Show("Succes");
-						//	this.Close();
-						//}
+						else
+						{
+							NewPasswordErrorLabel.Visible = true;
+							NewPasswordErrorLabel.Text = $"<- Old password and New Password can`t be the same";
+						}
 					}
 					else
 					{
 						NewPasswordErrorLabel.Visible = true;
-						NewPasswordErrorLabel.Text = $"<- Old password and New Password can`t be the same";
+						NewPasswordErrorLabel.Text = $"<- Old password is not correct!";
 					}
 				}
-				else
-				{
-					NewPasswordErrorLabel.Visible = true;
-					NewPasswordErrorLabel.Text = $"<- Old password is not correct!";
-				}
 			}
+			else
+			{
+				isPasswordDone = true;
+			}
+			if (isLoginDone && isEmailDone && isPasswordDone)
+			{
+                  LoadTextBoxData();
+				  MessageBox.Show("Succesfuly Updated");	
+			}
+			else MessageBox.Show("Finish all edits");
 		}
 
 		private void CancelLabel_Click(object sender, EventArgs e)
@@ -141,14 +148,14 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void ChangePasswordLabel_Click(object sender, EventArgs e)
 		{
-			if (ChangePasswordWasPressed == false)
+			if (ChangePasswordButtonWasPressed == false)
 			{
-				ChangePasswordWasPressed = true;
+				ChangePasswordButtonWasPressed = true;
 				ChangePasswordBox.Visible = true;
 			}
 			else
 			{
-				ChangePasswordWasPressed= false;
+				ChangePasswordButtonWasPressed = false;
 				ChangePasswordBox.Visible = false;
 				OldPasswordErrorLabel.Visible = false;
 			}
@@ -156,12 +163,25 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private void LoginTextBox_TextChanged(object sender, EventArgs e)
 		{
+			ChangeLoginAttempWasMade = true;
 			LoginErrorLabel.Visible = false;
+
 		}
 
 		private void EmailTextBox_TextChanged(object sender, EventArgs e)
 		{
+			ChangeEmailAttempWasMade = true;
 			EmailErrorLabel.Visible = false;
+		}
+
+		private void OldPasswordTextBox_TextChanged(object sender, EventArgs e)
+		{
+			ChangePasswordAttemptWasMade = true;
+		}
+
+		private void NewPasswordTextBox_TextChanged(object sender, EventArgs e)
+		{
+			ChangePasswordAttemptWasMade = true;
 		}
 	}
 }
