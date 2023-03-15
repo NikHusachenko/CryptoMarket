@@ -113,7 +113,7 @@ namespace CryptoMarket.Desktop.Forms
 							if (isNewPasswordCorrect)
 							{
 								_currentUser.Password = NewPasswordTextBox.Text;
-								isEmailDone = true;
+								isPasswordDone = true;
 							}
 						}
 						else
