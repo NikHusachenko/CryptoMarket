@@ -49,7 +49,7 @@ namespace CryptoMarket.Desktop.Forms
 						Text = $"Wallet {i}",
 					};
 					WalletEntity wallet = new WalletEntity() { Id = i };
-				//	button.Click += (sender, e) => ShowWalletInfo(wallet);
+				
 					_walletsFlowLayotPanel.Controls.Add(button);
 
 					button.Click += (sender, e) =>
