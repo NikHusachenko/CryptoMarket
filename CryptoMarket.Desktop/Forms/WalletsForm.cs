@@ -1,53 +1,76 @@
-﻿using System.Runtime.CompilerServices;
+﻿using CryptoMarket.Database.Entities;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class WalletsForm : Form
 	{
+		static UserEntity _currentUser;
+		static List<WalletEntity> _wallets;
 		static FlowLayoutPanel _walletsFlowLayotPanel;
 		static Panel _walletsInfoPanel;
-		static List<Wallet> _wallets;
-	    static int _walletsCount = 1; // here _walletsCount equal to the number of user wallets. 1 it`s means that wallets is empty
-		const int MaxNumWallets = 4;
+		static int _walletsCount; // here _walletsCount equal to the number of user wallets. 1 it`s means that wallets is empty
+		const int MaxNumWallets = 5;
 
-		public class Wallet
-		{
-			public string Name { get; set; }
-			public decimal Balance { get; set; }
-		}
-
-		public WalletsForm()
+		public WalletsForm(UserEntity currentUser)
 		{
 			InitializeComponent();
+
+			_currentUser = currentUser;
+			_wallets = currentUser.Wallets.ToList();
 			_walletsFlowLayotPanel = WalletsFlowLayoutPanel;
+			_walletsCount = _currentUser.Wallets.Count + 1;
 			_walletsInfoPanel = WalletInfoPanel;
-			_wallets = new List<Wallet>();
-			
+
 			AddExistingWallets();
-			if (_walletsCount == 5) AddWalletBtn.Visible = false;
+			if (_walletsCount == MaxNumWallets) AddWalletBtn.Visible = false;
 		}
 
 		private static void AddExistingWallets()
 		{
-			if (_walletsCount == 1)
+			if (_wallets.Count == null)
 			{
 				return;
 			}
 			else
 			{
-				for(int i=1; i <= _walletsCount - 1; i++)
+				for (int i = 1; i <= _wallets.Count; i++)
 				{
-					_walletsFlowLayotPanel.Controls.Add(CreateWallet($"Wallet {i}"));
+					Button button = new Button()
+					{
+						Font = new System.Drawing.Font("Segoe UI", 47.76237F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point),
+						Location = new System.Drawing.Point(3, 3),
+						Name = "Wallet",
+						Size = new System.Drawing.Size(388, 329),
+						Text = $"Wallet {i}",
+					};
+
+					WalletEntity wallet = _wallets[i-1];
+
+					_walletsFlowLayotPanel.Controls.Add(button);
+
+					button.Click += (sender, e) =>
+					{
+						_walletsInfoPanel.Visible = true;
+						_walletsInfoPanel.Controls.Clear();
+						var nameLabel = new Label
+						{
+							Location = new Point(10, 10),
+							Text = $"Wallet User Id : {wallet.Id}",
+							AutoSize = true,
+
+						};
+						_walletsInfoPanel.Controls.Add(nameLabel);
+					};
 				}
 			}
 		}
 
-		private static Button CreateWallet(string walletName)
+		private static (Button, WalletEntity) CreateWallet(string walletName)
 		{
 			if (_walletsFlowLayotPanel.Controls.ContainsKey(walletName) && _walletsCount != 1)
 			{
 				MessageBox.Show("Error");
-				return null;
+				return (null, null);
 			}
 			else
 			{
@@ -59,64 +82,42 @@ namespace CryptoMarket.Desktop.Forms
 					Size = new System.Drawing.Size(388, 329),
 					Text = walletName,
 				};
-				Wallet wallet = new Wallet() { Name= walletName };
+				WalletEntity wallet = new WalletEntity() { Id = _walletsCount };
 				_wallets.Add(wallet);
 				button.Click += (sender, e) => ShowWalletInfo(wallet);
-				return button;
+				return (button, wallet);
 			}
 		}
 
 		private void AddWalletBtn_Click(object sender, EventArgs e)
 		{
-			if(_walletsCount >= MaxNumWallets ) 
+			if (_walletsCount + 1 == MaxNumWallets)
 			{
 				AddWalletBtn.Hide();
-   			}
+			}
 			string walletName = "Wallet " + _walletsCount.ToString();
 
-		    Button button = CreateWallet(walletName);
+			(Button button, WalletEntity wallet) = CreateWallet(walletName);
 			_walletsFlowLayotPanel.Controls.Add(button);
 
 			button.Click += (sender, e) =>
 			{
-				int index = 
-				int.Parse(button.Name.Replace("Wallet ", "")) - 1;
-				ShowWalletInfo(_wallets[index]);
+				ShowWalletInfo(wallet);
 			};
 			_walletsCount++;
 		}
 
-		private static void ShowWalletInfo(Wallet wallet)
+		private static void ShowWalletInfo(WalletEntity wallet)
 		{
 			_walletsInfoPanel.Visible = true;
 			_walletsInfoPanel.Controls.Clear();
 			var nameLabel = new Label
 			{
 				Location = new Point(10, 10),
-				Text = "Name:"
+				Text = $"Wallet User Id : {wallet.Id}",
+				AutoSize = true,
 			};
 			_walletsInfoPanel.Controls.Add(nameLabel);
-
-			var nameValueLabel = new Label
-			{
-				Location = new Point(110, 10),
-				Text = wallet.Name
-			};
-			_walletsInfoPanel.Controls.Add(nameValueLabel);
-
-			var balanceLabel = new Label
-			{
-				Location = new Point(10, 40),
-				Text = "Balance:"
-			};
-			_walletsInfoPanel.Controls.Add(balanceLabel);
-
-			var balanceValueLabel = new Label
-			{
-				Location = new Point(200, 40),
-				Text = wallet.Balance.ToString()
-			};
-			_walletsInfoPanel.Controls.Add(balanceValueLabel);
 		}
 	}
 }

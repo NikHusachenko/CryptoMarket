@@ -1,55 +1,79 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using CryptoMarket.Database.Entities;
+
+namespace CryptoMarket.Desktop.Forms
 {
 	public partial class RegistrationForm : Form
 	{
-
+		static List<UserEntity> _allUsers;
 		public RegistrationForm()
 		{
 			InitializeComponent();
+			_allUsers = new List<UserEntity>();
+			_allUsers.Add(new UserEntity { Login = "Oleg", Password = "1" });
+
 		}
 
 		private void SaveRegistration_Click(object sender, EventArgs e)
 		{
-			List<string> LoginList = new List<string>();// Here we get all Logins
-			List<string> EmailList = new List<string>();// Here we get all Emails
-			List<string> PasswordList = new List<string>();// Here we get all Passwords
+			bool isLoginDone = false;
+			bool isPasswordDone = false;
+			bool isEmailDone = false;
+			//List<string> LoginList = new List<string>();// Here we get all Logins
+			//List<string> EmailList = new List<string>();// Here we get all Emails
+			//List<string> PasswordList = new List<string>();// Here we get all Passwords
 
 			// Add existing data
-			LoginList.Add("1");
-			EmailList.Add("1");
+			//LoginList.Add("1");
+			//EmailList.Add("1");
 
-			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
+			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginErrorLabel);
             if (isLoginCorrect)
 			{
-				LoginList.Add(LoginTextBox.Text);
+				bool containLogin = _allUsers.Any(u => u.Login == LoginTextBox.Text);
+			    if(!containLogin)
+				{
+					isLoginDone= true;
+				}
+				else
+				{
+					LoginErrorLabel.Visible = true;
+			    	LoginErrorLabel.Text = $"<- Such Login is already used";
+				}
+				//LoginList.Add(LoginTextBox.Text);
 			}
-
-			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
+			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailErrorLabel);
 			if(isEmailCorrect)
 			{
-				EmailList.Add(EmailTextBox.Text);
+				bool containEmail = _allUsers.Any(u=>u.Email== EmailTextBox.Text);
+				if (!containEmail)
+				{
+					isEmailDone= true;
+				}
+				else
+				{
+					EmailErrorLabel.Visible = true;
+					EmailErrorLabel.Text = $"<- Such Email is already used";
+				}
 			}
 
-			bool isPasswordCorrect;
-			if (string.IsNullOrEmpty(PasswordTextBox.Text))
+			bool isPasswordCorrect = !string.IsNullOrEmpty(PasswordTextBox.Text);
+			if (isPasswordCorrect)
 			{
-				PasswordErrorLabel.Visible = true;
-				PasswordErrorLabel.Text = $"<- Password cannot be empty";
-				isPasswordCorrect= false;
+				isPasswordDone= true;
 			}
 			else 
 			{
-				PasswordList.Add(PasswordTextBox.Text);
-				isPasswordCorrect= true;
+				PasswordErrorLabel.Visible = true;
+				PasswordErrorLabel.Text = $"<- Password cannot be empty";
 			}
-			if (isLoginCorrect && isEmailCorrect && isPasswordCorrect)
+			if (isLoginDone && isEmailDone && isPasswordDone)
 			{
 				MessageBox.Show("Succesfully added");
 				this.Close();
 			}
 		}
 
-		private static bool CheckEnteredInfo(System.Windows.Forms.TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
+		private static bool CheckEnteredInfo(System.Windows.Forms.TextBox EnteredData, string NameOfProperty, Label errorLabel)
 		{
 			if (string.IsNullOrEmpty(EnteredData.Text))
 			{
@@ -57,12 +81,12 @@
 				errorLabel.Text = $"<- {NameOfProperty} cannot be empty";
 				return false;
 			}
-			else if (existsItems.Contains(EnteredData.Text))
-			{
-				errorLabel.Visible = true;
-				errorLabel.Text = $"<- Such {NameOfProperty} is already used";
-				return false;
-			}
+			//else if (existsItems.Contains(EnteredData.Text))
+			//{
+			//	errorLabel.Visible = true;
+			//	errorLabel.Text = $"<- Such {NameOfProperty} is already used";
+			//	return false;
+			//}
 			return true;
 		}
 

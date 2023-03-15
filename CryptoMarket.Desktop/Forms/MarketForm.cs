@@ -5,9 +5,10 @@ namespace CryptoMarket.Desktop.Forms
 	public partial class MarketForm : Form
 	{
 		static FlowLayoutPanel _currenciesFlowLayoutPanel;
-		static string currentLogin;
-		static string currentPassword;
-		static string currentEmail;
+		static UserEntity _currentUser;
+		//static string currentLogin;
+		//static string currentPassword;
+		//static string currentEmail;
 
 		public class Student
 		{
@@ -15,17 +16,20 @@ namespace CryptoMarket.Desktop.Forms
 			public int Age { get; set; }
 
 		}
+
 		public class Book
 		{
 			public string Name { get; set; }
 			public string Author { get; set; }
 		}
-		public MarketForm(UserEntity user)
+
+		public MarketForm(UserEntity currentUser)
 		{
 
 			InitializeComponent();
 
 			_currenciesFlowLayoutPanel = currenciesFlowLayoutPanel;
+			_currentUser = currentUser;
 			//currentLogin= Login;
 			//currentPassword= Password;
 			//currentEmail= Email;
@@ -177,7 +181,7 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void myProfileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ProfileForm profileForm = new ProfileForm(currentLogin,currentEmail,currentPassword);
+			ProfileForm profileForm = new ProfileForm(_currentUser);
 			profileForm.Show();
 			profileForm.FormClosed += ShowThisForm;
 			this.Hide();
@@ -193,7 +197,7 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void walletsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			WalletsForm walletsForm = new WalletsForm();
+			WalletsForm walletsForm = new WalletsForm(_currentUser);
 			walletsForm.Show();
 			walletsForm.FormClosed += ShowThisForm;
 			this.Hide();
