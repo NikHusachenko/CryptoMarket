@@ -1,44 +1,39 @@
 ﻿using CryptoMarket.Database.Entities;
-using System.Runtime.CompilerServices;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class WalletsForm : Form
 	{
 		static UserEntity _currentUser;
+		static List<WalletEntity> _wallets;
 		static FlowLayoutPanel _walletsFlowLayotPanel;
 		static Panel _walletsInfoPanel;
 		static int _walletsCount; // here _walletsCount equal to the number of user wallets. 1 it`s means that wallets is empty
 		const int MaxNumWallets = 5;
-
-		//public class Wallet
-		//{
-		//	public string Name { get; set; }
-		//	public decimal Balance { get; set; }
-		//}
 
 		public WalletsForm(UserEntity currentUser)
 		{
 			InitializeComponent();
 
 			_currentUser = currentUser;
+			_wallets = currentUser.Wallets.ToList();
 			_walletsFlowLayotPanel = WalletsFlowLayoutPanel;
-			_walletsCount = _currentUser.Wallets.Count+ 1;
+			_walletsCount = _currentUser.Wallets.Count + 1;
 			_walletsInfoPanel = WalletInfoPanel;
-			
+
 			AddExistingWallets();
 			if (_walletsCount == MaxNumWallets) AddWalletBtn.Visible = false;
 		}
 
 		private static void AddExistingWallets()
 		{
-			if(_currentUser.Wallets.Count == null)
+			if (_wallets.Count == null)
 			{
 				return;
 			}
 			else
 			{
-				for(int i=1; i<= _currentUser.Wallets.Count; i++)
+				for (int i = 1; i <= _wallets.Count; i++)
 				{
 					Button button = new Button()
 					{
@@ -48,8 +43,9 @@ namespace CryptoMarket.Desktop.Forms
 						Size = new System.Drawing.Size(388, 329),
 						Text = $"Wallet {i}",
 					};
-					WalletEntity wallet = new WalletEntity() { Id = i };
-				
+
+					WalletEntity wallet = _wallets[i-1];
+
 					_walletsFlowLayotPanel.Controls.Add(button);
 
 					button.Click += (sender, e) =>
@@ -65,18 +61,16 @@ namespace CryptoMarket.Desktop.Forms
 						};
 						_walletsInfoPanel.Controls.Add(nameLabel);
 					};
-
-				
 				}
 			}
 		}
 
-		private static (Button,WalletEntity) CreateWallet(string walletName)
+		private static (Button, WalletEntity) CreateWallet(string walletName)
 		{
 			if (_walletsFlowLayotPanel.Controls.ContainsKey(walletName) && _walletsCount != 1)
 			{
 				MessageBox.Show("Error");
-				return (null,null);
+				return (null, null);
 			}
 			else
 			{
@@ -88,22 +82,22 @@ namespace CryptoMarket.Desktop.Forms
 					Size = new System.Drawing.Size(388, 329),
 					Text = walletName,
 				};
-				WalletEntity wallet = new WalletEntity() { Id = _walletsCount};
-				_currentUser.Wallets.Add(wallet);
+				WalletEntity wallet = new WalletEntity() { Id = _walletsCount };
+				_wallets.Add(wallet);
 				button.Click += (sender, e) => ShowWalletInfo(wallet);
-				return (button,wallet);
+				return (button, wallet);
 			}
 		}
 
 		private void AddWalletBtn_Click(object sender, EventArgs e)
 		{
-			if(_walletsCount + 1 == MaxNumWallets ) 
+			if (_walletsCount + 1 == MaxNumWallets)
 			{
 				AddWalletBtn.Hide();
-   			}
+			}
 			string walletName = "Wallet " + _walletsCount.ToString();
 
-		    (Button button,WalletEntity wallet) = CreateWallet(walletName);
+			(Button button, WalletEntity wallet) = CreateWallet(walletName);
 			_walletsFlowLayotPanel.Controls.Add(button);
 
 			button.Click += (sender, e) =>
@@ -111,7 +105,6 @@ namespace CryptoMarket.Desktop.Forms
 				ShowWalletInfo(wallet);
 			};
 			_walletsCount++;
-			
 		}
 
 		private static void ShowWalletInfo(WalletEntity wallet)
@@ -123,10 +116,8 @@ namespace CryptoMarket.Desktop.Forms
 				Location = new Point(10, 10),
 				Text = $"Wallet User Id : {wallet.Id}",
 				AutoSize = true,
-				
 			};
 			_walletsInfoPanel.Controls.Add(nameLabel);
-			
 		}
 	}
 }
