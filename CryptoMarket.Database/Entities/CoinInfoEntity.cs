@@ -1,5 +1,4 @@
 ﻿using CryptoMarket;
-using CryptoMarket.Services.CoinGreckoServices;
 
 namespace CryptoMarket.Database.Entities
 {

@@ -10,6 +10,7 @@
 
     public class DbConfiguration
     {
+        //public const string DEFAULT_CONNECTION = @"Data Source=localhost;Database=CryptoMarketDb;Trusted_Connection=True;Encrypt=false";
         public const string DEFAULT_CONNECTION = @"Server=127.0.0.1;Host=localhost;Database=TestPostgreDb;Port=5432;username=postgres;password=swayze";
     }
 

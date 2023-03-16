@@ -19,7 +19,8 @@ namespace CryptoMarket.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(@"Server=127.0.0.1;Host=localhost;Database=TestPostgreDb;Port=5432;username=postgres;password=swayze");
+            optionsBuilder.UseNpgsql(DbConfiguration.DEFAULT_CONNECTION);
+            //optionsBuilder.UseSqlServer(DbConfiguration.DEFAULT_CONNECTION);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

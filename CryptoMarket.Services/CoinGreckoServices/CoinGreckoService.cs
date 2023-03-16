@@ -21,10 +21,6 @@ namespace CryptoMarket.Services.CoinGreckoServices
         public string Unit { get; set; }
         public double Value { get; set; }
         public string Type { get; set; }
-        public override string ToString()
-        {
-            return $"Name: {Name}, Unit: {Unit}, Value: {Value}, Type: {Type}";
-        }
     }
     public class CoinGreckoService
     {
