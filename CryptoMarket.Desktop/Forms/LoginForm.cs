@@ -1,4 +1,4 @@
-﻿using CryptoMarket.Database.Entities;
+﻿using CryptoMarket.Services.Response;
 using CryptoMarket.Services.UserServices;
 using CryptoMarket.Services.UserServices.Models;
 
@@ -35,10 +35,15 @@ namespace CryptoMarket.Desktop.Forms
                 Password = PasswordTextBox.Text,
             };
 
-            var response = await _userService.LogIn(vm);
-            if(response.IsError)
+            var validationResult = await ValidatorService<LoginPostViewModel>.ModelState(vm);
+            if(validationResult.IsValid)
             {
-
+                // ...
+            }
+            else
+            {
+                var error = validationResult.Errors;
+                string passwordErrorMessage = error[0].ErrorMessage;
             }
         }
     }

@@ -5,7 +5,7 @@ namespace CryptoMarket.Services.Response
 {
     public class ValidatorService<T> where T : AbstractValidator<T>
     {
-        public async Task<StateResponse> ModelState(T value)
+        public static async Task<StateResponse> ModelState(T value)
         {
             var validate = await value.ValidateAsync(value, options =>
             {
