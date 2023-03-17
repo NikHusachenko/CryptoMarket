@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 
 namespace CryptoMarket.Services.Response
 {
@@ -21,10 +20,19 @@ namespace CryptoMarket.Services.Response
             }
             else
             {
+                Dictionary<string, string> errors = new Dictionary<string, string>();
+                foreach(var error in  validate.Errors)
+                {
+                    if(!errors.ContainsKey(error.PropertyName))
+                    {
+                        errors.Add(error.PropertyName, error.ErrorMessage);
+                    }
+                }
+
                 return new StateResponse()
                 {
                     IsValid = false,
-                    Errors = validate.Errors,
+                    Errors = errors,
                 };
             }
         }
@@ -34,10 +42,10 @@ namespace CryptoMarket.Services.Response
     {
         public StateResponse()
         {
-            Errors = new List<ValidationFailure>();
+            Errors = new Dictionary<string, string>();
         }
 
         public bool IsValid { get; set; }
-        public List<ValidationFailure> Errors { get; set; }
+        public Dictionary<string, string> Errors { get; set; }
     }
 }

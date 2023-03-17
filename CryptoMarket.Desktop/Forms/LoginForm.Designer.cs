@@ -34,28 +34,28 @@
             SignUpLabel = new Label();
             label1 = new Label();
             label2 = new Label();
-            LoginErrorLabel = new Label();
-            PasswordErrorLabel = new Label();
+            loginErrorLabel = new Label();
+            passwordErrorLabel = new Label();
             SuspendLayout();
             // 
             // LoginTextBox
             // 
-            LoginTextBox.Location = new Point(692, 306);
+            LoginTextBox.Location = new Point(624, 306);
             LoginTextBox.Name = "LoginTextBox";
-            LoginTextBox.Size = new Size(200, 23);
+            LoginTextBox.Size = new Size(268, 23);
             LoginTextBox.TabIndex = 0;
             // 
             // PasswordTextBox
             // 
-            PasswordTextBox.Location = new Point(692, 349);
+            PasswordTextBox.Location = new Point(624, 370);
             PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.Size = new Size(200, 23);
+            PasswordTextBox.Size = new Size(268, 23);
             PasswordTextBox.TabIndex = 1;
             // 
             // SignInLabel
             // 
             SignInLabel.AutoSize = true;
-            SignInLabel.Location = new Point(764, 381);
+            SignInLabel.Location = new Point(762, 438);
             SignInLabel.Name = "SignInLabel";
             SignInLabel.Size = new Size(43, 15);
             SignInLabel.TabIndex = 2;
@@ -85,43 +85,43 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(748, 331);
+            label2.Location = new Point(748, 352);
             label2.Name = "label2";
             label2.Size = new Size(87, 15);
             label2.TabIndex = 5;
             label2.Text = "Enter Password";
             // 
-            // LoginErrorLabel
+            // loginErrorLabel
             // 
-            LoginErrorLabel.AutoSize = true;
-            LoginErrorLabel.BackColor = Color.White;
-            LoginErrorLabel.ForeColor = Color.Red;
-            LoginErrorLabel.Location = new Point(898, 309);
-            LoginErrorLabel.Name = "LoginErrorLabel";
-            LoginErrorLabel.Size = new Size(60, 15);
-            LoginErrorLabel.TabIndex = 13;
-            LoginErrorLabel.Text = "ErrorLabel";
-            LoginErrorLabel.Visible = false;
+            loginErrorLabel.AutoSize = true;
+            loginErrorLabel.BackColor = Color.White;
+            loginErrorLabel.ForeColor = Color.Red;
+            loginErrorLabel.Location = new Point(898, 309);
+            loginErrorLabel.Name = "loginErrorLabel";
+            loginErrorLabel.Size = new Size(60, 15);
+            loginErrorLabel.TabIndex = 13;
+            loginErrorLabel.Text = "ErrorLabel";
+            loginErrorLabel.Visible = false;
             // 
-            // PasswordErrorLabel
+            // passwordErrorLabel
             // 
-            PasswordErrorLabel.AutoSize = true;
-            PasswordErrorLabel.BackColor = Color.White;
-            PasswordErrorLabel.ForeColor = Color.Red;
-            PasswordErrorLabel.Location = new Point(898, 351);
-            PasswordErrorLabel.Name = "PasswordErrorLabel";
-            PasswordErrorLabel.Size = new Size(60, 15);
-            PasswordErrorLabel.TabIndex = 14;
-            PasswordErrorLabel.Text = "ErrorLabel";
-            PasswordErrorLabel.Visible = false;
+            passwordErrorLabel.AutoSize = true;
+            passwordErrorLabel.BackColor = Color.White;
+            passwordErrorLabel.ForeColor = Color.Red;
+            passwordErrorLabel.Location = new Point(898, 372);
+            passwordErrorLabel.Name = "passwordErrorLabel";
+            passwordErrorLabel.Size = new Size(60, 15);
+            passwordErrorLabel.TabIndex = 14;
+            passwordErrorLabel.Text = "ErrorLabel";
+            passwordErrorLabel.Visible = false;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1584, 759);
-            Controls.Add(PasswordErrorLabel);
-            Controls.Add(LoginErrorLabel);
+            Controls.Add(passwordErrorLabel);
+            Controls.Add(loginErrorLabel);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(SignUpLabel);
@@ -142,7 +142,7 @@
         private Label SignUpLabel;
         private Label label1;
         private Label label2;
-        private Label LoginErrorLabel;
-        private Label PasswordErrorLabel;
+        private Label loginErrorLabel;
+        private Label passwordErrorLabel;
     }
 }

@@ -29,6 +29,8 @@ namespace CryptoMarket.Desktop.Forms
 
         private async void SignInLabel_Click(object sender, EventArgs e)
         {
+            ClearErrors<Label>(passwordErrorLabel, loginErrorLabel);
+
             LoginPostViewModel vm = new LoginPostViewModel()
             {
                 Login = LoginTextBox.Text,
@@ -36,14 +38,44 @@ namespace CryptoMarket.Desktop.Forms
             };
 
             var validationResult = await ValidatorService<LoginPostViewModel>.ModelState(vm);
-            if(validationResult.IsValid)
+            if (validationResult.IsValid)
             {
-                // ...
+                var response = await _userService.LogIn(vm);
+                if (response.IsError)
+                {
+
+                    return;
+                }
+
+                MarketForm marketForm = new MarketForm();
+                marketForm.FormClosed += (object? sender, FormClosedEventArgs e) =>
+                {
+                    Environment.Exit(0);
+                };
+                this.Hide();
+                marketForm.ShowDialog();
             }
             else
             {
-                var error = validationResult.Errors;
-                string passwordErrorMessage = error[0].ErrorMessage;
+                var errors = validationResult.Errors;
+
+                if (errors.ContainsKey("Password")) ShowError<Label>(passwordErrorLabel, errors["Password"]);
+                if (errors.ContainsKey("Login")) ShowError<Label>(loginErrorLabel, errors["Login"]);
+            }
+        }
+
+        private void ShowError<T>(T label, string errorMessage) where T : Label
+        {
+            label.Visible = true;
+            label.Text = errorMessage;
+        }
+
+        private void ClearErrors<T>(params Label[] labels)
+        {
+            foreach (var label in labels)
+            {
+                label.Visible = false;
+                label.Text = string.Empty;
             }
         }
     }
