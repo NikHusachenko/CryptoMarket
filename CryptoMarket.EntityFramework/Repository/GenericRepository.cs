@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace CryptoMarket.EntityFramework.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : DbSet<T>
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly ApplicationDbContext _context;
         public DbSet<T> Table { get; }

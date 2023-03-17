@@ -1,151 +1,148 @@
 ﻿namespace CryptoMarket.Desktop.Forms
 {
-	partial class LoginForm
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class LoginForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			this.LoginTextBox = new System.Windows.Forms.TextBox();
-			this.PasswordTextBox = new System.Windows.Forms.TextBox();
-			this.SignInLabel = new System.Windows.Forms.Label();
-			this.SignUpLabel = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
-			this.LoginErrorLabel = new System.Windows.Forms.Label();
-			this.PasswordErrorLabel = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// LoginTextBox
-			// 
-			this.LoginTextBox.Location = new System.Drawing.Point(692, 347);
-			this.LoginTextBox.Name = "LoginTextBox";
-			this.LoginTextBox.Size = new System.Drawing.Size(200, 25);
-			this.LoginTextBox.TabIndex = 0;
-			this.LoginTextBox.TextChanged += new System.EventHandler(this.LoginTextBox_TextChanged);
-			// 
-			// PasswordTextBox
-			// 
-			this.PasswordTextBox.Location = new System.Drawing.Point(692, 395);
-			this.PasswordTextBox.Name = "PasswordTextBox";
-			this.PasswordTextBox.Size = new System.Drawing.Size(200, 25);
-			this.PasswordTextBox.TabIndex = 1;
-			this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
-			// 
-			// SignInLabel
-			// 
-			this.SignInLabel.AutoSize = true;
-			this.SignInLabel.Location = new System.Drawing.Point(764, 432);
-			this.SignInLabel.Name = "SignInLabel";
-			this.SignInLabel.Size = new System.Drawing.Size(47, 17);
-			this.SignInLabel.TabIndex = 2;
-			this.SignInLabel.Text = "Sign in";
-			this.SignInLabel.Click += new System.EventHandler(this.SignInLabel_Click);
-			// 
-			// SignUpLabel
-			// 
-			this.SignUpLabel.AutoSize = true;
-			this.SignUpLabel.Font = new System.Drawing.Font("Segoe UI", 25.66337F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.SignUpLabel.Location = new System.Drawing.Point(52, 777);
-			this.SignUpLabel.Name = "SignUpLabel";
-			this.SignUpLabel.Size = new System.Drawing.Size(151, 50);
-			this.SignUpLabel.TabIndex = 3;
-			this.SignUpLabel.Text = "Sign Up";
-			this.SignUpLabel.Click += new System.EventHandler(this.SignUpLabel_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(748, 327);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(74, 17);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "Enter Login";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(748, 375);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(98, 17);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "Enter Password";
-			// 
-			// LoginErrorLabel
-			// 
-			this.LoginErrorLabel.AutoSize = true;
-			this.LoginErrorLabel.BackColor = System.Drawing.Color.White;
-			this.LoginErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.LoginErrorLabel.Location = new System.Drawing.Point(898, 350);
-			this.LoginErrorLabel.Name = "LoginErrorLabel";
-			this.LoginErrorLabel.Size = new System.Drawing.Size(69, 17);
-			this.LoginErrorLabel.TabIndex = 13;
-			this.LoginErrorLabel.Text = "ErrorLabel";
-			this.LoginErrorLabel.Visible = false;
-			// 
-			// PasswordErrorLabel
-			// 
-			this.PasswordErrorLabel.AutoSize = true;
-			this.PasswordErrorLabel.BackColor = System.Drawing.Color.White;
-			this.PasswordErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.PasswordErrorLabel.Location = new System.Drawing.Point(898, 398);
-			this.PasswordErrorLabel.Name = "PasswordErrorLabel";
-			this.PasswordErrorLabel.Size = new System.Drawing.Size(69, 17);
-			this.PasswordErrorLabel.TabIndex = 14;
-			this.PasswordErrorLabel.Text = "ErrorLabel";
-			this.PasswordErrorLabel.Visible = false;
-			// 
-			// LoginForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1584, 860);
-			this.Controls.Add(this.PasswordErrorLabel);
-			this.Controls.Add(this.LoginErrorLabel);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.SignUpLabel);
-			this.Controls.Add(this.SignInLabel);
-			this.Controls.Add(this.PasswordTextBox);
-			this.Controls.Add(this.LoginTextBox);
-			this.Name = "LoginForm";
-			this.Text = "LoginForm";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            LoginTextBox = new TextBox();
+            PasswordTextBox = new TextBox();
+            SignInLabel = new Label();
+            SignUpLabel = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            LoginErrorLabel = new Label();
+            PasswordErrorLabel = new Label();
+            SuspendLayout();
+            // 
+            // LoginTextBox
+            // 
+            LoginTextBox.Location = new Point(692, 306);
+            LoginTextBox.Name = "LoginTextBox";
+            LoginTextBox.Size = new Size(200, 23);
+            LoginTextBox.TabIndex = 0;
+            // 
+            // PasswordTextBox
+            // 
+            PasswordTextBox.Location = new Point(692, 349);
+            PasswordTextBox.Name = "PasswordTextBox";
+            PasswordTextBox.Size = new Size(200, 23);
+            PasswordTextBox.TabIndex = 1;
+            // 
+            // SignInLabel
+            // 
+            SignInLabel.AutoSize = true;
+            SignInLabel.Location = new Point(764, 381);
+            SignInLabel.Name = "SignInLabel";
+            SignInLabel.Size = new Size(43, 15);
+            SignInLabel.TabIndex = 2;
+            SignInLabel.Text = "Sign in";
+            SignInLabel.Click += SignInLabel_Click;
+            // 
+            // SignUpLabel
+            // 
+            SignUpLabel.AutoSize = true;
+            SignUpLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            SignUpLabel.Location = new Point(12, 735);
+            SignUpLabel.Name = "SignUpLabel";
+            SignUpLabel.Size = new Size(48, 15);
+            SignUpLabel.TabIndex = 3;
+            SignUpLabel.Text = "Sign Up";
+            SignUpLabel.Click += SignUpLabel_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(748, 289);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Enter Login";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(748, 331);
+            label2.Name = "label2";
+            label2.Size = new Size(87, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Enter Password";
+            // 
+            // LoginErrorLabel
+            // 
+            LoginErrorLabel.AutoSize = true;
+            LoginErrorLabel.BackColor = Color.White;
+            LoginErrorLabel.ForeColor = Color.Red;
+            LoginErrorLabel.Location = new Point(898, 309);
+            LoginErrorLabel.Name = "LoginErrorLabel";
+            LoginErrorLabel.Size = new Size(60, 15);
+            LoginErrorLabel.TabIndex = 13;
+            LoginErrorLabel.Text = "ErrorLabel";
+            LoginErrorLabel.Visible = false;
+            // 
+            // PasswordErrorLabel
+            // 
+            PasswordErrorLabel.AutoSize = true;
+            PasswordErrorLabel.BackColor = Color.White;
+            PasswordErrorLabel.ForeColor = Color.Red;
+            PasswordErrorLabel.Location = new Point(898, 351);
+            PasswordErrorLabel.Name = "PasswordErrorLabel";
+            PasswordErrorLabel.Size = new Size(60, 15);
+            PasswordErrorLabel.TabIndex = 14;
+            PasswordErrorLabel.Text = "ErrorLabel";
+            PasswordErrorLabel.Visible = false;
+            // 
+            // LoginForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1584, 759);
+            Controls.Add(PasswordErrorLabel);
+            Controls.Add(LoginErrorLabel);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(SignUpLabel);
+            Controls.Add(SignInLabel);
+            Controls.Add(PasswordTextBox);
+            Controls.Add(LoginTextBox);
+            Name = "LoginForm";
+            Text = "LoginForm";
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
-		}
+        #endregion
 
-		#endregion
-
-		private TextBox LoginTextBox;
-		private TextBox PasswordTextBox;
-		private Label SignInLabel;
-		private Label SignUpLabel;
-		private Label label1;
-		private Label label2;
-		private Label LoginErrorLabel;
-		private Label PasswordErrorLabel;
-	}
+        private TextBox LoginTextBox;
+        private TextBox PasswordTextBox;
+        private Label SignInLabel;
+        private Label SignUpLabel;
+        private Label label1;
+        private Label label2;
+        private Label LoginErrorLabel;
+        private Label PasswordErrorLabel;
+    }
 }
