@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CryptoMarket.Database.Entities;
 
 namespace CryptoMarket.Services.PingServices
 {
-	internal interface IPingService
+	public interface IPingService
 	{
+		public void Create(PingEntity entity);
+
+		public Task<PingEntity> GetAPIServerStatusAsync();
 	}
 }
