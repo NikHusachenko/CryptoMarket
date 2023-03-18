@@ -10,6 +10,7 @@ namespace CryptoMarket.EntityFramework
     {
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<WalletEntity> Wallets { get; set; }
+        public DbSet<PingEntity> Pings { get; set; }
 
         public ApplicationDbContext()
         {
@@ -25,6 +26,7 @@ namespace CryptoMarket.EntityFramework
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new WalletConfiguration());
+            modelBuilder.ApplyConfiguration(new PingConfiguration());
         }
     }
 }
