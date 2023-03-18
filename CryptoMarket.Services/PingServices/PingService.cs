@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace CryptoMarket.Services.PingServices
 {
-	public class PingService
+	public class PingService : IPingService
 	{
 		private readonly IGenericRepository<PingEntity> _pingRepository;
 
