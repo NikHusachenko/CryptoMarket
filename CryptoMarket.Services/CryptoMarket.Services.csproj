@@ -18,8 +18,4 @@
     <ProjectReference Include="..\CryptoMarket.EntityFramework\CryptoMarket.EntityFramework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CurrencyServices\" />
-  </ItemGroup>
-
 </Project>
