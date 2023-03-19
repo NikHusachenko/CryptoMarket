@@ -1,12 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.EntityFramework.Repository;
+using Newtonsoft.Json;
 
 namespace CryptoMarket.Services.CoinListServices
 {
-	internal class CoinListService
+	public class CoinListService : ICoinListService
 	{
+		private readonly IGenericRepository<CoinEntity> _coinListRepository;
+
+		public CoinListService(IGenericRepository<CoinEntity> coinListRepository)
+		{
+			_coinListRepository = coinListRepository;
+		}
+
+		public void Create(CoinEntity coin)
+		{
+			_coinListRepository.Create(coin);
+		}
+
+		public async Task<List<CoinEntity>> GetCoinsAsync()
+		{
+			try
+			{
+				var client = new HttpClient();
+				var message = await client.GetAsync(@"https://api.coingecko.com/api/v3/coins/list");
+				message.EnsureSuccessStatusCode();
+				var context = await message.Content.ReadAsStringAsync();
+				var coinList = JsonConvert.DeserializeObject<List<CoinEntity>>(context);
+				return coinList;
+			}
+			catch (Exception ex)
+			{
+				return null;
+			}
+		}
 	}
 }

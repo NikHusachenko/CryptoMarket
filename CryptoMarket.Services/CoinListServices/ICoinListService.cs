@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CryptoMarket.Database.Entities;
 
 namespace CryptoMarket.Services.CoinListServices
 {
-	internal interface ICoinListService
+	public interface ICoinListService
 	{
+		void Create(CoinEntity coin);
+		Task<List<CoinEntity>> GetCoinsAsync();
 	}
 }

@@ -2,32 +2,51 @@
 using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 namespace CryptoMarket.EntityFramework
 {
-    public class ApplicationDbContext : DbContext
-    {
-        public DbSet<UserEntity> Users { get; set; }
-        public DbSet<WalletEntity> Wallets { get; set; }
-        public DbSet<PingEntity> Pings { get; set; }
-        public DbSet<CoinEntity> Coins { get; set; }
-        public ApplicationDbContext()
-        {
-            Database.Migrate();
-        }
+	public class ApplicationDbContext : DbContext
+	{
+		public DbSet<UserEntity> Users { get; set; }
+		public DbSet<WalletEntity> Wallets { get; set; }
+		public DbSet<PingEntity> Pings { get; set; }
+		public DbSet<CoinEntity> Coins { get; set; }
+		public DbSet<CurrencyEntity> Currencies { get; set; }
+		public DbSet<ImageEntity> Images { get; set; }
+		public DbSet<MarketEntity> Markets { get; set; }
+		//public DbSet<PriceEntity> Prices { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(DbConfiguration.DEFAULT_CONNECTION);
-        }
+		public DbSet<TotalVolumeEntity> TotalVolumes { get; set; }
+		public DbSet<MarketCapEntity> MarketCaps { get; set; }
+		public DbSet<Low24HEntity> Low24Hs { get; set; }
+		public DbSet<Hight24HEntity> Hight24Hs { get; set; }
+		public DbSet<CurrentPriceEntity> CurrentPrices { get; set; }
+		public ApplicationDbContext()
+		{
+			Database.Migrate();
+		}
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new WalletConfiguration());
-            modelBuilder.ApplyConfiguration(new PingConfiguration());
-            modelBuilder.ApplyConfiguration(new CoinConfiguration());
-        }
-    }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseSqlServer(DbConfiguration.DEFAULT_CONNECTION);
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.ApplyConfiguration(new UserConfiguration());
+			modelBuilder.ApplyConfiguration(new WalletConfiguration());
+			modelBuilder.ApplyConfiguration(new PingConfiguration());
+			modelBuilder.ApplyConfiguration(new CoinConfiguration());
+			modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
+			modelBuilder.ApplyConfiguration(new ImageConfiguration());
+			modelBuilder.ApplyConfiguration(new MarketConfiguration());
+			//modelBuilder.ApplyConfiguration(new PriceConfiguration());
+
+			modelBuilder.ApplyConfiguration(new TotalVolumeConfiguration());
+			modelBuilder.ApplyConfiguration(new MarketCapConfiguration());
+			modelBuilder.ApplyConfiguration(new Low24HConfiguration());
+			modelBuilder.ApplyConfiguration(new Hight24HConfiguration());
+			modelBuilder.ApplyConfiguration(new CurrentPriceConfiguration());
+		}
+	}
 }

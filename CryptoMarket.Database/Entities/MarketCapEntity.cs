@@ -1,6 +1,6 @@
 ﻿namespace CryptoMarket.Database.Entities
 {
-	public class PriceEntity
+	public class MarketCapEntity
 	{
 		public int Id { get; set; }
 		public double Usd { get; set; }
