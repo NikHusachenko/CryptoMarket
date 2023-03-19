@@ -1,4 +1,5 @@
-﻿using CryptoMarket.Database.Entities;
+﻿using CryptoMarket.Common;
+using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework.Repository;
 using Newtonsoft.Json;
 
@@ -23,7 +24,7 @@ namespace CryptoMarket.Services.CurrencyServices
 			try
 			{
 				var client = new HttpClient();
-				var message = await client.GetAsync($"https://api.coingecko.com/api/v3/coins/{coinId}");
+				var message = await client.GetAsync($"{CoinGrecko.COINS}{coinId}");
 				message.EnsureSuccessStatusCode();
 				var context = await message.Content.ReadAsStringAsync();
 				var currency = JsonConvert.DeserializeObject<CurrencyEntity>(context);

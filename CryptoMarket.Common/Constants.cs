@@ -26,10 +26,4 @@
 
     }
 
-    public class EndPoints
-    {
-        public const string PING = @"https://api.coingecko.com/api/v3/ping";
-        public const string COIN_LIST = @"https://api.coingecko.com/api/v3/coins/list";
-        //public const string COIN_BY_ID = @"https://api.coingecko.com/api/v3/coins/";
-	}
 }

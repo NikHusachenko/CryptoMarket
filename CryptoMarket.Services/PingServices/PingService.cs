@@ -1,4 +1,5 @@
-﻿using CryptoMarket.Database.Entities;
+﻿using CryptoMarket.Common;
+using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework.Repository;
 using Newtonsoft.Json;
 
@@ -23,7 +24,7 @@ namespace CryptoMarket.Services.PingServices
 			try
 			{
 				var client = new HttpClient();
-				var message = await client.GetAsync(@"https://api.coingecko.com/api/v3/ping");
+				var message = await client.GetAsync($"{CoinGrecko.PING}");
 				message.EnsureSuccessStatusCode();
 				var context = await message.Content.ReadAsStringAsync();
 				var status = JsonConvert.DeserializeObject<PingEntity>(context);
