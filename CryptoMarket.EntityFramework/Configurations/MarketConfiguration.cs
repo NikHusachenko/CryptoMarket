@@ -13,7 +13,7 @@ namespace CryptoMarket.EntityFramework.Configurations
 				.HasKey(market => market.Id);
 
 			builder
-				.HasOne<CurrencyEntity>(market => market.Currency)
+				.HasOne<CoinEntity>(market => market.Currency)
 				.WithOne(cur => cur.MarketData)
 				.HasForeignKey<MarketEntity>(market => market.CurrencyFK)
 				.OnDelete(DeleteBehavior.Cascade);

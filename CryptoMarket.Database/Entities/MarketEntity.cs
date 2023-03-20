@@ -27,6 +27,6 @@ namespace CryptoMarket.Database.Entities
 		public Low24HEntity Low24H { get; set; }
 
 		public int CurrencyFK { get; set; }
-		public CurrencyEntity Currency { get; set; }
+		public CoinEntity Currency { get; set; }
 	}
 }

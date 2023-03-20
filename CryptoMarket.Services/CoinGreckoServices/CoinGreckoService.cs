@@ -9,21 +9,15 @@ namespace CryptoMarket.Services.CoinGreckoServices
 	public class CoinGreckoService
 	{
 		private readonly IGenericRepository<CoinEntity> _coinListRepository;
-		private readonly IGenericRepository<CurrencyEntity> _currencyRepository;
 
-		public CoinGreckoService(IGenericRepository<CoinEntity> coinListRepository, IGenericRepository<CurrencyEntity> currencyRepository)
+		public CoinGreckoService(IGenericRepository<CoinEntity> coinListRepository)
 		{
 			_coinListRepository = coinListRepository;
-			_currencyRepository = currencyRepository;
 		}
 
 		public void Create(CoinEntity coin)
 		{
 			_coinListRepository.Create(coin);
-		}
-		public void Create(CurrencyEntity currency)
-		{
-			_currencyRepository.Create(currency);
 		}
 
 		public async Task<ResponseService> CheckApiStatusAsync()
@@ -60,7 +54,7 @@ namespace CryptoMarket.Services.CoinGreckoServices
 			}
 		}
 
-		public async Task<ResponseService<CurrencyEntity>> GetCurrencyByCoinIdAsync(string coinId)
+		public async Task<ResponseService<CoinEntity>> GetCurrencyByCoinIdAsync(string coinId)
 		{
 			try
 			{
@@ -68,12 +62,12 @@ namespace CryptoMarket.Services.CoinGreckoServices
 				var message = await client.GetAsync($"{CoinGrecko.COINS}{coinId}");
 				message.EnsureSuccessStatusCode();
 				var context = await message.Content.ReadAsStringAsync();
-				var currency = JsonConvert.DeserializeObject<CurrencyEntity>(context);
-				return ResponseService<CurrencyEntity>.Ok(currency);
+				var currency = JsonConvert.DeserializeObject<CoinEntity>(context);
+				return ResponseService<CoinEntity>.Ok(currency);
 			}
 			catch (Exception ex)
 			{
-				return ResponseService<CurrencyEntity>.Error(ex.Message);
+				return ResponseService<CoinEntity>.Error(ex.Message);
 			}
 		}
 

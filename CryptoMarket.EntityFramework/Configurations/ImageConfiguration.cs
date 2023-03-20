@@ -11,7 +11,7 @@ namespace CryptoMarket.EntityFramework.Configurations
 			builder.ToTable("Images").HasKey(image => image.Id);
 
 			builder
-				.HasOne<CurrencyEntity>(image => image.Currency)
+				.HasOne<CoinEntity>(image => image.Currency)
 				.WithOne(cur => cur.Image)
 				.HasForeignKey<ImageEntity>(image => image.CurrencyFK)
 				.OnDelete(DeleteBehavior.Cascade);

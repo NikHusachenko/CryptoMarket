@@ -1,11 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CryptoMarket.Database.Entities
+﻿namespace CryptoMarket.Database.Entities
 {
 	public class ImageEntity
 	{
@@ -15,6 +8,6 @@ namespace CryptoMarket.Database.Entities
 		public string Large { get; set; }
 
 		public int CurrencyFK { get; set; }
-		public CurrencyEntity Currency { get; set; }
+		public CoinEntity Currency { get; set; }
 	}
 }

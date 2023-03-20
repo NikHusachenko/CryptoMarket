@@ -10,7 +10,6 @@ namespace CryptoMarket.EntityFramework
 		public DbSet<UserEntity> Users { get; set; }
 		public DbSet<WalletEntity> Wallets { get; set; }
 		public DbSet<CoinEntity> Coins { get; set; }
-		public DbSet<CurrencyEntity> Currencies { get; set; }
 		public DbSet<ImageEntity> Images { get; set; }
 		public DbSet<MarketEntity> Markets { get; set; }
 		public DbSet<TotalVolumeEntity> TotalVolumes { get; set; }
@@ -33,7 +32,6 @@ namespace CryptoMarket.EntityFramework
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new WalletConfiguration());
 			modelBuilder.ApplyConfiguration(new CoinConfiguration());
-			modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
 			modelBuilder.ApplyConfiguration(new ImageConfiguration());
 			modelBuilder.ApplyConfiguration(new MarketConfiguration());
 			modelBuilder.ApplyConfiguration(new TotalVolumeConfiguration());
