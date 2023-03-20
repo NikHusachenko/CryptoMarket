@@ -2,7 +2,7 @@
 
 namespace CryptoMarket.Database.Entities
 {
-	public class CurrencyEntity
+	public class CoinEntity
 	{
 		public int Id { get; set; }
 		[JsonProperty("id")]
