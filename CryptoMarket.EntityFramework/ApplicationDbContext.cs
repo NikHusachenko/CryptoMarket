@@ -9,13 +9,10 @@ namespace CryptoMarket.EntityFramework
 	{
 		public DbSet<UserEntity> Users { get; set; }
 		public DbSet<WalletEntity> Wallets { get; set; }
-		public DbSet<PingEntity> Pings { get; set; }
 		public DbSet<CoinEntity> Coins { get; set; }
 		public DbSet<CurrencyEntity> Currencies { get; set; }
 		public DbSet<ImageEntity> Images { get; set; }
 		public DbSet<MarketEntity> Markets { get; set; }
-		//public DbSet<PriceEntity> Prices { get; set; }
-
 		public DbSet<TotalVolumeEntity> TotalVolumes { get; set; }
 		public DbSet<MarketCapEntity> MarketCaps { get; set; }
 		public DbSet<Low24HEntity> Low24Hs { get; set; }
@@ -35,13 +32,10 @@ namespace CryptoMarket.EntityFramework
 		{
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new WalletConfiguration());
-			modelBuilder.ApplyConfiguration(new PingConfiguration());
 			modelBuilder.ApplyConfiguration(new CoinConfiguration());
 			modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
 			modelBuilder.ApplyConfiguration(new ImageConfiguration());
 			modelBuilder.ApplyConfiguration(new MarketConfiguration());
-			//modelBuilder.ApplyConfiguration(new PriceConfiguration());
-
 			modelBuilder.ApplyConfiguration(new TotalVolumeConfiguration());
 			modelBuilder.ApplyConfiguration(new MarketCapConfiguration());
 			modelBuilder.ApplyConfiguration(new Low24HConfiguration());
