@@ -54,7 +54,7 @@ namespace CryptoMarket.Services.CoinGreckoServices
 			}
 		}
 
-		public async Task<ResponseService<CoinEntity>> GetCurrencyByCoinIdAsync(string coinId)
+		public async Task<ResponseService<CoinEntity>> GetCoinByCoinIdAsync(string coinId)
 		{
 			try
 			{
