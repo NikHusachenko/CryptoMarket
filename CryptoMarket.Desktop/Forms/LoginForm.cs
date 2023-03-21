@@ -27,7 +27,7 @@ namespace CryptoMarket.Desktop.Forms
             registrationForm.ShowDialog();
         }
 
-        private async void SignInLabel_Click(object sender, EventArgs e)
+        private async void LoginButton_Click(object sender, EventArgs e)
         {
             ClearErrors<Label>(passwordErrorLabel, loginErrorLabel);
 
