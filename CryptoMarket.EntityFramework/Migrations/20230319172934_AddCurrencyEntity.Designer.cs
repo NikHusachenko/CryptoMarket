@@ -4,6 +4,7 @@ using CryptoMarket.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryptoMarket.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230319172934_AddCurrencyEntity")]
+    partial class AddCurrencyEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +48,31 @@ namespace CryptoMarket.EntityFramework.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Coins", (string)null);
+                });
+
+            modelBuilder.Entity("CryptoMarket.Database.Entities.CurrencyEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CoinId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Currencyies", (string)null);
                 });
 
             modelBuilder.Entity("CryptoMarket.Database.Entities.CurrentPriceEntity", b =>
@@ -191,6 +219,23 @@ namespace CryptoMarket.EntityFramework.Migrations
                     b.ToTable("Markets", (string)null);
                 });
 
+            modelBuilder.Entity("CryptoMarket.Database.Entities.PingEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("GeckoState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pings", (string)null);
+                });
+
             modelBuilder.Entity("CryptoMarket.Database.Entities.TotalVolumeEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -254,9 +299,6 @@ namespace CryptoMarket.EntityFramework.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<double>("USDBallance")
-                        .HasColumnType("float");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
@@ -304,7 +346,7 @@ namespace CryptoMarket.EntityFramework.Migrations
 
             modelBuilder.Entity("CryptoMarket.Database.Entities.ImageEntity", b =>
                 {
-                    b.HasOne("CryptoMarket.Database.Entities.CoinEntity", "Currency")
+                    b.HasOne("CryptoMarket.Database.Entities.CurrencyEntity", "Currency")
                         .WithOne("Image")
                         .HasForeignKey("CryptoMarket.Database.Entities.ImageEntity", "CurrencyFK")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -337,7 +379,7 @@ namespace CryptoMarket.EntityFramework.Migrations
 
             modelBuilder.Entity("CryptoMarket.Database.Entities.MarketEntity", b =>
                 {
-                    b.HasOne("CryptoMarket.Database.Entities.CoinEntity", "Currency")
+                    b.HasOne("CryptoMarket.Database.Entities.CurrencyEntity", "Currency")
                         .WithOne("MarketData")
                         .HasForeignKey("CryptoMarket.Database.Entities.MarketEntity", "CurrencyFK")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -368,7 +410,7 @@ namespace CryptoMarket.EntityFramework.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CryptoMarket.Database.Entities.CoinEntity", b =>
+            modelBuilder.Entity("CryptoMarket.Database.Entities.CurrencyEntity", b =>
                 {
                     b.Navigation("Image")
                         .IsRequired();
