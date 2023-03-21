@@ -35,9 +35,9 @@
             PasswordTextBox = new TextBox();
             EmailLabel = new Label();
             SaveRegistration = new Button();
-            LoginErrorLabel = new Label();
-            EmailErrorLabel = new Label();
-            PasswordErrorLabel = new Label();
+            loginErrorLabel = new Label();
+            emailErrorLabel = new Label();
+            passwordErrorLabel = new Label();
             SuspendLayout();
             // 
             // LoginLabel
@@ -55,7 +55,6 @@
             LoginTextBox.Name = "LoginTextBox";
             LoginTextBox.Size = new Size(250, 23);
             LoginTextBox.TabIndex = 1;
-            LoginTextBox.TextChanged += LoginTextBox_TextChanged;
             // 
             // EmailTextBox
             // 
@@ -63,7 +62,6 @@
             EmailTextBox.Name = "EmailTextBox";
             EmailTextBox.Size = new Size(250, 23);
             EmailTextBox.TabIndex = 3;
-            EmailTextBox.TextChanged += EmailTextBox_TextChanged;
             // 
             // PasswordLabel
             // 
@@ -78,9 +76,9 @@
             // 
             PasswordTextBox.Location = new Point(325, 208);
             PasswordTextBox.Name = "PasswordTextBox";
+            PasswordTextBox.PasswordChar = '*';
             PasswordTextBox.Size = new Size(250, 23);
             PasswordTextBox.TabIndex = 5;
-            PasswordTextBox.TextChanged += PasswordTextBox_TextChanged;
             // 
             // EmailLabel
             // 
@@ -103,50 +101,50 @@
             SaveRegistration.UseVisualStyleBackColor = true;
             SaveRegistration.Click += SaveRegistration_Click;
             // 
-            // LoginErrorLabel
+            // loginErrorLabel
             // 
-            LoginErrorLabel.AutoSize = true;
-            LoginErrorLabel.BackColor = Color.White;
-            LoginErrorLabel.ForeColor = Color.Red;
-            LoginErrorLabel.Location = new Point(581, 110);
-            LoginErrorLabel.Name = "LoginErrorLabel";
-            LoginErrorLabel.Size = new Size(60, 15);
-            LoginErrorLabel.TabIndex = 7;
-            LoginErrorLabel.Text = "ErrorLabel";
-            LoginErrorLabel.Visible = false;
+            loginErrorLabel.AutoSize = true;
+            loginErrorLabel.BackColor = Color.White;
+            loginErrorLabel.ForeColor = Color.Red;
+            loginErrorLabel.Location = new Point(581, 110);
+            loginErrorLabel.Name = "loginErrorLabel";
+            loginErrorLabel.Size = new Size(60, 15);
+            loginErrorLabel.TabIndex = 7;
+            loginErrorLabel.Text = "ErrorLabel";
+            loginErrorLabel.Visible = false;
             // 
-            // EmailErrorLabel
+            // emailErrorLabel
             // 
-            EmailErrorLabel.AutoSize = true;
-            EmailErrorLabel.BackColor = Color.White;
-            EmailErrorLabel.ForeColor = Color.Red;
-            EmailErrorLabel.Location = new Point(581, 160);
-            EmailErrorLabel.Name = "EmailErrorLabel";
-            EmailErrorLabel.Size = new Size(60, 15);
-            EmailErrorLabel.TabIndex = 8;
-            EmailErrorLabel.Text = "ErrorLabel";
-            EmailErrorLabel.Visible = false;
+            emailErrorLabel.AutoSize = true;
+            emailErrorLabel.BackColor = Color.White;
+            emailErrorLabel.ForeColor = Color.Red;
+            emailErrorLabel.Location = new Point(581, 160);
+            emailErrorLabel.Name = "emailErrorLabel";
+            emailErrorLabel.Size = new Size(60, 15);
+            emailErrorLabel.TabIndex = 8;
+            emailErrorLabel.Text = "ErrorLabel";
+            emailErrorLabel.Visible = false;
             // 
-            // PasswordErrorLabel
+            // passwordErrorLabel
             // 
-            PasswordErrorLabel.AutoSize = true;
-            PasswordErrorLabel.BackColor = Color.White;
-            PasswordErrorLabel.ForeColor = Color.Red;
-            PasswordErrorLabel.Location = new Point(581, 210);
-            PasswordErrorLabel.Name = "PasswordErrorLabel";
-            PasswordErrorLabel.Size = new Size(60, 15);
-            PasswordErrorLabel.TabIndex = 9;
-            PasswordErrorLabel.Text = "ErrorLabel";
-            PasswordErrorLabel.Visible = false;
+            passwordErrorLabel.AutoSize = true;
+            passwordErrorLabel.BackColor = Color.White;
+            passwordErrorLabel.ForeColor = Color.Red;
+            passwordErrorLabel.Location = new Point(581, 210);
+            passwordErrorLabel.Name = "passwordErrorLabel";
+            passwordErrorLabel.Size = new Size(60, 15);
+            passwordErrorLabel.TabIndex = 9;
+            passwordErrorLabel.Text = "ErrorLabel";
+            passwordErrorLabel.Visible = false;
             // 
             // RegistrationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 411);
-            Controls.Add(PasswordErrorLabel);
-            Controls.Add(EmailErrorLabel);
-            Controls.Add(LoginErrorLabel);
+            Controls.Add(passwordErrorLabel);
+            Controls.Add(emailErrorLabel);
+            Controls.Add(loginErrorLabel);
             Controls.Add(SaveRegistration);
             Controls.Add(PasswordTextBox);
             Controls.Add(EmailLabel);
@@ -169,8 +167,8 @@
         private TextBox PasswordTextBox;
         private Label EmailLabel;
         private Button SaveRegistration;
-        private Label LoginErrorLabel;
-        private Label EmailErrorLabel;
-        private Label PasswordErrorLabel;
+        private Label loginErrorLabel;
+        private Label emailErrorLabel;
+        private Label passwordErrorLabel;
     }
 }

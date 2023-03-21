@@ -20,7 +20,7 @@ namespace CryptoMarket.Services.UserServices
             _walletService = walletService;
         }
 
-        public async Task<ResponseService<long>> Create(RegistrationPostViewModel vm)
+        public async Task<ResponseService<long>> Registration(RegistrationPostViewModel vm)
         {
             UserEntity dbRecord = await _userRepository
                 .GetBy(user => user.Email ==  vm.Email || 

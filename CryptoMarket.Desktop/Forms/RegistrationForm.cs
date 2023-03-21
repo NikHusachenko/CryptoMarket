@@ -1,84 +1,68 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using CryptoMarket.Common;
+using CryptoMarket.Services.Response;
+using CryptoMarket.Services.UserServices;
+using CryptoMarket.Services.UserServices.Models;
+
+namespace CryptoMarket.Desktop.Forms
 {
     public partial class RegistrationForm : Form
     {
+        IUserService _userService;
 
-        public RegistrationForm()
+        public RegistrationForm(IUserService userService)
         {
+            _userService = userService;
+
             InitializeComponent();
         }
 
-        private void SaveRegistration_Click(object sender, EventArgs e)
+        private async void SaveRegistration_Click(object sender, EventArgs e)
         {
-            List<string> LoginList = new List<string>();// Here we get all Logins
-            List<string> EmailList = new List<string>();// Here we get all Emails
-            List<string> PasswordList = new List<string>();// Here we get all Passwords
+            ClearErrors<Label>(loginErrorLabel, emailErrorLabel, passwordErrorLabel);
 
-            // Add existing data
-            LoginList.Add("1");
-            EmailList.Add("1");
+            RegistrationPostViewModel vm = new RegistrationPostViewModel()
+            {
+                Email = EmailTextBox.Text,
+                Login = LoginTextBox.Text,
+                Password = PasswordTextBox.Text,
+            };
 
-            bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
-            if (isLoginCorrect)
+            var modelState = await ValidatorService<RegistrationPostViewModel>.ModelState(vm);
+            if (!modelState.IsValid)
             {
-                LoginList.Add(LoginTextBox.Text);
+                var errors = modelState.Errors;
+
+                if (errors.ContainsKey("Login")) ShowError<Label>(loginErrorLabel, errors["Login"]);
+                if (errors.ContainsKey("Email")) ShowError<Label>(emailErrorLabel, errors["Email"]);
+                if (errors.ContainsKey("Password")) ShowError<Label>(passwordErrorLabel, errors["Password"]);
+
+                return;
             }
 
-            bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
-            if (isEmailCorrect)
+            var response = await _userService.Registration(vm);
+            if (response.IsError)
             {
-                EmailList.Add(EmailTextBox.Text);
+                ShowError<Label>(loginErrorLabel, response.ErrorMessage);
+                return;
             }
 
-            bool isPasswordCorrect;
-            if (string.IsNullOrEmpty(PasswordTextBox.Text))
-            {
-                PasswordErrorLabel.Visible = true;
-                PasswordErrorLabel.Text = $"<- Password cannot be empty";
-                isPasswordCorrect = false;
-            }
-            else
-            {
-                PasswordList.Add(PasswordTextBox.Text);
-                isPasswordCorrect = true;
-            }
-            if (isLoginCorrect && isEmailCorrect && isPasswordCorrect)
-            {
-                MessageBox.Show("Succesfully added");
-                this.Close();
-            }
+            MessageBox.Show(SuccessMessages.REGISTRATION_SUCCESSFULY);
+            this.Close();
         }
 
-        private static bool CheckEnteredInfo(TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
+        private void ShowError<T>(T errorLabel, string errorMessage) where T : Label
         {
-            if (string.IsNullOrEmpty(EnteredData.Text))
+            errorLabel.Visible = true;
+            errorLabel.Text = errorMessage;
+        }
+
+        private void ClearErrors<T>(params T[] labels) where T : Label
+        {
+            foreach (var label in labels)
             {
-                errorLabel.Visible = true;
-                errorLabel.Text = $"<- {NameOfProperty} cannot be empty";
-                return false;
+                label.Visible = false;
+                label.Text = string.Empty;
             }
-            else if (existsItems.Contains(EnteredData.Text))
-            {
-                errorLabel.Visible = true;
-                errorLabel.Text = $"<- Such {NameOfProperty} is already used";
-                return false;
-            }
-            return true;
-        }
-
-        private void LoginTextBox_TextChanged(object sender, EventArgs e)
-        {
-            LoginErrorLabel.Visible = false;
-        }
-
-        private void EmailTextBox_TextChanged(object sender, EventArgs e)
-        {
-            EmailErrorLabel.Visible = false;
-        }
-
-        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
-        {
-            PasswordErrorLabel.Visible = false;
         }
     }
 }

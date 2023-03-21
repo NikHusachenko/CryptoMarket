@@ -23,6 +23,11 @@
 
 	}
 
+    public class SuccessMessages
+    {
+        public const string REGISTRATION_SUCCESSFULY = "Registration successfuly";
+    }
+
     public class Styles
     {
 

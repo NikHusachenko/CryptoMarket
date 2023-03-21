@@ -9,7 +9,7 @@ namespace CryptoMarket.Services.UserServices.Models
             RuleFor(x => x.Password)
                 .NotEmpty()
                 .NotNull()
-                .MinimumLength(6)
+                .MinimumLength(4)
                 .MaximumLength(32);
 
             RuleFor(x => x.Login)

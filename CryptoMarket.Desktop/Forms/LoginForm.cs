@@ -17,7 +17,7 @@ namespace CryptoMarket.Desktop.Forms
 
         private void SignUpLabel_Click(object sender, EventArgs e)
         {
-            RegistrationForm registrationForm = new RegistrationForm();
+            RegistrationForm registrationForm = new RegistrationForm(_userService);
             registrationForm.FormClosed += (object? sender, FormClosedEventArgs e) =>
             {
                 this.Show();
