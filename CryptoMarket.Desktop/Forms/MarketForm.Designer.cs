@@ -1,187 +1,182 @@
 ﻿namespace CryptoMarket.Desktop.Forms
 {
-	partial class MarketForm
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class MarketForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.marketToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.coinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exchangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.myProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.walletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.marketToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.currenciesFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.menuStrip1.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// menuStrip1
-			// 
-			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(17, 17);
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.marketToolStripMenuItem1,
-            this.profileToolStripMenuItem});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1356, 25);
-			this.menuStrip1.TabIndex = 2;
-			this.menuStrip1.Text = "menuStrip1";
-			// 
-			// marketToolStripMenuItem1
-			// 
-			this.marketToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.coinsToolStripMenuItem,
-            this.exchangesToolStripMenuItem});
-			this.marketToolStripMenuItem1.Name = "marketToolStripMenuItem1";
-			this.marketToolStripMenuItem1.Size = new System.Drawing.Size(61, 21);
-			this.marketToolStripMenuItem1.Text = "Market";
-			this.marketToolStripMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-			// 
-			// coinsToolStripMenuItem
-			// 
-			this.coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
-			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
-			this.coinsToolStripMenuItem.Text = "Coins";
-			this.coinsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// exchangesToolStripMenuItem
-			// 
-			this.exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
-			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
-			this.exchangesToolStripMenuItem.Text = "Exchanges";
-			this.exchangesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// profileToolStripMenuItem
-			// 
-			this.profileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.myProfileToolStripMenuItem,
-            this.walletsToolStripMenuItem});
-			this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-			this.profileToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
-			this.profileToolStripMenuItem.Text = "Profile";
-			// 
-			// myProfileToolStripMenuItem
-			// 
-			this.myProfileToolStripMenuItem.Name = "myProfileToolStripMenuItem";
-			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-			this.myProfileToolStripMenuItem.Text = "My Profile";
-			// 
-			// walletsToolStripMenuItem
-			// 
-			this.walletsToolStripMenuItem.Name = "walletsToolStripMenuItem";
-			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
-			this.walletsToolStripMenuItem.Text = "Wallets";
-			// 
-			// marketToolStripMenuItem
-			// 
-			this.marketToolStripMenuItem.Name = "marketToolStripMenuItem";
-			this.marketToolStripMenuItem.Size = new System.Drawing.Size(75, 25);
-			this.marketToolStripMenuItem.Text = "Market";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(93, 60);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(43, 17);
-			this.label5.TabIndex = 3;
-			this.label5.Text = "label5";
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 60);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(43, 17);
-			this.label6.TabIndex = 2;
-			this.label6.Text = "label6";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(93, 31);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(43, 17);
-			this.label7.TabIndex = 1;
-			this.label7.Text = "label7";
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(6, 31);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(43, 17);
-			this.label8.TabIndex = 0;
-			this.label8.Text = "label8";
-			// 
-			// currenciesFlowLayoutPanel
-			// 
-			this.currenciesFlowLayoutPanel.AutoScroll = true;
-			this.currenciesFlowLayoutPanel.Location = new System.Drawing.Point(0, 26);
-			this.currenciesFlowLayoutPanel.Name = "currenciesFlowLayoutPanel";
-			this.currenciesFlowLayoutPanel.Size = new System.Drawing.Size(1350, 900);
-			this.currenciesFlowLayoutPanel.TabIndex = 4;
-			// 
-			// MarketForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1356, 860);
-			this.Controls.Add(this.currenciesFlowLayoutPanel);
-			this.Controls.Add(this.menuStrip1);
-			this.MainMenuStrip = this.menuStrip1;
-			this.Name = "MarketForm";
-			this.Text = "MarketForm";
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            menuStrip1 = new MenuStrip();
+            marketToolStripMenuItem1 = new ToolStripMenuItem();
+            coinsToolStripMenuItem = new ToolStripMenuItem();
+            exchangesToolStripMenuItem = new ToolStripMenuItem();
+            profileToolStripMenuItem = new ToolStripMenuItem();
+            myProfileToolStripMenuItem = new ToolStripMenuItem();
+            walletsToolStripMenuItem = new ToolStripMenuItem();
+            marketToolStripMenuItem = new ToolStripComboBox();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            currenciesFlowLayoutPanel = new FlowLayoutPanel();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(17, 17);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { marketToolStripMenuItem1, profileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1356, 24);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // marketToolStripMenuItem1
+            // 
+            marketToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { coinsToolStripMenuItem, exchangesToolStripMenuItem });
+            marketToolStripMenuItem1.Name = "marketToolStripMenuItem1";
+            marketToolStripMenuItem1.Size = new Size(56, 20);
+            marketToolStripMenuItem1.Text = "Market";
+            marketToolStripMenuItem1.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // coinsToolStripMenuItem
+            // 
+            coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
+            coinsToolStripMenuItem.Size = new Size(130, 22);
+            coinsToolStripMenuItem.Text = "Coins";
+            coinsToolStripMenuItem.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // exchangesToolStripMenuItem
+            // 
+            exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
+            exchangesToolStripMenuItem.Size = new Size(130, 22);
+            exchangesToolStripMenuItem.Text = "Exchanges";
+            exchangesToolStripMenuItem.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { myProfileToolStripMenuItem, walletsToolStripMenuItem });
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(53, 20);
+            profileToolStripMenuItem.Text = "Profile";
+            // 
+            // myProfileToolStripMenuItem
+            // 
+            myProfileToolStripMenuItem.Name = "myProfileToolStripMenuItem";
+            myProfileToolStripMenuItem.Size = new Size(128, 22);
+            myProfileToolStripMenuItem.Text = "My Profile";
+            // 
+            // walletsToolStripMenuItem
+            // 
+            walletsToolStripMenuItem.Name = "walletsToolStripMenuItem";
+            walletsToolStripMenuItem.Size = new Size(128, 22);
+            walletsToolStripMenuItem.Text = "Wallets";
+            // 
+            // marketToolStripMenuItem
+            // 
+            marketToolStripMenuItem.Name = "marketToolStripMenuItem";
+            marketToolStripMenuItem.Size = new Size(75, 25);
+            marketToolStripMenuItem.Text = "Market";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(93, 60);
+            label5.Name = "label5";
+            label5.Size = new Size(43, 17);
+            label5.TabIndex = 3;
+            label5.Text = "label5";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 60);
+            label6.Name = "label6";
+            label6.Size = new Size(43, 17);
+            label6.TabIndex = 2;
+            label6.Text = "label6";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(93, 31);
+            label7.Name = "label7";
+            label7.Size = new Size(43, 17);
+            label7.TabIndex = 1;
+            label7.Text = "label7";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 31);
+            label8.Name = "label8";
+            label8.Size = new Size(43, 17);
+            label8.TabIndex = 0;
+            label8.Text = "label8";
+            // 
+            // currenciesFlowLayoutPanel
+            // 
+            currenciesFlowLayoutPanel.AutoScroll = true;
+            currenciesFlowLayoutPanel.Location = new Point(0, 23);
+            currenciesFlowLayoutPanel.Name = "currenciesFlowLayoutPanel";
+            currenciesFlowLayoutPanel.Size = new Size(1350, 794);
+            currenciesFlowLayoutPanel.TabIndex = 4;
+            // 
+            // MarketForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1356, 759);
+            Controls.Add(currenciesFlowLayoutPanel);
+            Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
+            Name = "MarketForm";
+            Text = "MarketForm";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
-		}
+        #endregion
 
-		#endregion
-
-		private MenuStrip menuStrip1;
-		private ToolStripMenuItem marketToolStripMenuItem1;
-		private ToolStripMenuItem coinsToolStripMenuItem;
-		private ToolStripMenuItem exchangesToolStripMenuItem;
-		private ToolStripMenuItem profileToolStripMenuItem;
-		private ToolStripMenuItem myProfileToolStripMenuItem;
-		private ToolStripMenuItem walletsToolStripMenuItem;
-		private ToolStripComboBox marketToolStripMenuItem;
-		private Label label5;
-		private Label label6;
-		private Label label7;
-		private Label label8;
-		private FlowLayoutPanel currenciesFlowLayoutPanel;
-	}
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem marketToolStripMenuItem1;
+        private ToolStripMenuItem coinsToolStripMenuItem;
+        private ToolStripMenuItem exchangesToolStripMenuItem;
+        private ToolStripMenuItem profileToolStripMenuItem;
+        private ToolStripMenuItem myProfileToolStripMenuItem;
+        private ToolStripMenuItem walletsToolStripMenuItem;
+        private ToolStripComboBox marketToolStripMenuItem;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private FlowLayoutPanel currenciesFlowLayoutPanel;
+    }
 }

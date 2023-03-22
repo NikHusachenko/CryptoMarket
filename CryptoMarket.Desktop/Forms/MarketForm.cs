@@ -2,11 +2,11 @@
 
 namespace CryptoMarket.Desktop.Forms
 {
-	public partial class MarketForm : Form
-	{
-		public MarketForm()
-		{
-			InitializeComponent();
-		}
-	}
+    public partial class MarketForm : Form
+    {
+        public MarketForm()
+        {
+            InitializeComponent();
+        }
+    }
 }

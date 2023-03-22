@@ -128,6 +128,8 @@
             Controls.Add(SignInLabel);
             Controls.Add(PasswordTextBox);
             Controls.Add(LoginTextBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "LoginForm";
             Text = "LoginForm";
             ResumeLayout(false);
