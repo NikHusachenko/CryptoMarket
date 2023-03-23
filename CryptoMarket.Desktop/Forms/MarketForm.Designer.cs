@@ -1,12 +1,22 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.EntityFramework.Repository;
+using CryptoMarket.EntityFramework;
+using CryptoMarket.Services.CoinGreckoServices;
+using Microsoft.Identity.Client;
+using CryptoMarket.Services.Response;
+
+namespace CryptoMarket.Desktop.Forms
 {
+
 	partial class MarketForm
 	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-
+		public static ApplicationDbContext dbcontext = new ApplicationDbContext();
+		public static IGenericRepository<CoinEntity> _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
+		public static ICryptoService _cryptoService = new CoinGreckoService(_coinRepository);
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -26,6 +36,43 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
+		public static async void AddToFlowLayot(FlowLayoutPanel flowLayoutPanel)
+		{
+			ResponseService<List<CoinEntity>> coins = await _cryptoService.GetCoinListAsync();
+			for (int i = 0; i < 500; i++)
+			{
+				Label NameText = new Label()
+				{
+					AutoSize = true,
+					Location = new System.Drawing.Point(7, 32),
+					Name = "label1",
+					Size = new System.Drawing.Size(43, 17),
+					TabIndex = 0,
+					Text = "Name",
+				};
+				Label AgeText = new Label()
+				{
+					AutoSize = true,
+					Location = new System.Drawing.Point(7, 61),
+					Name = "label4",
+					Size = new System.Drawing.Size(31, 17),
+					TabIndex = 2,
+					Text = "Age",
+				};
+				GroupBox groupBox = new GroupBox()
+				{
+
+					Location = new Point(3, 3),
+					Size = new System.Drawing.Size(320, 200),
+					Margin = new Padding(5, 5, 5, 5),
+					Name = "groupBox",
+					Text = coins.Value[i].Name, //"groupBox",
+					Controls = { NameText, AgeText }
+				};
+
+				flowLayoutPanel.Controls.Add(groupBox);
+			}
+		}
 		private void InitializeComponent()
 		{
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -92,13 +139,13 @@
 			// myProfileToolStripMenuItem
 			// 
 			this.myProfileToolStripMenuItem.Name = "myProfileToolStripMenuItem";
-			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
 			this.myProfileToolStripMenuItem.Text = "My Profile";
 			// 
 			// walletsToolStripMenuItem
 			// 
 			this.walletsToolStripMenuItem.Name = "walletsToolStripMenuItem";
-			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
 			this.walletsToolStripMenuItem.Text = "Wallets";
 			// 
 			// marketToolStripMenuItem
@@ -148,7 +195,7 @@
 			this.currenciesFlowLayoutPanel.AutoScroll = true;
 			this.currenciesFlowLayoutPanel.Location = new System.Drawing.Point(0, 26);
 			this.currenciesFlowLayoutPanel.Name = "currenciesFlowLayoutPanel";
-			this.currenciesFlowLayoutPanel.Size = new System.Drawing.Size(1350, 900);
+			this.currenciesFlowLayoutPanel.Size = new System.Drawing.Size(1350, 767);
 			this.currenciesFlowLayoutPanel.TabIndex = 4;
 			// 
 			// MarketForm
@@ -183,5 +230,6 @@
 		private Label label7;
 		private Label label8;
 		private FlowLayoutPanel currenciesFlowLayoutPanel;
+		
 	}
 }

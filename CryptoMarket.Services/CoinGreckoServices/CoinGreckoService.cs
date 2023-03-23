@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace CryptoMarket.Services.CoinGreckoServices
 {
-	public class CoinGreckoService
+	public class CoinGreckoService : ICryptoService
 	{
 		private readonly IGenericRepository<CoinEntity> _coinListRepository;
 
