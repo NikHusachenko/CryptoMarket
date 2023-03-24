@@ -73,7 +73,10 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private static void groupBox_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Test");
+			GroupBox groupBox = (GroupBox)sender;
+			Label secondLabel = (Label)groupBox.Controls[1];
+			string labelText = secondLabel.Text;
+			MessageBox.Show(labelText);
 		}
 		private static Label CreateLabel(string text, Point location)
 		{
