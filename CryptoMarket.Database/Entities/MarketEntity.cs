@@ -6,10 +6,10 @@ namespace CryptoMarket.Database.Entities
 	{
 		public int Id { get; set; }
 		[JsonProperty("price_change_percentage_24h")]
-		public double PriceChangePercentage { get; set; }
+		public double? PriceChangePercentage { get; set; }
 
 		[JsonProperty("market_cap_rank")]
-		public int MarketCapRank { get; set; }
+		public int? MarketCapRank { get; set; }
 
 		[JsonProperty("total_volume")]
 		public TotalVolumeEntity TotalVolume { get; set; }

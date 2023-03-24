@@ -10,9 +10,9 @@ namespace CryptoMarket.Desktop.Forms
 	public partial class MarketForm : Form
 	{
 		private static int currentPage = 0;
-		public static ApplicationDbContext dbcontext = new ApplicationDbContext();
-		public static IGenericRepository<CoinEntity> _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
-		public static ICryptoService _cryptoService = new CoinGreckoService(_coinRepository);
+		public static ApplicationDbContext dbcontext;
+		public static IGenericRepository<CoinEntity> _coinRepository;
+		public static ICryptoService _cryptoService;
 		private static ResponseService<List<CoinEntity>> coins;
 	
 		public MarketForm()

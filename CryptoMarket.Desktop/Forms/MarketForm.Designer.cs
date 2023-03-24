@@ -5,6 +5,7 @@ using CryptoMarket.Services.CoinGreckoServices;
 using Microsoft.Identity.Client;
 using CryptoMarket.Services.Response;
 using CryptoMarket.Common;
+using System.Runtime.CompilerServices;
 
 namespace CryptoMarket.Desktop.Forms
 {
@@ -75,8 +76,14 @@ namespace CryptoMarket.Desktop.Forms
 		{
 			GroupBox groupBox = (GroupBox)sender;
 			Label secondLabel = (Label)groupBox.Controls[1];
-			string labelText = secondLabel.Text;
-			MessageBox.Show(labelText);
+			string coinId = secondLabel.Text;
+			CoinForm coinForm = new CoinForm(coinId);
+			coinForm.FormClosed += CoinForm_FormClosed;
+			coinForm.Show();
+		}
+		private static void CoinForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+		     
 		}
 		private static Label CreateLabel(string text, Point location)
 		{
