@@ -4,7 +4,6 @@ using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
-using System.Runtime.CompilerServices;
 
 namespace CryptoMarket.Desktop.Forms
 {
@@ -16,7 +15,7 @@ namespace CryptoMarket.Desktop.Forms
 		public static IGenericRepository<CoinEntity> _coinRepository;
 		public static ICryptoService _cryptoService;
 		private static ResponseService<List<CoinEntity>> coins;
-	
+
 		public MarketForm()
 		{
 			dbcontext = new ApplicationDbContext();
@@ -24,31 +23,31 @@ namespace CryptoMarket.Desktop.Forms
 			_cryptoService = new CoinGreckoService(_coinRepository);
 			InitializeComponent();
 			AddToFlowLayot(currenciesFlowLayoutPanel);
-			Checker();
+			CheckPaginationState();
 		}
 		private void UpdatePageInfo()
 		{
-			PageNumberInfoLab.Text = $"{currentPage+1}/{(int)Math.Ceiling((double)coins.Value.Count / MarketFormConstants.COINS_ON_PAGE)}";
+			PageNumberInfoLab.Text = $"{currentPage + 1}/{(int)Math.Ceiling((double)coins.Value.Count / MarketFormConstants.COINS_ON_PAGE)}";
 		}
 
 		private void NextPageBtn_Click(object sender, EventArgs e)
 		{
-				currentPage++;
-				AddToFlowLayot(currenciesFlowLayoutPanel);
-                Checker();
-				PreviousPageBtn.Enabled = true;
-				UpdatePageInfo();
+			currentPage++;
+			AddToFlowLayot(currenciesFlowLayoutPanel);
+			CheckPaginationState();
+			PreviousPageBtn.Enabled = true;
+			UpdatePageInfo();
 		}
 
 		private void PreviousPageBtn_Click(object sender, EventArgs e)
 		{
-				currentPage--;
-				AddToFlowLayot(currenciesFlowLayoutPanel);
-			    Checker();
-				UpdatePageInfo();
-				NextPageBtn.Enabled = true;
+			currentPage--;
+			AddToFlowLayot(currenciesFlowLayoutPanel);
+			CheckPaginationState();
+			UpdatePageInfo();
+			NextPageBtn.Enabled = true;
 		}
-		private void Checker()
+		private void CheckPaginationState()
 		{
 			if (currentPage <= 0)
 			{
@@ -63,7 +62,7 @@ namespace CryptoMarket.Desktop.Forms
 		{
 			GroupBox groupBox = (GroupBox)sender;
 			Label secondLabel = (Label)groupBox.Controls[1];
-		    coinId = secondLabel.Text;
+			coinId = secondLabel.Text;
 			CoinForm coinForm = new CoinForm(coinId);
 			coinForm.Show();
 		}

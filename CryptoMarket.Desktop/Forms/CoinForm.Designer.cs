@@ -56,7 +56,7 @@
 			// 
 			this.CoinLogoPictureBox.Location = new System.Drawing.Point(448, 12);
 			this.CoinLogoPictureBox.Name = "CoinLogoPictureBox";
-			this.CoinLogoPictureBox.Size = new System.Drawing.Size(272, 241);
+			this.CoinLogoPictureBox.Size = new System.Drawing.Size(299, 265);
 			this.CoinLogoPictureBox.TabIndex = 0;
 			this.CoinLogoPictureBox.TabStop = false;
 			// 
