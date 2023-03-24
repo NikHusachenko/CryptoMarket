@@ -4,12 +4,14 @@ using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
+using System.Runtime.CompilerServices;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class MarketForm : Form
 	{
 		private static int currentPage = 0;
+		private static string coinId = null;
 		public static ApplicationDbContext dbcontext;
 		public static IGenericRepository<CoinEntity> _coinRepository;
 		public static ICryptoService _cryptoService;
@@ -57,6 +59,15 @@ namespace CryptoMarket.Desktop.Forms
 				NextPageBtn.Enabled = false;
 			}
 		}
+		private static void groupBox_Click(object sender, EventArgs e)
+		{
+			GroupBox groupBox = (GroupBox)sender;
+			Label secondLabel = (Label)groupBox.Controls[1];
+		    coinId = secondLabel.Text;
+			CoinForm coinForm = new CoinForm(coinId);
+			coinForm.Show();
+		}
+
 		public static async Task InitCoins()
 		{
 			coins = await _cryptoService.GetCoinListAsync();

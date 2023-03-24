@@ -72,19 +72,8 @@ namespace CryptoMarket.Desktop.Forms
 				flowLayoutPanel.Controls.Add(groupBox);
 			}
 		}
-		private static void groupBox_Click(object sender, EventArgs e)
-		{
-			GroupBox groupBox = (GroupBox)sender;
-			Label secondLabel = (Label)groupBox.Controls[1];
-			string coinId = secondLabel.Text;
-			CoinForm coinForm = new CoinForm(coinId);
-			coinForm.FormClosed += CoinForm_FormClosed;
-			coinForm.Show();
-		}
-		private static void CoinForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-		     
-		}
+		
+		
 		private static Label CreateLabel(string text, Point location)
 		{
 			return new Label()

@@ -1,45 +1,36 @@
 ﻿using CryptoMarket.Database.Entities;
-using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.EntityFramework;
+using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
 using System.Net;
-using System.Windows.Forms;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class CoinForm : Form
 	{
-		private static string coinId;
-		public static ResponseService<CoinEntity>? currentCoin;
+		public static ResponseService<CoinEntity> currentCoin;
 		public static ApplicationDbContext dbcontext;
 		public static IGenericRepository<CoinEntity> _coinRepository;
 		public static ICryptoService _cryptoService;
 		public CoinForm(string Id)
 		{
 			InitializeComponent();
-			coinId = Id;
 			dbcontext = new ApplicationDbContext();
 			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
 			_cryptoService = new CoinGreckoService(_coinRepository);
-			
-			FillData();
 
-			
+			FillData(Id);
 		}
-		public async Task InitCoin()
+		public async Task InitCoin(string coinId)
 		{
 			currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
 		}
-		public async void FillData()
+		public async void FillData(string coinId)
 		{
-			if (currentCoin == null)
-			{
-				await InitCoin();
-			}
-
-			if(currentCoin != null) 
-			DisplayImage(currentCoin.Value.Image.Large);
+			await InitCoin(coinId);
+			if (currentCoin != null)
+				DisplayImage(currentCoin.Value.Image.Large);
 
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;
