@@ -4,19 +4,16 @@ using CryptoMarket.EntityFramework;
 using CryptoMarket.Services.CoinGreckoServices;
 using Microsoft.Identity.Client;
 using CryptoMarket.Services.Response;
+using CryptoMarket.Common;
 
 namespace CryptoMarket.Desktop.Forms
 {
-
 	partial class MarketForm
 	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-		public static ApplicationDbContext dbcontext = new ApplicationDbContext();
-		public static IGenericRepository<CoinEntity> _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
-		public static ICryptoService _cryptoService = new CoinGreckoService(_coinRepository);
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -45,30 +42,21 @@ namespace CryptoMarket.Desktop.Forms
 				await InitCoins();
 			}
 
-			int start = currentPage * coinsPerPage;
-			int end = start + coinsPerPage;
+			int start = currentPage * MarketFormConstants.COINS_ON_PAGE;
+			int end = start + MarketFormConstants.COINS_ON_PAGE;
 
 			flowLayoutPanel.Controls.Clear();
 			for (int i = start; i < end && i<coins.Value.Count; i++)
 			{
-				Label NameText = new Label()
+				string[] labelText = { "CoinId:", "Name:", "Symbol:" };
+				string[] dataText = { coins.Value[i].CoinId, coins.Value[i].Name, coins.Value[i].Symbol};
+				List<Label> labels = new List<Label>();
+				for (int y = 0; y < 3; y++)
 				{
-					AutoSize = true,
-					Location = new System.Drawing.Point(7, 32),
-					Name = "label1",
-					Size = new System.Drawing.Size(43, 17),
-					TabIndex = 0,
-					Text = "Name",
-				};
-				Label AgeText = new Label()
-				{
-					AutoSize = true,
-					Location = new System.Drawing.Point(7, 61),
-					Name = "label4",
-					Size = new System.Drawing.Size(31, 17),
-					TabIndex = 2,
-					Text = "Age",
-				};
+					labels.Add(CreateLabel(labelText[y], new Point(7, 32 * (y + 1))));
+					labels.Add(CreateLabel(dataText[y], new Point(68, 32 * (y + 1))));
+				}
+
 				GroupBox groupBox = new GroupBox()
 				{
 
@@ -76,12 +64,26 @@ namespace CryptoMarket.Desktop.Forms
 					Size = new System.Drawing.Size(320, 200),
 					Margin = new Padding(5, 5, 5, 5),
 					Name = "groupBox",
-					Text = coins.Value[i].Name, //"groupBox",
-					Controls = { NameText, AgeText }
+					Text = coins.Value[i].Name,
 				};
-
+				groupBox.Controls.AddRange(labels.ToArray());
+				groupBox.Click += groupBox_Click;
 				flowLayoutPanel.Controls.Add(groupBox);
 			}
+		}
+		private static void groupBox_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Test");
+		}
+		private static Label CreateLabel(string text, Point location)
+		{
+			return new Label()
+			{
+				AutoSize = true,
+				Location = location,
+				Size = new Size(43, 17),
+				Text = text
+			};
 		}
 		private void InitializeComponent()
 		{
@@ -238,7 +240,7 @@ namespace CryptoMarket.Desktop.Forms
 			this.PageNumberInfoLab.Name = "PageNumberInfoLab";
 			this.PageNumberInfoLab.Size = new System.Drawing.Size(95, 33);
 			this.PageNumberInfoLab.TabIndex = 7;
-			this.PageNumberInfoLab.Text = "1/75";
+			this.PageNumberInfoLab.Text = "1/74";
 			this.PageNumberInfoLab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// MarketForm
