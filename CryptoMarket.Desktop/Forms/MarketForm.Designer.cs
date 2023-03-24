@@ -36,10 +36,20 @@ namespace CryptoMarket.Desktop.Forms
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
+		/// 
+		
 		public static async void AddToFlowLayot(FlowLayoutPanel flowLayoutPanel)
 		{
-			ResponseService<List<CoinEntity>> coins = await _cryptoService.GetCoinListAsync();
-			for (int i = 0; i < 500; i++)
+			if (coins == null)
+			{
+				await InitCoins();
+			}
+
+			int start = currentPage * coinsPerPage;
+			int end = start + coinsPerPage;
+
+			flowLayoutPanel.Controls.Clear();
+			for (int i = start; i < end && i<coins.Value.Count; i++)
 			{
 				Label NameText = new Label()
 				{
@@ -88,6 +98,9 @@ namespace CryptoMarket.Desktop.Forms
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.currenciesFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.NextPageBtn = new System.Windows.Forms.Button();
+			this.PreviousPageBtn = new System.Windows.Forms.Button();
+			this.PageNumberInfoLab = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -198,11 +211,44 @@ namespace CryptoMarket.Desktop.Forms
 			this.currenciesFlowLayoutPanel.Size = new System.Drawing.Size(1350, 767);
 			this.currenciesFlowLayoutPanel.TabIndex = 4;
 			// 
+			// NextPageBtn
+			// 
+			this.NextPageBtn.Location = new System.Drawing.Point(732, 803);
+			this.NextPageBtn.Name = "NextPageBtn";
+			this.NextPageBtn.Size = new System.Drawing.Size(98, 49);
+			this.NextPageBtn.TabIndex = 5;
+			this.NextPageBtn.Text = "Next Page";
+			this.NextPageBtn.UseVisualStyleBackColor = true;
+			this.NextPageBtn.Click += new System.EventHandler(this.NextPageBtn_Click);
+			// 
+			// PreviousPageBtn
+			// 
+			this.PreviousPageBtn.Location = new System.Drawing.Point(526, 803);
+			this.PreviousPageBtn.Name = "PreviousPageBtn";
+			this.PreviousPageBtn.Size = new System.Drawing.Size(99, 49);
+			this.PreviousPageBtn.TabIndex = 6;
+			this.PreviousPageBtn.Text = "Previous Page";
+			this.PreviousPageBtn.UseVisualStyleBackColor = true;
+			this.PreviousPageBtn.Click += new System.EventHandler(this.PreviousPageBtn_Click);
+			// 
+			// PageNumberInfoLab
+			// 
+			this.PageNumberInfoLab.Font = new System.Drawing.Font("Segoe UI Semibold", 15.68317F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.PageNumberInfoLab.Location = new System.Drawing.Point(631, 809);
+			this.PageNumberInfoLab.Name = "PageNumberInfoLab";
+			this.PageNumberInfoLab.Size = new System.Drawing.Size(95, 33);
+			this.PageNumberInfoLab.TabIndex = 7;
+			this.PageNumberInfoLab.Text = "1/75";
+			this.PageNumberInfoLab.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
 			// MarketForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1356, 860);
+			this.Controls.Add(this.PageNumberInfoLab);
+			this.Controls.Add(this.PreviousPageBtn);
+			this.Controls.Add(this.NextPageBtn);
 			this.Controls.Add(this.currenciesFlowLayoutPanel);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -230,6 +276,8 @@ namespace CryptoMarket.Desktop.Forms
 		private Label label7;
 		private Label label8;
 		private FlowLayoutPanel currenciesFlowLayoutPanel;
-		
+		private Button NextPageBtn;
+		private Button PreviousPageBtn;
+		private Label PageNumberInfoLab;
 	}
 }

@@ -8,21 +8,58 @@ namespace CryptoMarket.Desktop.Forms
 {
 	public partial class MarketForm : Form
 	{
-		//public static FlowLayoutPanel _infoFlowLayotPanel;
-		//static ApplicationDbContext dbcontext;
-		//static IGenericRepository<CoinEntity> _entityRepository;
-		//static ICryptoService _cryptoService;
+		private const int coinsPerPage = 150;
+		private static int currentPage = 0;
+		private static ResponseService<List<CoinEntity>> coins;
+		public static async Task InitCoins()
+		{
+			coins = await _cryptoService.GetCoinListAsync();
+		}
 		public MarketForm()
 		{
+			dbcontext = new ApplicationDbContext();
+			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
+			_cryptoService = new CoinGreckoService(_coinRepository);
 			InitializeComponent();
-			//_infoFlowLayotPanel = currenciesFlowLayoutPanel;
-			//dbcontext = new ApplicationDbContext();
-			//_entityRepository = new GenericRepository<CoinEntity>(dbcontext);
-			//_cryptoService = new CoinGreckoService(_entityRepository);
-			//AddCoinsToForm();
+			
 			AddToFlowLayot(currenciesFlowLayoutPanel);
+			Checker();
+			
 		}
-		
+		private void UpdatePageInfo()
+		{
+			PageNumberInfoLab.Text = $"{currentPage+1}/{(int)Math.Ceiling((double)coins.Value.Count / coinsPerPage)}";
+		}
+
+		private void NextPageBtn_Click(object sender, EventArgs e)
+		{
+				currentPage++;
+				AddToFlowLayot(currenciesFlowLayoutPanel);
+                Checker();
+				PreviousPageBtn.Enabled = true;
+				UpdatePageInfo();
+		}
+
+		private void PreviousPageBtn_Click(object sender, EventArgs e)
+		{
+				currentPage--;
+				AddToFlowLayot(currenciesFlowLayoutPanel);
+			    Checker();
+				UpdatePageInfo();
+				NextPageBtn.Enabled = true;
+		}
+		private void Checker()
+		{
+			if (currentPage <= 0)
+			{
+				PreviousPageBtn.Enabled = false;
+			}
+
+			if (coins != null && currentPage >= (int)Math.Ceiling((double)coins.Value.Count / coinsPerPage))
+			{
+				NextPageBtn.Enabled = false;
+			}
+		}
 		//public async static void AddCoinsToForm()
 		//{
 		//	int a = 0;
