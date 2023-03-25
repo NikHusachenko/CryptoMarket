@@ -38,11 +38,6 @@ namespace CryptoMarket.Desktop.Forms
 		
 		public static async void AddToFlowLayot(FlowLayoutPanel flowLayoutPanel)
 		{
-			if (coins == null)
-			{
-				await InitCoins();
-			}
-
 			int start = currentPage * MarketFormConstants.COINS_ON_PAGE;
 			int end = start + MarketFormConstants.COINS_ON_PAGE;
 

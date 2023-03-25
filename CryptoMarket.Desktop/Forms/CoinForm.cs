@@ -29,8 +29,10 @@ namespace CryptoMarket.Desktop.Forms
 		public async void FillData(string coinId)
 		{
 			await InitCoin(coinId);
-			if (currentCoin != null)
+			if (currentCoin != null) 
+			{
 				DisplayImage(currentCoin.Value.Image.Large);
+			}
 
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;

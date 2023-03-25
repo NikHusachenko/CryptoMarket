@@ -9,7 +9,8 @@ namespace CryptoMarket.Desktop.Forms
 {
 	public partial class MarketForm : Form
 	{
-		private static int currentPage = 0;
+		private static int currentPage;
+		private static int totalPages;
 		public static ApplicationDbContext dbcontext;
 		public static IGenericRepository<CoinEntity> _coinRepository;
 		public static ICryptoService _cryptoService;
@@ -20,13 +21,16 @@ namespace CryptoMarket.Desktop.Forms
 			dbcontext = new ApplicationDbContext();
 			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
 			_cryptoService = new CoinGreckoService(_coinRepository);
+			coins = _cryptoService.GetCoinListFromDbAsync();
+			currentPage = 0;
+			totalPages = (int)Math.Ceiling((double)coins.Value.Count / MarketFormConstants.COINS_ON_PAGE);
 			InitializeComponent();
 			AddToFlowLayot(currenciesFlowLayoutPanel);
 			CheckPaginationState();
 		}
 		private void UpdatePageInfo()
 		{
-			PageNumberInfoLab.Text = $"{currentPage + 1}/{(int)Math.Ceiling((double)coins.Value.Count / MarketFormConstants.COINS_ON_PAGE)}";
+			PageNumberInfoLab.Text = $"{currentPage + 1}/{totalPages}";
 		}
 
 		private void NextPageBtn_Click(object sender, EventArgs e)
@@ -64,11 +68,6 @@ namespace CryptoMarket.Desktop.Forms
 			string coinId = secondLabel.Text;
 			CoinForm coinForm = new CoinForm(coinId);
 			coinForm.Show();
-		}
-
-		public static async Task InitCoins()
-		{
-			coins = await _cryptoService.GetCoinListAsync();
 		}
 	}
 }

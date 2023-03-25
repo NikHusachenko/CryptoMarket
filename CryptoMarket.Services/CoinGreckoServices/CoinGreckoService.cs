@@ -70,6 +70,16 @@ namespace CryptoMarket.Services.CoinGreckoServices
 				return ResponseService<CoinEntity>.Error(ex.Message);
 			}
 		}
-
+		public ResponseService<List<CoinEntity>> GetCoinListFromDbAsync()
+		{
+			ResponseService<List<CoinEntity>> dbRecord = new ResponseService<List<CoinEntity>>();
+			dbRecord.Value = _coinListRepository.Table.ToList();
+			if (dbRecord == null)
+			{
+				return null;
+			}
+			return dbRecord;
+		}
+		
 	}
 }
