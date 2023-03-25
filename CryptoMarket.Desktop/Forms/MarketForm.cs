@@ -10,7 +10,6 @@ namespace CryptoMarket.Desktop.Forms
 	public partial class MarketForm : Form
 	{
 		private static int currentPage = 0;
-		private static string coinId = null;
 		public static ApplicationDbContext dbcontext;
 		public static IGenericRepository<CoinEntity> _coinRepository;
 		public static ICryptoService _cryptoService;
@@ -62,7 +61,7 @@ namespace CryptoMarket.Desktop.Forms
 		{
 			GroupBox groupBox = (GroupBox)sender;
 			Label secondLabel = (Label)groupBox.Controls[1];
-			coinId = secondLabel.Text;
+			string coinId = secondLabel.Text;
 			CoinForm coinForm = new CoinForm(coinId);
 			coinForm.Show();
 		}
