@@ -1,5 +1,6 @@
 ﻿using CryptoMarket.Common;
 using CryptoMarket.Database.Entities;
+using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.Response;
 using Newtonsoft.Json;
@@ -8,11 +9,13 @@ namespace CryptoMarket.Services.CoinGreckoServices
 {
 	public class CoinGreckoService : ICryptoService
 	{
+		private readonly ApplicationDbContext dbcontext;
 		private readonly IGenericRepository<CoinEntity> _coinListRepository;
 
 		public CoinGreckoService(IGenericRepository<CoinEntity> coinListRepository)
 		{
 			_coinListRepository = coinListRepository;
+			dbcontext = new ApplicationDbContext();
 		}
 
 		public void Create(CoinEntity coin)
@@ -70,16 +73,26 @@ namespace CryptoMarket.Services.CoinGreckoServices
 				return ResponseService<CoinEntity>.Error(ex.Message);
 			}
 		}
-		public ResponseService<List<CoinEntity>> GetCoinListFromDbAsync()
+		public async Task<ResponseService> LoadDataFromApiToDb()
 		{
-			ResponseService<List<CoinEntity>> dbRecord = new ResponseService<List<CoinEntity>>();
-			dbRecord.Value = _coinListRepository.Table.ToList();
-			if (dbRecord == null)
+			try
 			{
-				return null;
+				var client = new HttpClient();
+				var message = await client.GetAsync($"{CoinGrecko.COIN_LIST}");
+				message.EnsureSuccessStatusCode();
+				var context = await message.Content.ReadAsStringAsync();
+				var coinList = JsonConvert.DeserializeObject<List<CoinEntity>>(context);
+				for (int i = 0; i < coinList.Count; i++)
+				{
+					await _coinListRepository.Create(coinList[i]);
+				}
+				await dbcontext.SaveChangesAsync();
+				return ResponseService.Ok();
 			}
-			return dbRecord;
+			catch (Exception ex)
+			{
+				return ResponseService.Error(ex.Message);
+			}
 		}
-		
 	}
 }

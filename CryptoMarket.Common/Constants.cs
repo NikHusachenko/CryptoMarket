@@ -35,5 +35,7 @@
     public class MarketFormConstants
     {
 		public const int COINS_ON_PAGE = 152;
+        public const int FIRST_COIN_ID = 28234;
+        public const int TOTAL_NUMBER_OF_COINS = 11143;
 	}
 }

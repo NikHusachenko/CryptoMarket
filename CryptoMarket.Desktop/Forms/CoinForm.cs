@@ -33,7 +33,6 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				DisplayImage(currentCoin.Value.Image.Large);
 			}
-
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;
 			NameLabel.Text = currentCoin.Value.Name;
@@ -51,7 +50,6 @@ namespace CryptoMarket.Desktop.Forms
 				(currentCoin.Value.MarketData.Hight24H.Usd == null) ? "No info" : currentCoin.Value.MarketData.Hight24H.Usd.ToString();
 			Low24HLabel.Text =
 				(currentCoin.Value.MarketData.Low24H.Usd == null) ? "No info" : currentCoin.Value.MarketData.Low24H.Usd.ToString();
-
 		}
 		private void DisplayImage(string imageUrl)
 		{

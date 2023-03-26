@@ -9,6 +9,6 @@ namespace CryptoMarket.Services.CoinGreckoServices
 	    Task<ResponseService> CheckApiStatusAsync();
 		Task<ResponseService<List<CoinEntity>>> GetCoinListAsync();
 		Task<ResponseService<CoinEntity>> GetCoinByCoinIdAsync(string coinId);
-		ResponseService<List<CoinEntity>> GetCoinListFromDbAsync();
+		Task<ResponseService> LoadDataFromApiToDb();
 	}
 }
