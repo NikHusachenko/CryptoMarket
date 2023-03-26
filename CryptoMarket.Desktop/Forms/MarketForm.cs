@@ -20,7 +20,7 @@ namespace CryptoMarket.Desktop.Forms
 			dbcontext = new ApplicationDbContext();
 			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
 			_cryptoService = new CoinGreckoService(_coinRepository);
-			currentPage = 70;
+			currentPage = 0;
 			totalPages = (int)Math.Ceiling((double)MarketFormConstants.TOTAL_NUMBER_OF_COINS / MarketFormConstants.COINS_ON_PAGE);
 			InitializeComponent();
 			isDbEmptyChecker();
