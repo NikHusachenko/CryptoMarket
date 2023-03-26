@@ -22,34 +22,32 @@ namespace CryptoMarket.Desktop.Forms
 
 			FillData(Id);
 		}
-		public async Task InitCoin(string coinId)
+		private async Task InitCoin(string coinId)
 		{
 			currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
 		}
-		public async void FillData(string coinId)
+		private async void FillData(string coinId)
 		{
 			await InitCoin(coinId);
-			if (currentCoin != null)
+			if (currentCoin != null) 
+			{
 				DisplayImage(currentCoin.Value.Image.Large);
-
+			}
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;
 			NameLabel.Text = currentCoin.Value.Name;
-			PriceChangePercentageLabel.Text = 
-				(currentCoin.Value.MarketData.PriceChangePercentage == null) ? "No info" :  currentCoin.Value.MarketData.PriceChangePercentage.ToString();
-			MarketCapRankLabel.Text =
-				(currentCoin.Value.MarketData.MarketCapRank == null) ? "No info" : currentCoin.Value.MarketData.MarketCapRank.ToString();
-			TotalVolumeLabel.Text =
-				(currentCoin.Value.MarketData.TotalVolume.Usd == null) ? "No info" : currentCoin.Value.MarketData.TotalVolume.Usd.ToString();
-			MarketCapLabel.Text = 
-				(currentCoin.Value.MarketData.MarketCap.Usd == null) ? "No info" : currentCoin.Value.MarketData.MarketCap.Usd.ToString();
-			CurrentPriceLabel.Text =
-				(currentCoin.Value.MarketData.CurrentPrice.Usd == null) ? "No info" : currentCoin.Value.MarketData.CurrentPrice.Usd.ToString();
-			High24HLabel.Text =
-				(currentCoin.Value.MarketData.Hight24H.Usd == null) ? "No info" : currentCoin.Value.MarketData.Hight24H.Usd.ToString();
-			Low24HLabel.Text =
-				(currentCoin.Value.MarketData.Low24H.Usd == null) ? "No info" : currentCoin.Value.MarketData.Low24H.Usd.ToString();
-
+			PriceChangePercentageLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.PriceChangePercentage);
+			MarketCapRankLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.MarketCapRank);
+			TotalVolumeLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.TotalVolume.Usd);
+			MarketCapLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.MarketCap.Usd);
+			CurrentPriceLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.CurrentPrice.Usd);
+			High24HLabel.Text =FormatValueOrDefault(currentCoin.Value.MarketData.Hight24H.Usd);
+			Low24HLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.Low24H.Usd);
+		}
+		private string FormatValueOrDefault(double? value)
+		{
+			if (value == null) return "No info";
+			return value.ToString();
 		}
 		private void DisplayImage(string imageUrl)
 		{

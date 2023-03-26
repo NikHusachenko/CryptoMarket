@@ -21,7 +21,8 @@ namespace CryptoMarket.Desktop
             IUserService userService = new UserService(userRepository, walletService);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm(userService));
+            // Application.Run(new LoginForm(userService));
+            Application.Run(new MarketForm());
         }
     }
 }

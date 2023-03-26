@@ -36,28 +36,19 @@ namespace CryptoMarket.Desktop.Forms
 		/// </summary>
 		/// 
 		
-		public static async void AddToFlowLayot(FlowLayoutPanel flowLayoutPanel)
+		public static async void AddToFlowLayot(ResponseService<List<CoinEntity>> coinList,FlowLayoutPanel flowLayoutPanel)
 		{
-			if (coins == null)
-			{
-				await InitCoins();
-			}
-
-			int start = currentPage * MarketFormConstants.COINS_ON_PAGE;
-			int end = start + MarketFormConstants.COINS_ON_PAGE;
-
 			flowLayoutPanel.Controls.Clear();
-			for (int i = start; i < end && i<coins.Value.Count; i++)
+			for (int i = 0; i < coinList.Value.Count; i++)
 			{
 				string[] labelText = { "CoinId:", "Name:", "Symbol:" };
-				string[] dataText = { coins.Value[i].CoinId, coins.Value[i].Name, coins.Value[i].Symbol};
+				string[] dataText = { coinList.Value[i].CoinId, coinList.Value[i].Name, coinList.Value[i].Symbol};
 				List<Label> labels = new List<Label>();
 				for (int y = 0; y < 3; y++)
 				{
 					labels.Add(CreateLabel(labelText[y], new Point(7, 32 * (y + 1))));
 					labels.Add(CreateLabel(dataText[y], new Point(68, 32 * (y + 1))));
 				}
-
 				GroupBox groupBox = new GroupBox()
 				{
 
@@ -65,15 +56,13 @@ namespace CryptoMarket.Desktop.Forms
 					Size = new System.Drawing.Size(320, 200),
 					Margin = new Padding(5, 5, 5, 5),
 					Name = "groupBox",
-					Text = coins.Value[i].Name,
+					Text = coinList.Value[i].Name,
 				};
 				groupBox.Controls.AddRange(labels.ToArray());
 				groupBox.Click += groupBox_Click;
 				flowLayoutPanel.Controls.Add(groupBox);
 			}
 		}
-		
-		
 		private static Label CreateLabel(string text, Point location)
 		{
 			return new Label()
@@ -130,14 +119,14 @@ namespace CryptoMarket.Desktop.Forms
 			// coinsToolStripMenuItem
 			// 
 			this.coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
-			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.coinsToolStripMenuItem.Text = "Coins";
 			this.coinsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// exchangesToolStripMenuItem
 			// 
 			this.exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
-			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.exchangesToolStripMenuItem.Text = "Exchanges";
 			this.exchangesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -261,9 +250,7 @@ namespace CryptoMarket.Desktop.Forms
 			this.PerformLayout();
 
 		}
-
 		#endregion
-
 		private MenuStrip menuStrip1;
 		private ToolStripMenuItem marketToolStripMenuItem1;
 		private ToolStripMenuItem coinsToolStripMenuItem;
