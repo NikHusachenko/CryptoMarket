@@ -266,6 +266,7 @@
 			this.Controls.Add(this.CoinIDLabel);
 			this.Controls.Add(this.CoinIDTextLabel);
 			this.Controls.Add(this.CoinLogoPictureBox);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "CoinForm";
 			this.Text = "CoinForm";
 			((System.ComponentModel.ISupportInitialize)(this.CoinLogoPictureBox)).EndInit();

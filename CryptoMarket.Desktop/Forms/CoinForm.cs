@@ -20,19 +20,22 @@ namespace CryptoMarket.Desktop.Forms
 			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
 			_cryptoService = new CoinGreckoService(_coinRepository);
 
-			FillData(Id);
+			FillCoinDataAndDisplay(Id);
 		}
 		private async Task InitCoin(string coinId)
 		{
 			currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
 		}
-		private async void FillData(string coinId)
+		private async void FillCoinDataAndDisplay(string coinId)
 		{
 			await InitCoin(coinId);
-			if (currentCoin != null) 
+			if (currentCoin.Value == null)
 			{
-				DisplayImage(currentCoin.Value.Image.Large);
+				Thread.Sleep(110000);
+				currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
 			}
+
+			DisplayImage(currentCoin.Value.Image.Large);
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;
 			NameLabel.Text = currentCoin.Value.Name;

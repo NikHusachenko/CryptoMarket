@@ -78,5 +78,5 @@ namespace CryptoMarket.Desktop.Forms
                 label.Text = string.Empty;
             }
         }
-    }
+	}
 }
