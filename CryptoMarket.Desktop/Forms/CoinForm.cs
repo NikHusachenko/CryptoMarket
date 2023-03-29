@@ -29,10 +29,14 @@ namespace CryptoMarket.Desktop.Forms
 		private async void FillData(string coinId)
 		{
 			await InitCoin(coinId);
-			if (currentCoin != null) 
+			while(currentCoin.Value == null)
 			{
-				DisplayImage(currentCoin.Value.Image.Large);
+				Thread.Sleep(110000);
+				MessageBox.Show(1.ToString());
+				currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
 			}
+			
+			DisplayImage(currentCoin.Value.Image.Large);
 			SymbolLabel.Text = currentCoin.Value.Symbol;
 			CoinIDLabel.Text = currentCoin.Value.CoinId;
 			NameLabel.Text = currentCoin.Value.Name;

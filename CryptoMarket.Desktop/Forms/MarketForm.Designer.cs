@@ -119,14 +119,14 @@ namespace CryptoMarket.Desktop.Forms
 			// coinsToolStripMenuItem
 			// 
 			this.coinsToolStripMenuItem.Name = "coinsToolStripMenuItem";
-			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.coinsToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
 			this.coinsToolStripMenuItem.Text = "Coins";
 			this.coinsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// exchangesToolStripMenuItem
 			// 
 			this.exchangesToolStripMenuItem.Name = "exchangesToolStripMenuItem";
-			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
+			this.exchangesToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
 			this.exchangesToolStripMenuItem.Text = "Exchanges";
 			this.exchangesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -241,6 +241,7 @@ namespace CryptoMarket.Desktop.Forms
 			this.Controls.Add(this.NextPageBtn);
 			this.Controls.Add(this.currenciesFlowLayoutPanel);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MarketForm";
 			this.Text = "MarketForm";

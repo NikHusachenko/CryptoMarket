@@ -68,6 +68,7 @@
 			this.ClientSize = new System.Drawing.Size(1584, 860);
 			this.Controls.Add(this.WalletsFlowLayoutPanel);
 			this.Controls.Add(this.WalletInfoPanel);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "WalletsForm";
 			this.Text = "WalletsForm";
 			this.WalletsFlowLayoutPanel.ResumeLayout(false);
