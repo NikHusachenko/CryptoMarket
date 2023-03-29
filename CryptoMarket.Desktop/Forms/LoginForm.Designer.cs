@@ -62,6 +62,7 @@
 			this.SignUpLabel.Size = new System.Drawing.Size(54, 17);
 			this.SignUpLabel.TabIndex = 3;
 			this.SignUpLabel.Text = "Sign Up";
+			this.SignUpLabel.Click += new System.EventHandler(this.SignUpLabel_Click);
 			// 
 			// label1
 			// 
@@ -115,6 +116,7 @@
 			this.LoginButton.TabIndex = 15;
 			this.LoginButton.Text = "Sign In";
 			this.LoginButton.UseVisualStyleBackColor = true;
+			this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
 			// 
 			// LoginForm
 			// 
