@@ -20,6 +20,7 @@
         public const string CREATE_ERROR = "Didn't create. Something went wrong";
         public const string UPDATE_ERROR = "Didn't update. Something went wrong";
         public const string SERVER_DOWN = "The Server is down";
+        public const string ERROR_STATUS_CODE = "Response have error status code: ";
 
 	}
 

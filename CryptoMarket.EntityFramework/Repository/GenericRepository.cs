@@ -14,31 +14,31 @@ namespace CryptoMarket.EntityFramework.Repository
             Table = _context.Set<T>();
         }
 
-        public async Task<bool> Create(T entity)
+        public async Task<string> Create(T entity)
         {
             try
             {
                 await Table.AddAsync(entity);
                 await _context.SaveChangesAsync();
-                return true;
+                return string.Empty;
             }
             catch (Exception ex) 
             {
-                return false;
+                return ex.Message;
             }
         }
 
-        public async Task<bool> Delete(T entity)
+        public async Task<string> Delete(T entity)
         {
             try
             {
                 Table.Remove(entity);
                 await _context.SaveChangesAsync();
-                return true;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                return false;
+                return ex.Message;
             }
         }
 
@@ -52,17 +52,17 @@ namespace CryptoMarket.EntityFramework.Repository
             return await Table.FindAsync(id);
         }
 
-        public async Task<bool> Update(T entity)
+        public async Task<string> Update(T entity)
         {
             try
             {
                 Table.Update(entity);
                 await _context.SaveChangesAsync();
-                return true;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                return false;
+                return ex.Message;
             }
         }
 

@@ -7,9 +7,9 @@ namespace CryptoMarket.EntityFramework.Repository
     {
         DbSet<T> Table { get; }
 
-        Task<bool> Create(T entity);
-        Task<bool> Update(T entity);
-        Task<bool> Delete(T entity);
+        Task<string> Create(T entity);
+        Task<string> Update(T entity);
+        Task<string> Delete(T entity);
         Task<T> GetById(long id);
         Task<T> GetBy(Expression<Func<T, bool>> expression);
         Task<ICollection<T>> GetAll();

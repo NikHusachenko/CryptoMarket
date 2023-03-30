@@ -28,135 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.LoginLabel = new System.Windows.Forms.Label();
-			this.LoginTextBox = new System.Windows.Forms.TextBox();
-			this.EmailTextBox = new System.Windows.Forms.TextBox();
-			this.PasswordLabel = new System.Windows.Forms.Label();
-			this.PasswordTextBox = new System.Windows.Forms.TextBox();
-			this.EmailLabel = new System.Windows.Forms.Label();
-			this.SaveRegistration = new System.Windows.Forms.Button();
-			this.loginErrorLabel = new System.Windows.Forms.Label();
-			this.emailErrorLabel = new System.Windows.Forms.Label();
-			this.passwordErrorLabel = new System.Windows.Forms.Label();
-			this.SuspendLayout();
-			// 
-			// LoginLabel
-			// 
-			this.LoginLabel.AutoSize = true;
-			this.LoginLabel.Location = new System.Drawing.Point(325, 101);
-			this.LoginLabel.Name = "LoginLabel";
-			this.LoginLabel.Size = new System.Drawing.Size(74, 17);
-			this.LoginLabel.TabIndex = 0;
-			this.LoginLabel.Text = "Enter Login";
-			// 
-			// LoginTextBox
-			// 
-			this.LoginTextBox.Location = new System.Drawing.Point(325, 121);
-			this.LoginTextBox.Name = "LoginTextBox";
-			this.LoginTextBox.Size = new System.Drawing.Size(250, 25);
-			this.LoginTextBox.TabIndex = 1;
-			// 
-			// EmailTextBox
-			// 
-			this.EmailTextBox.Location = new System.Drawing.Point(325, 178);
-			this.EmailTextBox.Name = "EmailTextBox";
-			this.EmailTextBox.Size = new System.Drawing.Size(250, 25);
-			this.EmailTextBox.TabIndex = 3;
-			// 
-			// PasswordLabel
-			// 
-			this.PasswordLabel.AutoSize = true;
-			this.PasswordLabel.Location = new System.Drawing.Point(325, 215);
-			this.PasswordLabel.Name = "PasswordLabel";
-			this.PasswordLabel.Size = new System.Drawing.Size(98, 17);
-			this.PasswordLabel.TabIndex = 2;
-			this.PasswordLabel.Text = "Enter Password";
-			// 
-			// PasswordTextBox
-			// 
-			this.PasswordTextBox.Location = new System.Drawing.Point(325, 236);
-			this.PasswordTextBox.Name = "PasswordTextBox";
-			this.PasswordTextBox.PasswordChar = '*';
-			this.PasswordTextBox.Size = new System.Drawing.Size(250, 25);
-			this.PasswordTextBox.TabIndex = 5;
-			// 
-			// EmailLabel
-			// 
-			this.EmailLabel.AutoSize = true;
-			this.EmailLabel.Location = new System.Drawing.Point(325, 158);
-			this.EmailLabel.Name = "EmailLabel";
-			this.EmailLabel.Size = new System.Drawing.Size(73, 17);
-			this.EmailLabel.TabIndex = 4;
-			this.EmailLabel.Text = "Enter Email";
-			// 
-			// SaveRegistration
-			// 
-			this.SaveRegistration.FlatAppearance.BorderSize = 0;
-			this.SaveRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.SaveRegistration.Location = new System.Drawing.Point(375, 418);
-			this.SaveRegistration.Name = "SaveRegistration";
-			this.SaveRegistration.Size = new System.Drawing.Size(150, 34);
-			this.SaveRegistration.TabIndex = 6;
-			this.SaveRegistration.Text = "Save";
-			this.SaveRegistration.UseVisualStyleBackColor = true;
-			// 
-			// loginErrorLabel
-			// 
-			this.loginErrorLabel.AutoSize = true;
-			this.loginErrorLabel.BackColor = System.Drawing.Color.White;
-			this.loginErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.loginErrorLabel.Location = new System.Drawing.Point(581, 125);
-			this.loginErrorLabel.Name = "loginErrorLabel";
-			this.loginErrorLabel.Size = new System.Drawing.Size(69, 17);
-			this.loginErrorLabel.TabIndex = 7;
-			this.loginErrorLabel.Text = "ErrorLabel";
-			this.loginErrorLabel.Visible = false;
-			// 
-			// emailErrorLabel
-			// 
-			this.emailErrorLabel.AutoSize = true;
-			this.emailErrorLabel.BackColor = System.Drawing.Color.White;
-			this.emailErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.emailErrorLabel.Location = new System.Drawing.Point(581, 181);
-			this.emailErrorLabel.Name = "emailErrorLabel";
-			this.emailErrorLabel.Size = new System.Drawing.Size(69, 17);
-			this.emailErrorLabel.TabIndex = 8;
-			this.emailErrorLabel.Text = "ErrorLabel";
-			this.emailErrorLabel.Visible = false;
-			// 
-			// passwordErrorLabel
-			// 
-			this.passwordErrorLabel.AutoSize = true;
-			this.passwordErrorLabel.BackColor = System.Drawing.Color.White;
-			this.passwordErrorLabel.ForeColor = System.Drawing.Color.Red;
-			this.passwordErrorLabel.Location = new System.Drawing.Point(581, 238);
-			this.passwordErrorLabel.Name = "passwordErrorLabel";
-			this.passwordErrorLabel.Size = new System.Drawing.Size(69, 17);
-			this.passwordErrorLabel.TabIndex = 9;
-			this.passwordErrorLabel.Text = "ErrorLabel";
-			this.passwordErrorLabel.Visible = false;
-			// 
-			// RegistrationForm
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(884, 466);
-			this.Controls.Add(this.passwordErrorLabel);
-			this.Controls.Add(this.emailErrorLabel);
-			this.Controls.Add(this.loginErrorLabel);
-			this.Controls.Add(this.SaveRegistration);
-			this.Controls.Add(this.PasswordTextBox);
-			this.Controls.Add(this.EmailLabel);
-			this.Controls.Add(this.EmailTextBox);
-			this.Controls.Add(this.PasswordLabel);
-			this.Controls.Add(this.LoginTextBox);
-			this.Controls.Add(this.LoginLabel);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.Name = "RegistrationForm";
-			this.Text = "RegistrationForm";
-			this.ResumeLayout(false);
-			this.PerformLayout();
-
+            LoginLabel = new Label();
+            LoginTextBox = new TextBox();
+            EmailTextBox = new TextBox();
+            PasswordLabel = new Label();
+            PasswordTextBox = new TextBox();
+            EmailLabel = new Label();
+            SaveRegistration = new Button();
+            loginErrorLabel = new Label();
+            emailErrorLabel = new Label();
+            passwordErrorLabel = new Label();
+            SuspendLayout();
+            // 
+            // LoginLabel
+            // 
+            LoginLabel.AutoSize = true;
+            LoginLabel.Location = new Point(325, 89);
+            LoginLabel.Name = "LoginLabel";
+            LoginLabel.Size = new Size(67, 15);
+            LoginLabel.TabIndex = 0;
+            LoginLabel.Text = "Enter Login";
+            // 
+            // LoginTextBox
+            // 
+            LoginTextBox.Location = new Point(325, 107);
+            LoginTextBox.Name = "LoginTextBox";
+            LoginTextBox.Size = new Size(250, 23);
+            LoginTextBox.TabIndex = 1;
+            // 
+            // EmailTextBox
+            // 
+            EmailTextBox.Location = new Point(325, 157);
+            EmailTextBox.Name = "EmailTextBox";
+            EmailTextBox.Size = new Size(250, 23);
+            EmailTextBox.TabIndex = 3;
+            // 
+            // PasswordLabel
+            // 
+            PasswordLabel.AutoSize = true;
+            PasswordLabel.Location = new Point(325, 190);
+            PasswordLabel.Name = "PasswordLabel";
+            PasswordLabel.Size = new Size(87, 15);
+            PasswordLabel.TabIndex = 2;
+            PasswordLabel.Text = "Enter Password";
+            // 
+            // PasswordTextBox
+            // 
+            PasswordTextBox.Location = new Point(325, 208);
+            PasswordTextBox.Name = "PasswordTextBox";
+            PasswordTextBox.PasswordChar = '*';
+            PasswordTextBox.Size = new Size(250, 23);
+            PasswordTextBox.TabIndex = 5;
+            // 
+            // EmailLabel
+            // 
+            EmailLabel.AutoSize = true;
+            EmailLabel.Location = new Point(325, 139);
+            EmailLabel.Name = "EmailLabel";
+            EmailLabel.Size = new Size(66, 15);
+            EmailLabel.TabIndex = 4;
+            EmailLabel.Text = "Enter Email";
+            // 
+            // SaveRegistration
+            // 
+            SaveRegistration.FlatAppearance.BorderSize = 0;
+            SaveRegistration.FlatStyle = FlatStyle.Flat;
+            SaveRegistration.Location = new Point(375, 369);
+            SaveRegistration.Name = "SaveRegistration";
+            SaveRegistration.Size = new Size(150, 30);
+            SaveRegistration.TabIndex = 6;
+            SaveRegistration.Text = "Save";
+            SaveRegistration.UseVisualStyleBackColor = true;
+            SaveRegistration.Click += SaveRegistration_Click;
+            // 
+            // loginErrorLabel
+            // 
+            loginErrorLabel.AutoSize = true;
+            loginErrorLabel.BackColor = Color.White;
+            loginErrorLabel.ForeColor = Color.Red;
+            loginErrorLabel.Location = new Point(581, 110);
+            loginErrorLabel.Name = "loginErrorLabel";
+            loginErrorLabel.Size = new Size(60, 15);
+            loginErrorLabel.TabIndex = 7;
+            loginErrorLabel.Text = "ErrorLabel";
+            loginErrorLabel.Visible = false;
+            // 
+            // emailErrorLabel
+            // 
+            emailErrorLabel.AutoSize = true;
+            emailErrorLabel.BackColor = Color.White;
+            emailErrorLabel.ForeColor = Color.Red;
+            emailErrorLabel.Location = new Point(581, 160);
+            emailErrorLabel.Name = "emailErrorLabel";
+            emailErrorLabel.Size = new Size(60, 15);
+            emailErrorLabel.TabIndex = 8;
+            emailErrorLabel.Text = "ErrorLabel";
+            emailErrorLabel.Visible = false;
+            // 
+            // passwordErrorLabel
+            // 
+            passwordErrorLabel.AutoSize = true;
+            passwordErrorLabel.BackColor = Color.White;
+            passwordErrorLabel.ForeColor = Color.Red;
+            passwordErrorLabel.Location = new Point(581, 210);
+            passwordErrorLabel.Name = "passwordErrorLabel";
+            passwordErrorLabel.Size = new Size(60, 15);
+            passwordErrorLabel.TabIndex = 9;
+            passwordErrorLabel.Text = "ErrorLabel";
+            passwordErrorLabel.Visible = false;
+            // 
+            // RegistrationForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(884, 411);
+            Controls.Add(passwordErrorLabel);
+            Controls.Add(emailErrorLabel);
+            Controls.Add(loginErrorLabel);
+            Controls.Add(SaveRegistration);
+            Controls.Add(PasswordTextBox);
+            Controls.Add(EmailLabel);
+            Controls.Add(EmailTextBox);
+            Controls.Add(PasswordLabel);
+            Controls.Add(LoginTextBox);
+            Controls.Add(LoginLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Name = "RegistrationForm";
+            Text = "RegistrationForm";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

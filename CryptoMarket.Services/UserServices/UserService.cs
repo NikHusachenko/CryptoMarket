@@ -42,9 +42,9 @@ namespace CryptoMarket.Services.UserServices
             };
 
             var result = await _userRepository.Create(dbRecord);
-            if(!result)
+            if(result != string.Empty)
             {
-                return ResponseService<long>.Error(Errors.CREATE_ERROR);
+                return ResponseService<long>.Error(result);
             }
 
             var createResult = await _walletService.Create(dbRecord.Id);
@@ -69,13 +69,13 @@ namespace CryptoMarket.Services.UserServices
 
             dbRecord.IsOnline = true;
             var result = await _userRepository.Update(dbRecord);
-            if (result)
+            if (result == string.Empty)
             {
                 return ResponseService.Ok();
             }
             else
             {
-                return ResponseService.Error(Errors.UPDATE_ERROR);
+                return ResponseService.Error(result);
             }
         }
     }

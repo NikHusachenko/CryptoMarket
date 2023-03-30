@@ -22,13 +22,13 @@ namespace CryptoMarket.Services.WalletServices
             };
 
             var result = await _walletRepository.Create(dbRecord);
-            if(result)
+            if(result == string.Empty)
             {
                 return ResponseService<long>.Ok(dbRecord.Id);
             }
             else
             {
-                return ResponseService<long>.Error(Errors.CREATE_ERROR);
+                return ResponseService<long>.Error(result);
             }
         }
     }

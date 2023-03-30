@@ -5,10 +5,11 @@ namespace CryptoMarket.Services.CoinGreckoServices
 {
     public interface ICryptoService
     {
-		void Create(CoinEntity coin);
+		Task<ResponseService> Create(CoinEntity coin);
 	    Task<ResponseService> CheckApiStatusAsync();
 		Task<ResponseService<List<CoinEntity>>> GetCoinListAsync();
 		Task<ResponseService<CoinEntity>> GetCoinByCoinIdAsync(string coinId);
-		Task<ResponseService> LoadDataFromApiToDb();
+		Task<ResponseService> UpdateData();
+		Task<bool> CoinsIsExists();
 	}
 }

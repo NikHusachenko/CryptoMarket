@@ -3,6 +3,7 @@ using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.Response;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace CryptoMarket.Services.CoinGreckoServices
@@ -11,16 +12,40 @@ namespace CryptoMarket.Services.CoinGreckoServices
 	{
 		private readonly ApplicationDbContext dbcontext;
 		private readonly IGenericRepository<CoinEntity> _coinListRepository;
+		private readonly HttpClient _httpClient;
 
 		public CoinGreckoService(IGenericRepository<CoinEntity> coinListRepository)
 		{
 			_coinListRepository = coinListRepository;
 			dbcontext = new ApplicationDbContext();
+			_httpClient = new HttpClient();
 		}
 
-		public void Create(CoinEntity coin)
+		public async Task<ResponseService> Create(CoinEntity coin)
 		{
-			_coinListRepository.Create(coin);
+			var result = await _coinListRepository.Create(coin);
+
+			if (result == string.Empty)
+			{
+				return ResponseService.Ok();
+			}
+			else
+			{
+				return ResponseService.Error(result);
+			}
+		}
+
+		private async Task<ResponseService<string>> GetHttpContent(string url)
+		{
+			var message = await _httpClient.GetAsync(url);
+			message.EnsureSuccessStatusCode();
+			
+			if (!message.IsSuccessStatusCode)
+			{
+				return ResponseService<string>.Error($"{Errors.ERROR_STATUS_CODE} {message.StatusCode}");
+			}
+
+			return ResponseService<string>.Ok(await message.Content.ReadAsStringAsync());
 		}
 
 		public async Task<ResponseService> CheckApiStatusAsync()
@@ -42,57 +67,52 @@ namespace CryptoMarket.Services.CoinGreckoServices
 
 		public async Task<ResponseService<List<CoinEntity>>> GetCoinListAsync()
 		{
-			try
+			var response = await GetHttpContent($"{CoinGrecko.COIN_LIST}");
+			if (response.IsError)
 			{
-				var client = new HttpClient();
-				var message = await client.GetAsync($"{CoinGrecko.COIN_LIST}");
-				message.EnsureSuccessStatusCode();
-				var context = await message.Content.ReadAsStringAsync();
-				var coinList = JsonConvert.DeserializeObject<List<CoinEntity>>(context);
-				return ResponseService<List<CoinEntity>>.Ok(coinList);
+				return ResponseService<List<CoinEntity>>.Error(response.ErrorMessage);
 			}
-			catch(Exception ex)
-			{
-				return ResponseService<List<CoinEntity>>.Error(ex.Message);
-			}
-		}
+
+            var list = JsonConvert.DeserializeObject<List<CoinEntity>>(response.Value);
+			return ResponseService<List<CoinEntity>>.Ok(list);
+        }
 
 		public async Task<ResponseService<CoinEntity>> GetCoinByCoinIdAsync(string coinId)
 		{
-			try
+			var response = await GetHttpContent($"{CoinGrecko.COINS}/{coinId}");
+			if (response.IsError)
 			{
-				var client = new HttpClient();
-				var message = await client.GetAsync($"{CoinGrecko.COINS}{coinId}");
-				message.EnsureSuccessStatusCode();
-				var context = await message.Content.ReadAsStringAsync();
-				var currency = JsonConvert.DeserializeObject<CoinEntity>(context);
-				return ResponseService<CoinEntity>.Ok(currency);
+				return ResponseService<CoinEntity>.Error(response.ErrorMessage);
 			}
-			catch (Exception ex)
-			{
-				return ResponseService<CoinEntity>.Error(ex.Message);
-			}
-		}
-		public async Task<ResponseService> LoadDataFromApiToDb()
+
+            var currency = JsonConvert.DeserializeObject<CoinEntity>(response.Value);
+			return ResponseService<CoinEntity>.Ok(currency);
+        }
+
+        public async Task<ResponseService> UpdateData()
 		{
-			try
+			var response = await GetHttpContent($"{CoinGrecko.COIN_LIST}");
+			if (response.IsError)
 			{
-				var client = new HttpClient();
-				var message = await client.GetAsync($"{CoinGrecko.COIN_LIST}");
-				message.EnsureSuccessStatusCode();
-				var context = await message.Content.ReadAsStringAsync();
-				var coinList = JsonConvert.DeserializeObject<List<CoinEntity>>(context);
-				for (int i = 0; i < coinList.Count; i++)
+				return ResponseService.Error(response.ErrorMessage);
+			}
+
+            var coins = JsonConvert.DeserializeObject<List<CoinEntity>>(response.Value);
+			foreach (CoinEntity coin in coins)
+			{
+				var result = await Create(coin);
+				if (result.IsError)
 				{
-					await _coinListRepository.Create(coinList[i]);
+					return ResponseService.Error(result.ErrorMessage);
 				}
-				await dbcontext.SaveChangesAsync();
-				return ResponseService.Ok();
 			}
-			catch (Exception ex)
-			{
-				return ResponseService.Error(ex.Message);
-			}
-		}
-	}
+
+			return ResponseService.Ok();
+        }
+
+        public async Task<bool> CoinsIsExists()
+        {
+			return await _coinListRepository.Table.AnyAsync();
+        }
+    }
 }
