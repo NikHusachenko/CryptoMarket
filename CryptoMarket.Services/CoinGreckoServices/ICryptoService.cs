@@ -8,6 +8,7 @@ namespace CryptoMarket.Services.CoinGreckoServices
 		Task<ResponseService> Create(CoinEntity coin);
 	    Task<ResponseService> CheckApiStatusAsync();
 		Task<ResponseService<List<CoinEntity>>> GetCoinListAsync();
+		Task<List<CoinEntity>> GetCoinListAsync(int page);
 		Task<ResponseService<CoinEntity>> GetCoinByCoinIdAsync(string coinId);
 		Task<ResponseService> UpdateData();
 		Task<bool> CoinsIsExists();

@@ -18,6 +18,7 @@
         public const string USER_IS_EXISTING_ERROR = "User with such email or login is existing";
         public const string USER_NOT_FOUND_ERROR = "User not found";
         public const string CREATE_ERROR = "Didn't create. Something went wrong";
+        public const string COINT_EXISTS_ERROR = "This coin is exists";
         public const string UPDATE_ERROR = "Didn't update. Something went wrong";
         public const string SERVER_DOWN = "The Server is down";
         public const string ERROR_STATUS_CODE = "Response have error status code: ";
@@ -36,7 +37,5 @@
     public class MarketFormConstants
     {
 		public const int COINS_ON_PAGE = 152;
-        public const int FIRST_COIN_ID = 28234;
-        public const int TOTAL_NUMBER_OF_COINS = 11143;
 	}
 }

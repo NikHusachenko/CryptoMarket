@@ -1,6 +1,5 @@
 ﻿using CryptoMarket.Common;
 using CryptoMarket.Database.Entities;
-using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.Response;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +9,23 @@ namespace CryptoMarket.Services.CoinGreckoServices
 {
 	public class CoinGreckoService : ICryptoService
 	{
-		private readonly ApplicationDbContext dbcontext;
 		private readonly IGenericRepository<CoinEntity> _coinListRepository;
 		private readonly HttpClient _httpClient;
 
 		public CoinGreckoService(IGenericRepository<CoinEntity> coinListRepository)
 		{
 			_coinListRepository = coinListRepository;
-			dbcontext = new ApplicationDbContext();
 			_httpClient = new HttpClient();
 		}
 
 		public async Task<ResponseService> Create(CoinEntity coin)
 		{
+			CoinEntity dbRecord = await _coinListRepository.GetBy(coin => coin.CoinId == coin.CoinId);
+			if (dbRecord != null)
+			{
+				return ResponseService.Error(Errors.COINT_EXISTS_ERROR);
+			}
+
 			var result = await _coinListRepository.Create(coin);
 
 			if (result == string.Empty)
@@ -113,6 +116,21 @@ namespace CryptoMarket.Services.CoinGreckoServices
         public async Task<bool> CoinsIsExists()
         {
 			return await _coinListRepository.Table.AnyAsync();
+        }
+
+        public async Task<List<CoinEntity>> GetCoinListAsync(int page)
+        {
+			var query = _coinListRepository.Table
+				.Skip(CalcSkip(page))
+				.Take(MarketFormConstants.COINS_ON_PAGE);
+
+			return await query.ToListAsync();
+        }
+
+		private int CalcSkip(int pageNumber)
+		{
+			return (pageNumber - 1) * MarketFormConstants.COINS_ON_PAGE;
+
         }
     }
 }
