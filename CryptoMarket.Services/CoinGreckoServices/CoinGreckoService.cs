@@ -53,20 +53,17 @@ namespace CryptoMarket.Services.CoinGreckoServices
 
 		public async Task<ResponseService> CheckApiStatusAsync()
 		{
-			using (var client = new HttpClient())
-			{
-				try
-				{
-					HttpResponseMessage response = await client.GetAsync(CoinGrecko.PING);
-					response.EnsureSuccessStatusCode();
-					return ResponseService.Ok();
-				}
-				catch (HttpRequestException)
-				{
-					return ResponseService.Error(Errors.SERVER_DOWN);
-				}
-			}
-		}
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(CoinGrecko.PING);
+                response.EnsureSuccessStatusCode();
+                return ResponseService.Ok();
+            }
+            catch (HttpRequestException)
+            {
+                return ResponseService.Error(Errors.SERVER_DOWN);
+            }
+        }
 
 		public async Task<ResponseService<List<CoinEntity>>> GetCoinListAsync()
 		{
@@ -94,6 +91,12 @@ namespace CryptoMarket.Services.CoinGreckoServices
 
         public async Task<ResponseService> UpdateData()
 		{
+			var pingResult = await CheckApiStatusAsync();
+			if (pingResult.IsError)
+			{
+				return ResponseService.Error(pingResult.ErrorMessage);
+			}
+
 			var response = await GetHttpContent($"{CoinGrecko.COIN_LIST}");
 			if (response.IsError)
 			{

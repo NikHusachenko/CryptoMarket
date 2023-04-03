@@ -4,7 +4,6 @@ using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace CryptoMarket.Desktop.Forms
 {
@@ -20,8 +19,10 @@ namespace CryptoMarket.Desktop.Forms
             dbcontext = new ApplicationDbContext();
             _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
             _cryptoService = new CoinGreckoService(_coinRepository);
+
+            _cryptoService.UpdateData();
+
             currentPage = 0;
-            totalPages = (int)Math.Ceiling((double)MarketFormConstants.TOTAL_NUMBER_OF_COINS / MarketFormConstants.COINS_ON_PAGE);
             InitializeComponent();
 
             AddToFlowLayot(GetCoinsFromDb(currentPage), currenciesFlowLayoutPanel);
@@ -69,18 +70,11 @@ namespace CryptoMarket.Desktop.Forms
             CoinForm coinForm = new CoinForm(coinId);
             coinForm.Show();
         }
+
         private static ResponseService<List<CoinEntity>> GetCoinsFromDb(int pageNumber)
         {
-            int startIndex = (pageNumber) * MarketFormConstants.COINS_ON_PAGE + MarketFormConstants.FIRST_COIN_ID;
-            int endIndex = startIndex + MarketFormConstants.COINS_ON_PAGE - 1;
-            var query = dbcontext.Coins
-                        .Where(c => c.Id >= startIndex && c.Id <= endIndex)
-                        .OrderBy(c => c.Id)
-                        .ToList();
-
-            ResponseService<List<CoinEntity>> response = new ResponseService<List<CoinEntity>>();
-            response.Value = query.ToList();
-            return response;
+            _cryptoService.UpdateData();
+            return default;
         }
 
         private void isDbEmptyChecker()
