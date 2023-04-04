@@ -132,10 +132,7 @@ namespace CryptoMarket.Services.CoinGreckoServices
 
 		private int CalcSkip(int pageNumber)
 		{
-			int a = (pageNumber - 1) * MarketFormConstants.COINS_ON_PAGE;
-			int b = 10;
-			return a;
-
+			return (pageNumber - 1) * MarketFormConstants.COINS_ON_PAGE;
         }
 		public async Task<int> GetNumberOfCoins()
 		{
