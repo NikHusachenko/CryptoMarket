@@ -22,7 +22,7 @@ namespace CryptoMarket.Desktop
             IUserService userService = new UserService(userRepository, walletService);
             ICryptoService cryptoService = new CoinGreckoService(_cryptoRepository);
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm(userService,cryptoService));
+            Application.Run(new LoginForm(userService,cryptoService,_cryptoRepository));
            // Application.Run(new MarketForm());
         }
     }

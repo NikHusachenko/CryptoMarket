@@ -1,4 +1,6 @@
-﻿using CryptoMarket.Services.CoinGreckoServices;
+﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.EntityFramework.Repository;
+using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
 using CryptoMarket.Services.UserServices;
 using CryptoMarket.Services.UserServices.Models;
@@ -9,10 +11,12 @@ namespace CryptoMarket.Desktop.Forms
     {
         private readonly IUserService _userService;
         private readonly ICryptoService _cryptoService;
-        public LoginForm(IUserService userService, ICryptoService cryptoService)
+		IGenericRepository<CoinEntity> _coinRepository;
+		public LoginForm(IUserService userService, ICryptoService cryptoService, IGenericRepository<CoinEntity> coinRepository)
         {
             _userService = userService;
             _cryptoService = cryptoService;
+            _coinRepository = coinRepository;
             InitializeComponent();
         }
 
@@ -48,7 +52,7 @@ namespace CryptoMarket.Desktop.Forms
                     return;
                 }
 
-                MarketForm marketForm = new MarketForm(_cryptoService);
+                MarketForm marketForm = new MarketForm(_cryptoService,_coinRepository);
                 marketForm.FormClosed += (object? sender, FormClosedEventArgs e) =>
                 {
                     Environment.Exit(0);

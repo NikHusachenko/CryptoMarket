@@ -1,4 +1,6 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using System.Net;
+
+namespace CryptoMarket.Desktop.Forms
 {
 	partial class CoinForm
 	{
@@ -18,6 +20,48 @@
 				components.Dispose();
 			}
 			base.Dispose(disposing);
+		}
+
+		private async Task FillCoinDataAndDisplay(string coinId)
+		{
+			currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
+			if (currentCoin.Value == null)
+			{
+				Thread.Sleep(110000);
+				currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
+			}
+
+			DisplayImage(currentCoin.Value.Image.Large);
+			SymbolLabel.Text = currentCoin.Value.Symbol;
+			CoinIDLabel.Text = currentCoin.Value.CoinId;
+			NameLabel.Text = currentCoin.Value.Name;
+			PriceChangePercentageLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.PriceChangePercentage);
+			MarketCapRankLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.MarketCapRank);
+			TotalVolumeLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.TotalVolume.Usd);
+			MarketCapLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.MarketCap.Usd);
+			CurrentPriceLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.CurrentPrice.Usd);
+			High24HLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.Hight24H.Usd);
+			Low24HLabel.Text = FormatValueOrDefault(currentCoin.Value.MarketData.Low24H.Usd);
+		}
+
+		void DisplayImage(string imageUrl)
+		{
+			try
+			{
+				using (WebClient webClient = new WebClient())
+				{
+					byte[] data = webClient.DownloadData(imageUrl);
+					using (MemoryStream memoryStream = new MemoryStream(data))
+					{
+						Image image = Image.FromStream(memoryStream);
+						CoinLogoPictureBox.Image = image;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}");
+			}
 		}
 
 		#region Windows Form Designer generated code
@@ -269,6 +313,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "CoinForm";
 			this.Text = "CoinForm";
+			this.Load += new System.EventHandler(this.CoinForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.CoinLogoPictureBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
