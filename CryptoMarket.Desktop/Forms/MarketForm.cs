@@ -16,30 +16,27 @@ namespace CryptoMarket.Desktop.Forms
 
 		public MarketForm(ICryptoService cryptoService, IGenericRepository<CoinEntity> coinRepository)
 		{
+			_marketService = new MarketService(_coinRepository);
 			_coinRepository = coinRepository;
 			_cryptoService = cryptoService;
-			_marketService = new MarketService(_coinRepository);
-			totalPages = (int)Math.Ceiling((double)11143 / MarketFormConstants.COINS_ON_PAGE);/////////////////////////////////////////////
-			currentPage = 0;
+			currentPage = 1;
 			InitializeComponent();
-
-			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
-			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
-			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
 		}
-		private void NextPageBtn_Click(object sender, EventArgs e)
+		private async void NextPageBtn_Click(object sender, EventArgs e)
 		{
 			currentPage++;
 			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
-			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
+			List<CoinEntity> coinList = await _cryptoService.GetCoinListAsync(currentPage);
+			AddToFlowLayot(coinList, currenciesFlowLayoutPanel);
 			PreviousPageBtn.Enabled = true;
 			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
 		}
 
-		private void PreviousPageBtn_Click(object sender, EventArgs e)
+		private async void PreviousPageBtn_Click(object sender, EventArgs e)
 		{
 			currentPage--;
-			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
+			List<CoinEntity> coinList = await _cryptoService.GetCoinListAsync(currentPage);
+			AddToFlowLayot(coinList, currenciesFlowLayoutPanel);
 			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
 			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
 			NextPageBtn.Enabled = true;
@@ -55,6 +52,11 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private async void MarketForm_Load(object sender, EventArgs e)
 		{
+			List<CoinEntity> coinList = await _cryptoService.GetCoinListAsync(currentPage);
+			AddToFlowLayot(coinList, currenciesFlowLayoutPanel);
+			totalPages = (int)Math.Ceiling((double)await _cryptoService.GetNumberOfCoins() / MarketFormConstants.COINS_ON_PAGE);
+			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
+			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
 			var result = await _cryptoService.CoinsIsExists();
 			if (!result)
 			{

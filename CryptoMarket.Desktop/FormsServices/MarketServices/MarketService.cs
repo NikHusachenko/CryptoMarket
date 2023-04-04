@@ -44,7 +44,7 @@ namespace CryptoMarket.Desktop.FormsServices.MarketServices
         }
         public void UpdatePageInfo(Label PageNumberInfoLab, int currentPage, int totalPages)
         {
-            PageNumberInfoLab.Text = $"{currentPage + 1}/{totalPages}";
+            PageNumberInfoLab.Text = $"{currentPage}/{totalPages}";
         }
     }
 }

@@ -36,13 +36,13 @@ namespace CryptoMarket.Desktop.Forms
         /// </summary>
         /// 
 
-        public static void AddToFlowLayot(ResponseService<List<CoinEntity>> coinList, FlowLayoutPanel flowLayoutPanel)
+        public static void AddToFlowLayot(List<CoinEntity> coinList, FlowLayoutPanel flowLayoutPanel)
         {
             flowLayoutPanel.Controls.Clear();
-            for (int i = 0; i < coinList.Value.Count; i++)
+            for (int i = 0; i < coinList.Count; i++)
             {
                 string[] labelText = { "CoinId:", "Name:", "Symbol:" };
-                string[] dataText = { coinList.Value[i].CoinId, coinList.Value[i].Name, coinList.Value[i].Symbol };
+                string[] dataText = { coinList[i].CoinId, coinList[i].Name, coinList[i].Symbol };
                 List<Label> labels = new List<Label>();
                 for (int y = 0; y < 3; y++)
                 {
@@ -56,7 +56,7 @@ namespace CryptoMarket.Desktop.Forms
                     Size = new System.Drawing.Size(320, 200),
                     Margin = new Padding(5, 5, 5, 5),
                     Name = "groupBox",
-                    Text = coinList.Value[i].Name,
+                    Text = coinList[i].Name,
                 };
                 groupBox.Controls.AddRange(labels.ToArray());
                 groupBox.Click += groupBox_Click;
