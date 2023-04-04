@@ -44,5 +44,9 @@ namespace CryptoMarket.Desktop.FormsServices
 				NextPageBtn.Enabled = false;
 			}
 		}
+		public void UpdatePageInfo(Label PageNumberInfoLab,int currentPage,int totalPages)
+		{
+			PageNumberInfoLab.Text = $"{currentPage + 1}/{totalPages}";
+		}
 	}
 }

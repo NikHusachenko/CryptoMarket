@@ -21,7 +21,7 @@ namespace CryptoMarket.Desktop.Forms
 			dbcontext = new ApplicationDbContext();
 			_coinRepository = new GenericRepository<CoinEntity>(dbcontext);
 			_cryptoService = cryptoService;
-			totalPages = (int)Math.Ceiling((double)11143 / MarketFormConstants.COINS_ON_PAGE);
+			totalPages = (int)Math.Ceiling((double)11143 / MarketFormConstants.COINS_ON_PAGE);/////////////////////////////////////////////
 
 			//   _cryptoService = new CoinGreckoService(_coinRepository);
 			InitializeComponent();
@@ -30,21 +30,16 @@ namespace CryptoMarket.Desktop.Forms
 			currentPage = 0;
 
 			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
-			UpdatePageInfo();
+			_marketService.UpdatePageInfo(PageNumberInfo,currentPage,totalPages);
 			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
 		}
-		private void UpdatePageInfo()
-		{
-			PageNumberInfoLab.Text = $"{currentPage + 1}/{totalPages}";
-		}
-
 		private void NextPageBtn_Click(object sender, EventArgs e)
 		{
 			currentPage++;
 			_marketService.CheckPaginationState(currentPage, totalPages, PreviousPageBtn, NextPageBtn);
 			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
 			PreviousPageBtn.Enabled = true;
-			UpdatePageInfo();
+			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
 		}
 
 		private void PreviousPageBtn_Click(object sender, EventArgs e)
@@ -52,20 +47,9 @@ namespace CryptoMarket.Desktop.Forms
 			currentPage--;
 			AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
 			_marketService.CheckPaginationState(currentPage,totalPages,PreviousPageBtn,NextPageBtn);
-			UpdatePageInfo();
+			_marketService.UpdatePageInfo(PageNumberInfo, currentPage, totalPages);
 			NextPageBtn.Enabled = true;
 		}
-		//private void CheckPaginationState()
-		//{
-		//	if (currentPage <= 0)
-		//	{
-		//		PreviousPageBtn.Enabled = false;
-		//	}
-		//	if (currentPage == totalPages - 1)
-		//	{
-		//		NextPageBtn.Enabled = false;
-		//	}
-		//}
 		private static void groupBox_Click(object sender, EventArgs e)
 		{
 			GroupBox groupBox = (GroupBox)sender;

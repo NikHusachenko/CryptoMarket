@@ -90,7 +90,7 @@ namespace CryptoMarket.Desktop.Forms
             currenciesFlowLayoutPanel = new FlowLayoutPanel();
             NextPageBtn = new Button();
             PreviousPageBtn = new Button();
-            PageNumberInfoLab = new Label();
+            PageNumberInfo = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -217,20 +217,20 @@ namespace CryptoMarket.Desktop.Forms
             // 
             // PageNumberInfoLab
             // 
-            PageNumberInfoLab.Font = new Font("Segoe UI Semibold", 15.68317F, FontStyle.Bold, GraphicsUnit.Point);
-            PageNumberInfoLab.Location = new Point(631, 714);
-            PageNumberInfoLab.Name = "PageNumberInfoLab";
-            PageNumberInfoLab.Size = new Size(95, 29);
-            PageNumberInfoLab.TabIndex = 7;
-            PageNumberInfoLab.Text = "1/74";
-            PageNumberInfoLab.TextAlign = ContentAlignment.TopCenter;
+            PageNumberInfo.Font = new Font("Segoe UI Semibold", 15.68317F, FontStyle.Bold, GraphicsUnit.Point);
+            PageNumberInfo.Location = new Point(631, 714);
+            PageNumberInfo.Name = "PageNumberInfoLab";
+            PageNumberInfo.Size = new Size(95, 29);
+            PageNumberInfo.TabIndex = 7;
+            PageNumberInfo.Text = "1/74";
+            PageNumberInfo.TextAlign = ContentAlignment.TopCenter;
             // 
             // MarketForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1356, 759);
-            Controls.Add(PageNumberInfoLab);
+            Controls.Add(PageNumberInfo);
             Controls.Add(PreviousPageBtn);
             Controls.Add(NextPageBtn);
             Controls.Add(currenciesFlowLayoutPanel);
@@ -261,6 +261,6 @@ namespace CryptoMarket.Desktop.Forms
         private FlowLayoutPanel currenciesFlowLayoutPanel;
         private Button NextPageBtn;
         private Button PreviousPageBtn;
-        private Label PageNumberInfoLab;
+        private Label PageNumberInfo;
     }
 }
