@@ -49,7 +49,7 @@ namespace CryptoMarket.Desktop.Forms
 			GroupBox groupBox = (GroupBox)sender;
 			Label secondLabel = (Label)groupBox.Controls[1];
 			string coinId = secondLabel.Text;
-			CoinForm coinForm = new CoinForm(coinId);
+			CoinForm coinForm = new CoinForm(_cryptoService,coinId);
 			coinForm.Show();
 
 		}
