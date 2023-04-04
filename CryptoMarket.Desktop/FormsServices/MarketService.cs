@@ -3,8 +3,13 @@ using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
 using CryptoMarket.Services.Response;
-
-namespace CryptoMarket.Services.MarketServices
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+namespace CryptoMarket.Desktop.FormsServices
 {
 	public class MarketService : IMarketService
 	{
@@ -27,6 +32,17 @@ namespace CryptoMarket.Services.MarketServices
 			ResponseService<List<CoinEntity>> response = new ResponseService<List<CoinEntity>>();
 			response.Value = query;
 			return response;
+		}
+		public void CheckPaginationState(int currentPage, int totalPages, Button PreviousPageBtn, Button NextPageBtn)
+		{
+			if (currentPage <= 0)
+			{
+				PreviousPageBtn.Enabled = false;
+			}
+			if (currentPage == totalPages - 1)
+			{
+				NextPageBtn.Enabled = false;
+			}
 		}
 	}
 }
