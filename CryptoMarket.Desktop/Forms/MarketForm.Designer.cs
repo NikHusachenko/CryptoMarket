@@ -36,7 +36,7 @@ namespace CryptoMarket.Desktop.Forms
         /// </summary>
         /// 
 
-        public static async void AddToFlowLayot(ResponseService<List<CoinEntity>> coinList, FlowLayoutPanel flowLayoutPanel)
+        public static void AddToFlowLayot(ResponseService<List<CoinEntity>> coinList, FlowLayoutPanel flowLayoutPanel)
         {
             flowLayoutPanel.Controls.Clear();
             for (int i = 0; i < coinList.Value.Count; i++)

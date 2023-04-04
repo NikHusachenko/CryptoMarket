@@ -3,6 +3,7 @@ using CryptoMarket.Database.Entities;
 using CryptoMarket.EntityFramework;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
+using CryptoMarket.Services.MarketServices;
 using CryptoMarket.Services.Response;
 
 namespace CryptoMarket.Desktop.Forms
@@ -14,18 +15,20 @@ namespace CryptoMarket.Desktop.Forms
         private static ApplicationDbContext dbcontext;
         private static IGenericRepository<CoinEntity> _coinRepository;
         private static ICryptoService _cryptoService;
-        public MarketForm()
+        private static IMarketService _marketService;
+
+        public MarketForm(ICryptoService cryptoService)
         {
             dbcontext = new ApplicationDbContext();
-            _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
-            _cryptoService = new CoinGreckoService(_coinRepository);
-
-            _cryptoService.UpdateData();
-
-            currentPage = 0;
+           _coinRepository = new GenericRepository<CoinEntity>(dbcontext);
+            _cryptoService = cryptoService;
+         //   _cryptoService = new CoinGreckoService(_coinRepository);
             InitializeComponent();
+            _marketService = new MarketService(cryptoService,_coinRepository);
+         //   await _cryptoService.UpdateData();
+            currentPage = 0;
 
-            AddToFlowLayot(GetCoinsFromDb(currentPage), currenciesFlowLayoutPanel);
+            AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
             UpdatePageInfo();
             CheckPaginationState();
         }
@@ -37,7 +40,7 @@ namespace CryptoMarket.Desktop.Forms
         private void NextPageBtn_Click(object sender, EventArgs e)
         {
             currentPage++;
-            AddToFlowLayot(GetCoinsFromDb(currentPage), currenciesFlowLayoutPanel);
+            AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
             CheckPaginationState();
             PreviousPageBtn.Enabled = true;
             UpdatePageInfo();
@@ -46,7 +49,7 @@ namespace CryptoMarket.Desktop.Forms
         private void PreviousPageBtn_Click(object sender, EventArgs e)
         {
             currentPage--;
-            AddToFlowLayot(GetCoinsFromDb(currentPage), currenciesFlowLayoutPanel);
+            AddToFlowLayot(_marketService.GetCoins(currentPage), currenciesFlowLayoutPanel);
             CheckPaginationState();
             UpdatePageInfo();
             NextPageBtn.Enabled = true;
@@ -71,19 +74,12 @@ namespace CryptoMarket.Desktop.Forms
             coinForm.Show();
         }
 
-        private static ResponseService<List<CoinEntity>> GetCoinsFromDb(int pageNumber)
-        {
-            _cryptoService.UpdateData();
-            return default;
-        }
+  //      private static async Task<ResponseService<List<CoinEntity>>> GetCoinsFromDb(int pageNumber)/// 
+  //      {
 
-        private void isDbEmptyChecker()
-        {
-            if (GetCoinsFromDb(0) == null)
-            {
-                _cryptoService.UpdateData();
-            }
-        }
+  //          await _cryptoService.UpdateData();
+  //          return await Task.FromResult<ResponseService<List<CoinEntity>>>(default);///
+		//}
 
         private async void MarketForm_Load(object sender, EventArgs e)
         {
