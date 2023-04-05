@@ -49,26 +49,24 @@ namespace CryptoMarket.Desktop.Forms
 			List<UserEntity> users = await _userService.GetAllAsync();
 			List<string> LoginList = new List<string>();
 			List<string> EmailList = new List<string>();
-			List<string> PasswordList = new List<string>();
 			foreach (UserEntity user in users)
 			{
 				LoginList.Add(user.Login);
 				EmailList.Add(user.Email);
-				PasswordList.Add(user.Password);
 			}
 
 			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
 			if (isLoginCorrect)
 			{
 				_currentUser.Login = LoginTextBox.Text;
-				await _userRepository.SaveChangesAsync();
+				await _userRepository.Update(_currentUser);
 				MessageBox.Show("Succes");
 			}
 			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
 			if (isEmailCorrect)
 			{
 				_currentUser.Email = EmailTextBox.Text;
-				await _userRepository.SaveChangesAsync();
+				await _userRepository.Update(_currentUser);
 				MessageBox.Show("Succes");
 			}
 
@@ -79,12 +77,12 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				if (OldPasswordTextBox.Text == _currentUser.Password)
 				{
-					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);
-					if (isNewPasswordCorrect)
+					//isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);
+					if (!string.IsNullOrEmpty(NewPasswordTextBox.Text))
 					{
-						_currentUser.Password = NewPasswordTextBox.Text;
-						await _userRepository.SaveChangesAsync();
-						MessageBox.Show("Succes");
+							_currentUser.Password = NewPasswordTextBox.Text;
+							await _userRepository.Update(_currentUser);
+							MessageBox.Show("Succes");
 					}
 				}
 			}
