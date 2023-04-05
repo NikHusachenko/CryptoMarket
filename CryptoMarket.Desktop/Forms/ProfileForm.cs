@@ -62,12 +62,14 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				_currentUser.Login = LoginTextBox.Text;
 				await _userRepository.SaveChangesAsync();
+				MessageBox.Show("Succes");
 			}
 			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
 			if (isEmailCorrect)
 			{
 				_currentUser.Email = EmailTextBox.Text;
 				await _userRepository.SaveChangesAsync();
+				MessageBox.Show("Succes");
 			}
 
 			bool isOldPasswordCorrect = false;
@@ -83,7 +85,6 @@ namespace CryptoMarket.Desktop.Forms
 						_currentUser.Password = NewPasswordTextBox.Text;
 						await _userRepository.SaveChangesAsync();
 						MessageBox.Show("Succes");
-						this.Close();
 					}
 				}
 			}
