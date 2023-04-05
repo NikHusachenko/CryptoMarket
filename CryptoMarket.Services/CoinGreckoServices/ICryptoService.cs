@@ -13,5 +13,6 @@ namespace CryptoMarket.Services.CoinGreckoServices
 		Task<ResponseService> UpdateData();
 		Task<bool> CoinsIsExists();
 		Task<int> GetNumberOfCoins();
+		Task UpdateDatabaseOrDefaultAsync();
 	}
 }

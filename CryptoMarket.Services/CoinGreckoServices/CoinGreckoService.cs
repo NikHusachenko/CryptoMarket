@@ -20,7 +20,7 @@ namespace CryptoMarket.Services.CoinGreckoServices
 
 		public async Task<ResponseService> Create(CoinEntity coin)
 		{
-			CoinEntity dbRecord = await _coinListRepository.GetBy(coin => coin.CoinId == coin.CoinId);
+			CoinEntity dbRecord = await _coinListRepository.GetBy(c => c.CoinId == coin.CoinId);
 			if (dbRecord != null)
 			{
 				return ResponseService.Error(Errors.COINT_EXISTS_ERROR);
@@ -137,6 +137,19 @@ namespace CryptoMarket.Services.CoinGreckoServices
 		public async Task<int> GetNumberOfCoins()
 		{
 			return _coinListRepository.Table.Count();
+		}
+		public async Task UpdateDatabaseOrDefaultAsync()
+		{
+			var coinsFromApi = await GetCoinListAsync();
+			var coinsFromDb = await _coinListRepository.Table
+				.ToListAsync();
+
+			if(coinsFromApi.Value.Count() != coinsFromDb.Count())
+			{
+				foreach (CoinEntity coin in coinsFromDb) await _coinListRepository.Delete(coin);
+
+				foreach (CoinEntity coin in coinsFromApi.Value) await Create(coin);
+			}
 		}
     }
 }
