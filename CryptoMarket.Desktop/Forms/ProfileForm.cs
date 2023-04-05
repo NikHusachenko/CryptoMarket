@@ -8,7 +8,9 @@ namespace CryptoMarket.Desktop.Forms
 {
 	public partial class ProfileForm : Form
 	{
-		static bool ChangePasswordWasPressed;
+		static bool changePasswordWasPressed;
+		static bool loginWasPressed;
+		static bool emailWasPressed;
 		private readonly UserEntity _currentUser;
 		private static IProfileService _profileService;
 		private static IGenericRepository<UserEntity> _userRepository;
@@ -20,8 +22,10 @@ namespace CryptoMarket.Desktop.Forms
 			_profileService = new ProfileService(_userRepository);
 			LoginTextBox.Text = _currentUser.Login;
 			EmailTextBox.Text = _currentUser.Email;
-        
-			ChangePasswordWasPressed = false;
+
+			loginWasPressed = false;
+			emailWasPressed = false;
+			changePasswordWasPressed = false;
 			ChangePasswordBox.Visible = false;
 			EmailErrorLabel.Visible = false;
 			OldPasswordErrorLabel.Visible = false;
@@ -29,7 +33,9 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private async void SaveLabel_Click(object sender, EventArgs e)
 		{
-			await _profileService.SaveChangedData(_currentUser,ChangePasswordBox,LoginTextBox,EmailTextBox,OldPasswordTextBox,NewPasswordTextBox,LoginErrorLabel,EmailErrorLabel);
+			await _profileService.SaveChangedData(_currentUser,ChangePasswordBox,LoginTextBox,EmailTextBox,OldPasswordTextBox,NewPasswordTextBox,
+				LoginErrorLabel,EmailErrorLabel,OldPasswordErrorLabel,NewPasswordErrorLabel,
+				loginWasPressed,emailWasPressed);
 		}
 
 		private void CancelLabel_Click(object sender, EventArgs e)
@@ -39,14 +45,14 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void ChangePasswordLabel_Click(object sender, EventArgs e)
 		{
-			if (ChangePasswordWasPressed == false)
+			if (changePasswordWasPressed == false)
 			{
-				ChangePasswordWasPressed = true;
+				changePasswordWasPressed = true;
 				ChangePasswordBox.Visible = true;
 			}
 			else
 			{
-				ChangePasswordWasPressed= false;
+				changePasswordWasPressed= false;
 				ChangePasswordBox.Visible = false;
 				OldPasswordErrorLabel.Visible = false;
 			}
@@ -54,11 +60,13 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private void LoginTextBox_TextChanged(object sender, EventArgs e)
 		{
+			loginWasPressed= true;
 			LoginErrorLabel.Visible = false;
 		}
 
 		private void EmailTextBox_TextChanged(object sender, EventArgs e)
 		{
+			emailWasPressed= true;
 			EmailErrorLabel.Visible = false;
 		}
 	}
