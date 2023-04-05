@@ -203,7 +203,7 @@ namespace CryptoMarket.Desktop.Forms
 			// 
 			// NextPageBtn
 			// 
-			this.NextPageBtn.Location = new System.Drawing.Point(732, 804);
+			this.NextPageBtn.Location = new System.Drawing.Point(739, 804);
 			this.NextPageBtn.Name = "NextPageBtn";
 			this.NextPageBtn.Size = new System.Drawing.Size(98, 49);
 			this.NextPageBtn.TabIndex = 5;
@@ -226,9 +226,9 @@ namespace CryptoMarket.Desktop.Forms
 			this.PageNumberInfo.Font = new System.Drawing.Font("Segoe UI Semibold", 15.68317F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.PageNumberInfo.Location = new System.Drawing.Point(631, 809);
 			this.PageNumberInfo.Name = "PageNumberInfo";
-			this.PageNumberInfo.Size = new System.Drawing.Size(95, 33);
+			this.PageNumberInfo.Size = new System.Drawing.Size(102, 33);
 			this.PageNumberInfo.TabIndex = 7;
-			this.PageNumberInfo.Text = "1/74";
+			this.PageNumberInfo.Text = "Loading";
 			this.PageNumberInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// MarketForm
@@ -269,5 +269,5 @@ namespace CryptoMarket.Desktop.Forms
         private Button NextPageBtn;
         private Button PreviousPageBtn;
         private Label PageNumberInfo;
-    }
+	}
 }

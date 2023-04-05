@@ -1,11 +1,5 @@
-﻿using CryptoMarket.Database.Entities;
-using CryptoMarket.Desktop.FormsServices.CoinServices;
-using CryptoMarket.EntityFramework;
-using CryptoMarket.EntityFramework.Repository;
+﻿using CryptoMarket.Desktop.FormsServices.CoinServices;
 using CryptoMarket.Services.CoinGreckoServices;
-using CryptoMarket.Services.Response;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using System.Net;
 
 namespace CryptoMarket.Desktop.Forms
 {
@@ -14,9 +8,9 @@ namespace CryptoMarket.Desktop.Forms
 		public static ICryptoService _cryptoService;
 		public static ICoinService _coinService;
 		public readonly string currentCoinId;
-		public CoinForm(ICryptoService cryptoService,string Id)
+		public CoinForm(ICryptoService cryptoService, string Id)
 		{
-			currentCoinId= Id;
+			currentCoinId = Id;
 			_cryptoService = cryptoService;
 			_coinService = new CoinService();
 			InitializeComponent();
