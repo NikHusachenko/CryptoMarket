@@ -52,7 +52,9 @@ namespace CryptoMarket.Desktop.Forms
 		}
 		private async void MarketForm_Load(object sender, EventArgs e)
 		{
+			_marketService.ChangeNavigationBattonEnabled(PreviousPageBtn, NextPageBtn, false);
 			await _cryptoService.UpdateDatabaseOrDefaultAsync();
+			_marketService.ChangeNavigationBattonEnabled(PreviousPageBtn, NextPageBtn, true);
 			List<CoinEntity> coinList = await _cryptoService.GetCoinListAsync(currentPage);
 			AddToFlowLayot(coinList, currenciesFlowLayoutPanel);
 			totalPages = (int)Math.Ceiling((double)await _cryptoService.GetNumberOfCoins() / MarketFormConstants.COINS_ON_PAGE);

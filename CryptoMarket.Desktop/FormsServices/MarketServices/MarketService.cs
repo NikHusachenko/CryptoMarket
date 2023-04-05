@@ -39,5 +39,10 @@ namespace CryptoMarket.Desktop.FormsServices.MarketServices
 		{
 			PageNumberInfoLab.Text = $"{currentPage}/{totalPages}";
 		}
+		public void ChangeNavigationBattonEnabled(Button Previous, Button Next, bool enable)
+		{
+			Previous.Enabled = enable;
+			Next.Enabled = enable;
+		}
 	}
 }
