@@ -1,4 +1,8 @@
-﻿namespace CryptoMarket.Desktop.Forms
+﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.Services.Response;
+using System.Net;
+
+namespace CryptoMarket.Desktop.Forms
 {
 	partial class CoinForm
 	{
@@ -18,6 +22,48 @@
 				components.Dispose();
 			}
 			base.Dispose(disposing);
+		}
+
+		private async Task FillCoinDataAndDisplay(string coinId)
+		{
+			ResponseService<CoinEntity> currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
+			if (currentCoin.Value == null)
+			{
+				Thread.Sleep(110000);
+				currentCoin = await _cryptoService.GetCoinByCoinIdAsync(coinId);
+			}
+
+			DisplayImage(currentCoin.Value.Image.Large);
+			SymbolLabel.Text = currentCoin.Value.Symbol;
+			CoinIDLabel.Text = currentCoin.Value.CoinId;
+			NameLabel.Text = currentCoin.Value.Name;
+			PriceChangePercentageLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.PriceChangePercentage);
+			MarketCapRankLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.MarketCapRank);
+			TotalVolumeLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.TotalVolume.Usd);
+			MarketCapLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.MarketCap.Usd);
+			CurrentPriceLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.CurrentPrice.Usd);
+			High24HLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.Hight24H.Usd);
+			Low24HLabel.Text = _coinService.FormatValueOrDefault(currentCoin.Value.MarketData.Low24H.Usd);
+		}
+
+		void DisplayImage(string imageUrl)
+		{
+			try
+			{
+				using (WebClient webClient = new WebClient())
+				{
+					byte[] data = webClient.DownloadData(imageUrl);
+					using (MemoryStream memoryStream = new MemoryStream(data))
+					{
+						Image image = Image.FromStream(memoryStream);
+						CoinLogoPictureBox.Image = image;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error: {ex.Message}");
+			}
 		}
 
 		#region Windows Form Designer generated code
@@ -74,18 +120,18 @@
 			this.CoinIDLabel.AutoSize = true;
 			this.CoinIDLabel.Location = new System.Drawing.Point(149, 23);
 			this.CoinIDLabel.Name = "CoinIDLabel";
-			this.CoinIDLabel.Size = new System.Drawing.Size(43, 17);
+			this.CoinIDLabel.Size = new System.Drawing.Size(64, 17);
 			this.CoinIDLabel.TabIndex = 2;
-			this.CoinIDLabel.Text = "label2";
+			this.CoinIDLabel.Text = "Loading...";
 			// 
 			// SymbolLabel
 			// 
 			this.SymbolLabel.AutoSize = true;
 			this.SymbolLabel.Location = new System.Drawing.Point(149, 67);
 			this.SymbolLabel.Name = "SymbolLabel";
-			this.SymbolLabel.Size = new System.Drawing.Size(43, 17);
+			this.SymbolLabel.Size = new System.Drawing.Size(64, 17);
 			this.SymbolLabel.TabIndex = 4;
-			this.SymbolLabel.Text = "label3";
+			this.SymbolLabel.Text = "Loading...";
 			// 
 			// SymbolTextLabel
 			// 
@@ -101,9 +147,9 @@
 			this.NameLabel.AutoSize = true;
 			this.NameLabel.Location = new System.Drawing.Point(149, 110);
 			this.NameLabel.Name = "NameLabel";
-			this.NameLabel.Size = new System.Drawing.Size(43, 17);
+			this.NameLabel.Size = new System.Drawing.Size(64, 17);
 			this.NameLabel.TabIndex = 6;
-			this.NameLabel.Text = "label5";
+			this.NameLabel.Text = "Loading...";
 			// 
 			// NameTextLabel
 			// 
@@ -119,9 +165,9 @@
 			this.PriceChangePercentageLabel.AutoSize = true;
 			this.PriceChangePercentageLabel.Location = new System.Drawing.Point(251, 153);
 			this.PriceChangePercentageLabel.Name = "PriceChangePercentageLabel";
-			this.PriceChangePercentageLabel.Size = new System.Drawing.Size(43, 17);
+			this.PriceChangePercentageLabel.Size = new System.Drawing.Size(64, 17);
 			this.PriceChangePercentageLabel.TabIndex = 8;
-			this.PriceChangePercentageLabel.Text = "label7";
+			this.PriceChangePercentageLabel.Text = "Loading...";
 			// 
 			// PriceChangePercentageTextLabel
 			// 
@@ -137,9 +183,9 @@
 			this.MarketCapRankLabel.AutoSize = true;
 			this.MarketCapRankLabel.Location = new System.Drawing.Point(171, 195);
 			this.MarketCapRankLabel.Name = "MarketCapRankLabel";
-			this.MarketCapRankLabel.Size = new System.Drawing.Size(43, 17);
+			this.MarketCapRankLabel.Size = new System.Drawing.Size(64, 17);
 			this.MarketCapRankLabel.TabIndex = 10;
-			this.MarketCapRankLabel.Text = "label9";
+			this.MarketCapRankLabel.Text = "Loading...";
 			// 
 			// MarketCapRankTextLabel
 			// 
@@ -155,9 +201,9 @@
 			this.TotalVolumeLabel.AutoSize = true;
 			this.TotalVolumeLabel.Location = new System.Drawing.Point(149, 236);
 			this.TotalVolumeLabel.Name = "TotalVolumeLabel";
-			this.TotalVolumeLabel.Size = new System.Drawing.Size(50, 17);
+			this.TotalVolumeLabel.Size = new System.Drawing.Size(64, 17);
 			this.TotalVolumeLabel.TabIndex = 12;
-			this.TotalVolumeLabel.Text = "label11";
+			this.TotalVolumeLabel.Text = "Loading...";
 			// 
 			// TotalVolumeTextLabel
 			// 
@@ -173,9 +219,9 @@
 			this.MarketCapLabel.AutoSize = true;
 			this.MarketCapLabel.Location = new System.Drawing.Point(149, 277);
 			this.MarketCapLabel.Name = "MarketCapLabel";
-			this.MarketCapLabel.Size = new System.Drawing.Size(50, 17);
+			this.MarketCapLabel.Size = new System.Drawing.Size(64, 17);
 			this.MarketCapLabel.TabIndex = 14;
-			this.MarketCapLabel.Text = "label13";
+			this.MarketCapLabel.Text = "Loading...";
 			// 
 			// MarketCapTextLabel
 			// 
@@ -191,9 +237,9 @@
 			this.CurrentPriceLabel.AutoSize = true;
 			this.CurrentPriceLabel.Location = new System.Drawing.Point(149, 326);
 			this.CurrentPriceLabel.Name = "CurrentPriceLabel";
-			this.CurrentPriceLabel.Size = new System.Drawing.Size(50, 17);
+			this.CurrentPriceLabel.Size = new System.Drawing.Size(64, 17);
 			this.CurrentPriceLabel.TabIndex = 16;
-			this.CurrentPriceLabel.Text = "label15";
+			this.CurrentPriceLabel.Text = "Loading...";
 			// 
 			// CurrentPriceTextLabel
 			// 
@@ -209,9 +255,9 @@
 			this.High24HLabel.AutoSize = true;
 			this.High24HLabel.Location = new System.Drawing.Point(149, 369);
 			this.High24HLabel.Name = "High24HLabel";
-			this.High24HLabel.Size = new System.Drawing.Size(50, 17);
+			this.High24HLabel.Size = new System.Drawing.Size(64, 17);
 			this.High24HLabel.TabIndex = 18;
-			this.High24HLabel.Text = "label17";
+			this.High24HLabel.Text = "Loading...";
 			// 
 			// High24HTextLabel
 			// 
@@ -236,9 +282,9 @@
 			this.Low24HLabel.AutoSize = true;
 			this.Low24HLabel.Location = new System.Drawing.Point(149, 411);
 			this.Low24HLabel.Name = "Low24HLabel";
-			this.Low24HLabel.Size = new System.Drawing.Size(43, 17);
+			this.Low24HLabel.Size = new System.Drawing.Size(64, 17);
 			this.Low24HLabel.TabIndex = 20;
-			this.Low24HLabel.Text = "label4";
+			this.Low24HLabel.Text = "Loading...";
 			// 
 			// CoinForm
 			// 
@@ -269,6 +315,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "CoinForm";
 			this.Text = "CoinForm";
+			this.Load += new System.EventHandler(this.CoinForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.CoinLogoPictureBox)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
