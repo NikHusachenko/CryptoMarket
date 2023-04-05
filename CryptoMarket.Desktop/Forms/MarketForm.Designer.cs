@@ -142,13 +142,14 @@ namespace CryptoMarket.Desktop.Forms
 			// myProfileToolStripMenuItem
 			// 
 			this.myProfileToolStripMenuItem.Name = "myProfileToolStripMenuItem";
-			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.myProfileToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.myProfileToolStripMenuItem.Text = "My Profile";
+			this.myProfileToolStripMenuItem.Click += new System.EventHandler(this.myProfileToolStripMenuItem_Click);
 			// 
 			// walletsToolStripMenuItem
 			// 
 			this.walletsToolStripMenuItem.Name = "walletsToolStripMenuItem";
-			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.walletsToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
 			this.walletsToolStripMenuItem.Text = "Wallets";
 			// 
 			// marketToolStripMenuItem

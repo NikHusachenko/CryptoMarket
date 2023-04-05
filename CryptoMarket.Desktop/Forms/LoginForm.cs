@@ -11,10 +11,12 @@ namespace CryptoMarket.Desktop.Forms
     {
         private readonly IUserService _userService;
         private readonly ICryptoService _cryptoService;
-		IGenericRepository<CoinEntity> _coinRepository;
-		public LoginForm(IUserService userService, ICryptoService cryptoService, IGenericRepository<CoinEntity> coinRepository)
+		private readonly IGenericRepository<CoinEntity> _coinRepository;
+        private readonly IGenericRepository<UserEntity> _userRepository;
+		public LoginForm(IUserService userService, ICryptoService cryptoService, IGenericRepository<CoinEntity> coinRepository,IGenericRepository<UserEntity> userRepository)
         {
             _userService = userService;
+            _userRepository = userRepository;
             _cryptoService = cryptoService;
             _coinRepository = coinRepository;
             InitializeComponent();
@@ -51,8 +53,8 @@ namespace CryptoMarket.Desktop.Forms
 
                     return;
                 }
-
-                MarketForm marketForm = new MarketForm(_cryptoService,_coinRepository);
+                UserEntity currentUser = await _userService.GetByLoginAndPasswordAsync(LoginTextBox.Text, PasswordTextBox.Text);
+				MarketForm marketForm = new MarketForm(currentUser,_cryptoService,_userService,_coinRepository,_userRepository);
                 marketForm.FormClosed += (object? sender, FormClosedEventArgs e) =>
                 {
                     Environment.Exit(0);

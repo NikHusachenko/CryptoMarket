@@ -13,5 +13,6 @@ namespace CryptoMarket.EntityFramework.Repository
         Task<T> GetById(long id);
         Task<T> GetBy(Expression<Func<T, bool>> expression);
         Task<ICollection<T>> GetAll();
-    }
+		Task<int> SaveChangesAsync();
+	}
 }

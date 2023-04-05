@@ -1,20 +1,25 @@
-﻿using Microsoft.Identity.Client;
+﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.EntityFramework.Repository;
+using CryptoMarket.Services.UserServices;
+using Microsoft.Identity.Client;
 
 namespace CryptoMarket.Desktop.Forms
 {
 	public partial class ProfileForm : Form
 	{
 		static bool ChangePasswordWasPressed;
-		static string currentPassword; // Password of this User
-
-		public ProfileForm(string Login, string Email, string Password)
+		private readonly UserEntity _currentUser;
+		private static IUserService _userService;
+		private static IGenericRepository<UserEntity> _userRepository;
+		public ProfileForm(UserEntity currentUser, IUserService userService,IGenericRepository<UserEntity> userRepository)
 		{
 			InitializeComponent();
-
-			LoginTextBox.Text = Login;
-			EmailTextBox.Text = Email;
-			currentPassword = Password;
-
+			_currentUser = currentUser;
+			_userService = userService;
+		    _userRepository = userRepository;
+			LoginTextBox.Text = _currentUser.Login;
+			EmailTextBox.Text = _currentUser.Email;
+        
 			ChangePasswordWasPressed = false;
 			ChangePasswordBox.Visible = false;
 			EmailErrorLabel.Visible = false;
@@ -22,7 +27,7 @@ namespace CryptoMarket.Desktop.Forms
 			NewPasswordErrorLabel.Visible = false;
 		}
 
-		private static bool CheckEnteredInfo(System.Windows.Forms.TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
+		private static bool CheckEnteredInfo(TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
 		{
 			if (string.IsNullOrEmpty(EnteredData.Text))
 			{
@@ -39,35 +44,30 @@ namespace CryptoMarket.Desktop.Forms
 			return true;
 		}
 
-		private void SaveLabel_Click(object sender, EventArgs e)
+		private async void SaveLabel_Click(object sender, EventArgs e)
 		{
-
-			List<string> LoginList = new List<string>();// Here we get all Logins
-			List<string> EmailList = new List<string>();// Here we get all Emails
-			List<string> PasswordList = new List<string>();// Here we get all Passwords
-
-			// Add existing data
-			LoginList.Add("1");
-			EmailList.Add("1");
-			PasswordList.Add("1");
+			List<UserEntity> users = await _userService.GetAllAsync();
+			List<string> LoginList = new List<string>();
+			List<string> EmailList = new List<string>();
+			List<string> PasswordList = new List<string>();
+			foreach (UserEntity user in users)
+			{
+				LoginList.Add(user.Login);
+				EmailList.Add(user.Email);
+				PasswordList.Add(user.Password);
+			}
 
 			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
 			if (isLoginCorrect)
 			{
-				int loginIndex = LoginList.IndexOf(LoginTextBox.Text);
-				if (loginIndex >= 0)
-				{
-					LoginList[loginIndex] = LoginTextBox.Text;
-				}
+				_currentUser.Login = LoginTextBox.Text;
+				await _userRepository.SaveChangesAsync();
 			}
 			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
 			if (isEmailCorrect)
 			{
-				int emailIndex = EmailList.IndexOf(EmailTextBox.Text);
-				if (emailIndex >= 0)
-				{
-					EmailList[emailIndex] = EmailTextBox.Text;
-				}
+				_currentUser.Email = EmailTextBox.Text;
+				await _userRepository.SaveChangesAsync();
 			}
 
 			bool isOldPasswordCorrect = false;
@@ -75,13 +75,13 @@ namespace CryptoMarket.Desktop.Forms
 
 			if (ChangePasswordBox.Visible == true)
 			{
-				if (OldPasswordTextBox.Text == currentPassword)
+				if (OldPasswordTextBox.Text == _currentUser.Password)
 				{
 					isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);
-					int passwordIndex = PasswordList.IndexOf(OldPasswordTextBox.Text);
-					if (passwordIndex >= 0)
+					if (isNewPasswordCorrect)
 					{
-						PasswordList[passwordIndex] = NewPasswordTextBox.Text;
+						_currentUser.Password = NewPasswordTextBox.Text;
+						await _userRepository.SaveChangesAsync();
 						MessageBox.Show("Succes");
 						this.Close();
 					}
