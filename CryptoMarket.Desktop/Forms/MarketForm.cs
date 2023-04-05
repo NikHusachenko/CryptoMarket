@@ -19,7 +19,7 @@ namespace CryptoMarket.Desktop.Forms
 			_marketService = new MarketService(_coinRepository);
 			_coinRepository = coinRepository;
 			_cryptoService = cryptoService;
-			currentPage = 60;
+			currentPage = 1;
 			InitializeComponent();
 		}
 		private async void NextPageBtn_Click(object sender, EventArgs e)
