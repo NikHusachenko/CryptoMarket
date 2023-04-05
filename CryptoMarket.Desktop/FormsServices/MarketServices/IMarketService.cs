@@ -8,5 +8,6 @@ namespace CryptoMarket.Desktop.FormsServices.MarketServices
 		ResponseService<List<CoinEntity>> GetCoins(int pageNumber);
 		void CheckPaginationState(int currentPage, int totalPages, Button PreviousPageBtn, Button NextPageBtn);
 		void UpdatePageInfo(Label PageNumberInfoLab, int currentPage, int totalPages);
+		void ChangeNavigationBattonEnabled(Button Previous, Button Next, bool enable);
 	}
 }
