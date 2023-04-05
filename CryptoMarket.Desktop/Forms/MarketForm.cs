@@ -76,7 +76,7 @@ namespace CryptoMarket.Desktop.Forms
 
 		private void myProfileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ProfileForm profileForm = new ProfileForm(_currentUser, _userService,_userRepository);
+			ProfileForm profileForm = new ProfileForm(_currentUser, _userRepository);
 			profileForm.Show();
 		}
 	}

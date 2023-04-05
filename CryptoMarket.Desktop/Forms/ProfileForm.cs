@@ -1,4 +1,5 @@
 ﻿using CryptoMarket.Database.Entities;
+using CryptoMarket.Desktop.FormsServices.ProfileServices;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.UserServices;
 using Microsoft.Identity.Client;
@@ -9,14 +10,14 @@ namespace CryptoMarket.Desktop.Forms
 	{
 		static bool ChangePasswordWasPressed;
 		private readonly UserEntity _currentUser;
-		private static IUserService _userService;
+		private static IProfileService _profileService;
 		private static IGenericRepository<UserEntity> _userRepository;
-		public ProfileForm(UserEntity currentUser, IUserService userService,IGenericRepository<UserEntity> userRepository)
+		public ProfileForm(UserEntity currentUser, IGenericRepository<UserEntity> userRepository)
 		{
 			InitializeComponent();
 			_currentUser = currentUser;
-			_userService = userService;
 		    _userRepository = userRepository;
+			_profileService = new ProfileService(_userRepository);
 			LoginTextBox.Text = _currentUser.Login;
 			EmailTextBox.Text = _currentUser.Email;
         
@@ -26,66 +27,9 @@ namespace CryptoMarket.Desktop.Forms
 			OldPasswordErrorLabel.Visible = false;
 			NewPasswordErrorLabel.Visible = false;
 		}
-
-		private static bool CheckEnteredInfo(TextBox EnteredData, string NameOfProperty, List<string> existsItems, Label errorLabel)
-		{
-			if (string.IsNullOrEmpty(EnteredData.Text))
-			{
-				errorLabel.Visible = true;
-				errorLabel.Text = $"<- {NameOfProperty} cannot be empty";
-				return false;
-			}
-			else if (existsItems.Contains(EnteredData.Text))
-			{
-				errorLabel.Visible = true;
-				errorLabel.Text = $"<- Such {NameOfProperty} is already used";
-				return false;
-			}
-			return true;
-		}
-
 		private async void SaveLabel_Click(object sender, EventArgs e)
 		{
-			List<UserEntity> users = await _userService.GetAllAsync();
-			List<string> LoginList = new List<string>();
-			List<string> EmailList = new List<string>();
-			foreach (UserEntity user in users)
-			{
-				LoginList.Add(user.Login);
-				EmailList.Add(user.Email);
-			}
-
-			bool isLoginCorrect = CheckEnteredInfo(LoginTextBox, "Login", LoginList, LoginErrorLabel);
-			if (isLoginCorrect)
-			{
-				_currentUser.Login = LoginTextBox.Text;
-				await _userRepository.Update(_currentUser);
-				MessageBox.Show("Succes");
-			}
-			bool isEmailCorrect = CheckEnteredInfo(EmailTextBox, "Email", EmailList, EmailErrorLabel);
-			if (isEmailCorrect)
-			{
-				_currentUser.Email = EmailTextBox.Text;
-				await _userRepository.Update(_currentUser);
-				MessageBox.Show("Succes");
-			}
-
-			bool isOldPasswordCorrect = false;
-			bool isNewPasswordCorrect = false;
-
-			if (ChangePasswordBox.Visible == true)
-			{
-				if (OldPasswordTextBox.Text == _currentUser.Password)
-				{
-					//isNewPasswordCorrect = CheckEnteredInfo(NewPasswordTextBox, "New Password", PasswordList, NewPasswordErrorLabel);
-					if (!string.IsNullOrEmpty(NewPasswordTextBox.Text))
-					{
-							_currentUser.Password = NewPasswordTextBox.Text;
-							await _userRepository.Update(_currentUser);
-							MessageBox.Show("Succes");
-					}
-				}
-			}
+			await _profileService.SaveChangedData(_currentUser,ChangePasswordBox,LoginTextBox,EmailTextBox,OldPasswordTextBox,NewPasswordTextBox,LoginErrorLabel,EmailErrorLabel);
 		}
 
 		private void CancelLabel_Click(object sender, EventArgs e)
