@@ -5,6 +5,7 @@ using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.Response;
 using CryptoMarket.Services.UserServices.Models;
 using CryptoMarket.Services.WalletServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace CryptoMarket.Services.UserServices
 {
@@ -78,5 +79,28 @@ namespace CryptoMarket.Services.UserServices
                 return ResponseService.Error(result);
             }
         }
-    }
+		public async Task<UserEntity> GetByLoginAndPasswordAsync(string login, string password)
+		{
+			UserEntity dbRecord = await _userRepository.Table
+				.Include(user => user.Wallets)
+				.Where(user => user.Login == login && user.Password == password)
+				.FirstOrDefaultAsync();
+			if (dbRecord == null)
+			{
+				return null;
+			}
+			return dbRecord;
+		}
+		public async Task<List<UserEntity>> GetAllAsync()
+		{
+			List<UserEntity> dbRecord = await _userRepository.Table
+				.Include(user => user.Wallets)
+				.ToListAsync();
+			if (dbRecord == null)
+			{
+				return null;
+			}
+			return dbRecord;
+		}
+	}
 }

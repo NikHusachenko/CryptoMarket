@@ -70,5 +70,10 @@ namespace CryptoMarket.EntityFramework.Repository
         {
             return await Table.FirstOrDefaultAsync(expression);
         }
-    }
+
+		public async Task<int> SaveChangesAsync()
+		{
+			return await _context.SaveChangesAsync();
+		}
+	}
 }

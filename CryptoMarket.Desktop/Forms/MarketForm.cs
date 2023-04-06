@@ -3,6 +3,7 @@ using CryptoMarket.Database.Entities;
 using CryptoMarket.Desktop.FormsServices.MarketServices;
 using CryptoMarket.EntityFramework.Repository;
 using CryptoMarket.Services.CoinGreckoServices;
+using CryptoMarket.Services.UserServices;
 
 namespace CryptoMarket.Desktop.Forms
 {
@@ -11,15 +12,21 @@ namespace CryptoMarket.Desktop.Forms
 		private static int currentPage;
 		private static int totalPages;
 		private static IGenericRepository<CoinEntity> _coinRepository;
+		private static IGenericRepository<UserEntity> _userRepository;
 		private static ICryptoService _cryptoService;
 		private static IMarketService _marketService;
+		private static IUserService _userService;
+		private readonly UserEntity _currentUser;
 
-		public MarketForm(ICryptoService cryptoService, IGenericRepository<CoinEntity> coinRepository)
+		public MarketForm(UserEntity currentUser, ICryptoService cryptoService,IUserService userService, IGenericRepository<CoinEntity> coinRepository,IGenericRepository<UserEntity> userRepository)
 		{
-			_marketService = new MarketService(_coinRepository);
+			currentPage = 1;
 			_coinRepository = coinRepository;
 			_cryptoService = cryptoService;
-			currentPage = 1;
+			_currentUser = currentUser;
+			_userService = userService;
+			_userRepository = userRepository;
+			_marketService = new MarketService(_coinRepository);
 			InitializeComponent();
 		}
 		private async void NextPageBtn_Click(object sender, EventArgs e)
@@ -65,6 +72,12 @@ namespace CryptoMarket.Desktop.Forms
 			{
 				await _cryptoService.UpdateData();
 			}
+		}
+
+		private void myProfileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ProfileForm profileForm = new ProfileForm(_currentUser, _userRepository);
+			profileForm.Show();
 		}
 	}
 }
